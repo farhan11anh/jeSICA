@@ -5,10 +5,10 @@
         <nav class="bg-white border-gray-200">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="#" class="flex items-center">
-                    <img src="/assets/img/logo.png" class="h-8 mr-3" alt="Flowbite Logo" />
+                    <img src="/assets/img/logo.png" class="h-8 mr-3" alt="Telkomsigma Logo" />
                 </a>
 
-                <div class="flex md:order-2">
+                <div class="flex md:order-last">
                     <Button background="bg-background-secondary text-t-secondary border border-b-secondary" title="Login" />
                     <Button background="bg-background-primary text-t-primary" title="Sign Up" />
                 </div>
@@ -22,7 +22,7 @@
                         </svg>
                     </button>
                 </div>
-                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto mx-auto" id="navbar-cta">
                     <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
                         <li>
                             <a href="#" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0" aria-current="page">Home</a>

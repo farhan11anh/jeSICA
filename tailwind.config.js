@@ -10,7 +10,21 @@ module.exports = {
     "./node_modules/flowbite/**/*.{js,ts}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      // backgorund image
+      "backgroundImage" : {
+        "contoh" : "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT7w_ppyXkK6Fi0IEu8amIpkSDOq0v4KO5sA&usqp=CAU')",
+        "ct" : "linear-gradient(to right bottom, rgba('#7ed56f',0.8), rgba('#28b485',0.8)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT7w_ppyXkK6Fi0IEu8amIpkSDOq0v4KO5sA&usqp=CAU')"
+      },
+      flexBasis : {
+        '1/7': '14.2857143%',
+        '2/7': '28.5714286%',
+        '3/7': '42.8571429%',
+        '4/7': '57.1428571%',
+        '5/7': '71.4285714%',
+        '6/7': '85.7142857%',
+      }
+    },
     colors : {
       // background
       'background' : {
@@ -22,6 +36,7 @@ module.exports = {
       't' : {
         'primary' : "#FFFFFF",
         'secondary' : "#344054",
+        'second' : "#475467"
       },
       // border
       "b" : {
