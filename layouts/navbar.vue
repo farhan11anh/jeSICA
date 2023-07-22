@@ -9,8 +9,8 @@
                 </a>
 
                 <div class="flex md:order-2">
-                    <Button background="bg-secondary text-csecondary border border-bsecondary" title="Login" />
-                    <Button background="bg-primary text-white" title="Sign Up" />
+                    <Button background="bg-background-secondary text-t-secondary border border-b-secondary" title="Login" />
+                    <Button background="bg-background-primary text-t-primary" title="Sign Up" />
                 </div>
 
                 <div class="flex md:order-2">

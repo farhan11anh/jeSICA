@@ -12,14 +12,21 @@ module.exports = {
   theme: {
     extend: {},
     colors : {
+      // background
       'background' : {
-        'secondary' :"#E31B53"
+        'primary' : "#E31B53",
+        'secondary' :"#FFFFFF",
+
       },
-      'primary' : "#E31B53",
-      'secondary' : "#FFFFFF",
-      'cprimary' : "",
-      'csecondary' : "#344054",
-      'bsecondary' : "#344054"
+      // text
+      't' : {
+        'primary' : "#FFFFFF",
+        'secondary' : "#344054",
+      },
+      // border
+      "b" : {
+        'secondary' : "#344054"
+      }
     }
   },
   plugins: [
