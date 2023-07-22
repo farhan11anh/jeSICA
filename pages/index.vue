@@ -27,28 +27,16 @@
             <div class="bg-white dark:bg-gray-900">
                 <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
                     <div class="flex flex-wrap justify-between">
-                        <div class="basis-2/7 text-center rounded-2xl bg-[##FFE4E8] px-6 pb-8 shadow-2xl">
-                            <img class="mx-auto -mt-10" src="/assets/img/thunder.png" alt="">
-                            <h2 class="text-xl font-bold leading-7" >Ask Away</h2>
-                            <p class="mt-3" >
-                                Type your questions or concerns in the chatbox, and Jessica will swiftly analyze and generate the best possible answers.
-                            </p>
-                        </div>
-                        <div class="basis-2/7 text-center rounded-2xl bg-[##FFE4E8] px-6 pb-8 shadow-2xl">
-                            <img class="mx-auto -mt-10" src="/assets/img/thunder.png" alt="">
-                            <h2 class="text-xl font-bold leading-7" >Ask Away</h2>
-                            <p class="mt-3" >
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam voluptates perferendis magni non provident iste beatae voluptas ullam nemo vitae.
-                            </p>
-                        </div>
-                        <div class="basis-2/7 text-center rounded-2xl bg-[##FFE4E8] px-6 pb-8 shadow-2xl">
-                            <img class="mx-auto -mt-10" src="/assets/img/thunder.png" alt="">
-                            <h2 class="text-xl font-bold leading-7" >Discover Solutions</h2>
-                            <p class="mt-3" >
-                                Whether it's technical support, product information, or general inquiries, Jessica has you covered with reliable answers.
-                            </p>
-                        </div>
-                      
+                        <Card
+                            title="Ask Away"
+                            content="Type your questions or concerns in the chatbox, and Jessica will swiftly analyze and generate the best possible answers." />
+                        <Card
+                            tile="Discover Solutions"
+                            content="Whether it's technical support, product information, or general inquiries, Jessica has you covered with reliable answers." />
+
+                        <Card 
+                            title="Discover Solutions" 
+                            content="Whether it's technical support, product information, or general inquiries, Jessica has you covered with reliable answers." />
                     </div>
                 </div>
             </div>
