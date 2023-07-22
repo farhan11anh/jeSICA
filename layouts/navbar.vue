@@ -2,7 +2,7 @@
     <div>
         
         
-        <nav class="bg-white border-gray-200">
+        <nav class="bg-white border-gray-200 fixed w-full top-0 left-0 z-20">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="#" class="flex items-center">
                     <img src="/assets/img/logo.png" class="h-8 mr-3" alt="Telkomsigma Logo" />
@@ -43,6 +43,7 @@
                 </div>
             </div>
         </nav>
+        <div class="h-16" ></div>
         
         
         <slot />
