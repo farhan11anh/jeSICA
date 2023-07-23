@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="relative" >
         <section class="bg-white dark:bg-gray-900">
             <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
                 <div class="flex flex-wrap">
@@ -41,13 +41,16 @@
                 </div>
             </div>
         </section>
+
+        <Popup />
     </div>
 </template>
 
-<script>
+<script setup>
     definePageMeta({
         layout : "navbar"
     })
+
 </script>
 
 <style>
