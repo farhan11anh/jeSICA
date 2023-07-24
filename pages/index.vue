@@ -18,7 +18,11 @@
 
                     </div>
                     <div class="basis-1/2">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore totam sapiente nam itaque accusamus sint sit amet cupiditate nihil impedit enim laborum aliquam iusto, eaque rem ipsum iste voluptatum aperiam?</p>
+                        <!-- <div class="bg-pattern h-80"></div> -->
+                        <div class="img-banner relative h-64 md:h-80 lg:h-96">
+                            <div class="absolute inset-0 bg-gradient-to-r from-transparent to-white"></div>
+                            <img class="object-cover w-full h-full" src="/assets/img/chat-ss.svg" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -31,7 +35,7 @@
                             title="Ask Away"
                             content="Type your questions or concerns in the chatbox, and Jessica will swiftly analyze and generate the best possible answers." />
                         <Card
-                            tile="Discover Solutions"
+                            title="Discover Solutions"
                             content="Whether it's technical support, product information, or general inquiries, Jessica has you covered with reliable answers." />
 
                         <Card 

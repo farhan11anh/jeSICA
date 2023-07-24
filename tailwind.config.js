@@ -14,7 +14,9 @@ module.exports = {
       // backgorund image
       "backgroundImage" : {
         "contoh" : "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT7w_ppyXkK6Fi0IEu8amIpkSDOq0v4KO5sA&usqp=CAU')",
-        "ct" : "linear-gradient(to right bottom, rgba('#7ed56f',0.8), rgba('#28b485',0.8)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT7w_ppyXkK6Fi0IEu8amIpkSDOq0v4KO5sA&usqp=CAU')"
+        "ct" : "linear-gradient(to right bottom, rgba('#7ed56f',0.8), rgba('#28b485',0.8)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT7w_ppyXkK6Fi0IEu8amIpkSDOq0v4KO5sA&usqp=CAU')",
+        'pattern': "linear-gradient(to right bottom, rgba('#7ed56f',0.8), rgba('#28b485',0.8)), url('/assets/img/chat-ss.svg')"
+
       },
       flexBasis : {
         '1/7': '14.2857143%',
