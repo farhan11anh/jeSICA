@@ -42,14 +42,24 @@
             </div>
         </section>
 
-        <Popup />
+        <Avatar class="fixed bottom-5 right-5 shadow-lg shadow-gray-600 cursor-pointer" width="w-12" online="true" @click="showModal = true" />
+
+        <Popup v-show="showModal" @close-modal="showModal=false"/>
     </div>
 </template>
 
-<script setup>
+<script>
     definePageMeta({
         layout : "navbar"
     })
+
+    export default {
+        data(){
+            return {
+                showModal : false
+            }
+        }
+    }
 
 </script>
 

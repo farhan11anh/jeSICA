@@ -1,6 +1,6 @@
 <template>
     <div class="flex gap-3 mb-5" :class="position">
-        <Avatar v-if="jesica === 'true'" online="false" width="w-10" />
+        <Avatar v-if="jesica === 'true'" online="false" width="w-10 relative" />
         <div class="balon rounded-lg p-4 max-w-[16rem]" :class="color">
             <p>
                 {{ msg }}
