@@ -1,6 +1,6 @@
 <template>
     <div class="relative" >
-        <section class="bg-white dark:bg-gray-900">
+        <section class="bg-white">
             <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
                 <div class="flex flex-wrap">
                     <div class="basis-1/2">

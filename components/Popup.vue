@@ -5,17 +5,20 @@
                 <div class="top">
                     <HeaderPopup />
                     <div class="overflow-auto h-[28rem] p-4">
-                        <BubleChat jesica="true" msg="Jadi kamu belum tahu tentang JSC ya? Okey, aku bakal jelasin secara singkat. Jadi, JSC itu kepanjangannya Jogja Solution Center. Karena namanya ada Jogja-nya, berarti letak JSC ada di Daerah Istimewa Yogyakarta. JSC itu menyediakan layanan B2B Digital IT Services yang saat ini masih berfokus di daerah regional 4 (Jawa Tengah dan DIY) dan regional 5 (Jawa Timur). JSC sendiri adalah sebuah unit yang dibentuk langsung oleh Telkomsigma, keren kan." />
-                        <BubleChat jesica="false" msg="Wow, menarik! Jadi, JSC merupakan bagian dari Telkomsigma, ya? Apa layanan yang ditawarkan oleh JSC?" />
+                        <BubleChat 
+                            v-for="i in messages"
+                            :jesica="i.isJesica"
+                            :msg="i.msg"
+                         />
                     </div>
                 </div>
                 <div class="footer p-4 border border-gray-300">
                     <div class="flex gap-3 justify-between">
                         <div class="message basis-10/12 border border-[#667085] border-solid rounded-md overflow-hidden h-10">
-                            <input placeholder="Ask me anything" class="w-full border-none" type="text">
+                            <input v-model="message" placeholder="Ask me anything" class="w-full border-none" type="text">
                         </div>
                         <div class="basis=2/12">
-                            <Button title=">" background="bg-background-primary text-t-primary" />
+                            <Button @click="sendMessage" title=">" background="bg-background-primary text-t-primary" />
                         </div>
                     </div>
                     <div class="flex justify-center">
@@ -30,6 +33,49 @@
         </div>
     </transition>
 </template>
+
+<script>
+    export default {
+        data(){
+            return{
+                message : "",
+                messages : [
+                    {
+                        isJesica : "true",
+                        msg : "Jadi kamu belum tahu tentang JSC ya? Okey, aku bakal jelasin secara singkat. Jadi, JSC itu kepanjangannya Jogja Solution Center. Karena namanya ada Jogja-nya, berarti letak JSC ada di Daerah Istimewa Yogyakarta. JSC itu menyediakan layanan B2B Digital IT Services yang saat ini masih berfokus di daerah regional 4 (Jawa Tengah dan DIY) dan regional 5 (Jawa Timur). JSC sendiri adalah sebuah unit yang dibentuk langsung oleh Telkomsigma, keren kan."
+                    },
+                    {
+                        isJesica : "false",
+                        msg : "Wow, menarik! Jadi, JSC merupakan bagian dari Telkomsigma, ya? Apa layanan yang ditawarkan oleh JSC?"
+                    }
+                ]
+            }
+        },
+        methods : {
+            sendMessage(){
+                const text = this.message
+                this.messages.push(
+                    {
+                        isJesica : "false",
+                        msg : text
+                    }
+                )
+                console.log(text);
+                this.message = ""
+
+                // jessica responese dummy
+                setTimeout(()=>{
+                    this.messages.push(
+                    {
+                        isJesica : "true",
+                        msg : "halo ada yang bisa dibantu ?"
+                    }
+                )
+                }, 2000)
+            }
+        }
+    }
+</script>
 
 <style>
     .overlay {

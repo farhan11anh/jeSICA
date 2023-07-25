@@ -15,7 +15,8 @@ module.exports = {
       "backgroundImage" : {
         "contoh" : "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT7w_ppyXkK6Fi0IEu8amIpkSDOq0v4KO5sA&usqp=CAU')",
         "ct" : "linear-gradient(to right bottom, rgba('#7ed56f',0.8), rgba('#28b485',0.8)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT7w_ppyXkK6Fi0IEu8amIpkSDOq0v4KO5sA&usqp=CAU')",
-        'pattern': "linear-gradient(to right bottom, rgba('#7ed56f',0.8), rgba('#28b485',0.8)), url('/assets/img/chat-ss.svg')"
+        'pattern': "linear-gradient(to right bottom, rgba('#7ed56f',0.8), rgba('#28b485',0.8)), url('/assets/img/chat-ss.svg')",
+        'bg-login' : "url('/assets/img/bg-login.png')"
 
       },
       flexBasis : {
@@ -25,6 +26,10 @@ module.exports = {
         '4/7': '57.1428571%',
         '5/7': '71.4285714%',
         '6/7': '85.7142857%',
+      },
+      fontFamily:{
+        nunito : ['Nunito'],
+        inter : ['Inter']
       }
     },
     colors : {

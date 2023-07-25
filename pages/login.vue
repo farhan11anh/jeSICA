@@ -1,0 +1,75 @@
+<template>
+    <div class="flex"> 
+        <div class=" basis-7/12">
+                        
+            <section class="bg-white">
+                <div class="py-2 px-4 mx-auto max-w-screen-xl text-center lg:py-3">
+                    <div class="content py-16 px-24 text-left">
+                        <div class=" font-bold font-nunito text-3xl mb-3">Welcome Back!</div>
+                        <div class="text-base text-[#475467]" >
+                            Login now to access internal data!
+                        </div>
+
+                        <form class="mt-7" action="">
+                            <Form
+                                name="email"
+                                title="NIK Telkom*"   
+                                type="email"  
+                                placeholder="Enter your NIK Telkom"
+                                icon="user"
+                                password="false"
+
+                                @togle-hide="doTest"
+                            />
+
+                            <Form
+                                name="password"
+                                title="Password*"   
+                                type="password"  
+                                placeholder="Enter your Password"
+                                icon="password"
+                                password="true"
+
+                                @toggle-hide="doTest"
+                            />
+
+
+                            <Button title="Login" background="bg-background-primary text-t-primary w-full h-16" />
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        <div class="basis-5/12 bg-bg-login h-screen overflow-hidden">
+        </div>
+    </div>
+</template>
+
+<script>
+    definePageMeta({
+        layout : "navbar"
+    })
+    export default {
+        data(){
+            return{
+                path : ""
+            }
+        },
+        mounted() {
+            this.getpath()
+        },  
+        methods : {
+            doTest(){
+                // 
+            },
+            getpath(){
+                this.path = this.$route.name
+            }
+        }
+    }
+</script>
+
+<style lang="scss" scoped>
+
+</style>
