@@ -1,10 +1,10 @@
 <template>
     <transition>
         <div @click="$emit('close-modal')" class="overlay z-30">
-            <div @click.stop class="modal h-[41rem] w-[30rem] bg-white fixed bottom-5 right-5 shadow-lg shadow-gray-600 rounded-md">
+            <div @click.stop class="modal h-[32rem] w-[24rem] bg-white fixed bottom-5 right-5 shadow-lg shadow-gray-600 rounded-md">
                 <div class="top">
                     <HeaderPopup />
-                    <div class="overflow-auto h-[28rem] p-4">
+                    <div class="overflow-auto h-[19rem] p-4">
                         <BubleChat 
                             v-for="i in messages"
                             :jesica="i.isJesica"
@@ -23,7 +23,7 @@
                     </div>
                     <div class="flex justify-center">
                         <div class="basis-10/12">
-                            <h2 class="text-center text-sm text-[#667085]" >
+                            <h2 class="text-center text-xs text-[#667085]" >
                                 Jessica is continually improving, and her responses may become more accurate over time. ChatGPT May 24 Version.
                             </h2>
                         </div>

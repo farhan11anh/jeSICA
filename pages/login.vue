@@ -1,6 +1,6 @@
 <template>
-    <div class="flex"> 
-        <div class=" basis-7/12">
+    <div class="flex relative"> 
+        <div class=" basis-7/12 relative">
                         
             <section class="bg-white">
                 <div class="py-2 px-4 mx-auto max-w-screen-xl text-center lg:py-3">
@@ -34,7 +34,7 @@
                             />
 
 
-                            <Button title="Login" background="bg-background-primary text-t-primary w-full h-16" />
+                            <Button @click="login" title="Login" background="bg-background-primary text-t-primary w-full h-16" />
                         </form>
                     </div>
                 </div>
@@ -43,6 +43,8 @@
         </div>
         <div class="basis-5/12 bg-bg-login h-screen overflow-hidden">
         </div>
+        
+        <ConfirmationLogin v-show="showConfirm" @close-confirm="closeConfirm"/>
     </div>
 </template>
 
@@ -53,7 +55,8 @@
     export default {
         data(){
             return{
-                path : ""
+                path : "",
+                showConfirm : false
             }
         },
         mounted() {
@@ -65,6 +68,12 @@
             },
             getpath(){
                 this.path = this.$route.name
+            },
+            login(){
+                this.showConfirm  = true
+            },
+            closeConfirm(){
+                this.showConfirm = false
             }
         }
     }

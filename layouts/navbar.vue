@@ -7,8 +7,8 @@
                 </a>
 
                 <div class="flex md:order-last">
-                    <Button @click="goTo" background="bg-background-secondary text-t-secondary border border-b-secondary" title="Login" />
-                    <Button background="bg-background-primary text-t-primary" title="Sign Up" />
+                    <Button @click="goTo('login')" background="bg-background-secondary text-t-secondary border border-b-secondary" title="Login" />
+                    <Button @click="goTo('try-now')" background="bg-background-primary text-t-primary" title="Try Now" />
                 </div>
 
                 <div class="flex md:order-2">
@@ -63,9 +63,9 @@
             this.getPath()
         },
         methods : {
-            goTo(){
+            goTo(url){
                 navigateTo({
-                    path : '/login'
+                    path : `/${url}`
                 })
             },
             getPath(){
