@@ -20,6 +20,8 @@
                                 password="false"
 
                                 @togle-hide="doTest"
+
+                                @user-entry="onUserEntry"
                             />
 
                             <Form
@@ -31,6 +33,8 @@
                                 password="true"
 
                                 @toggle-hide="doTest"
+
+                                @user-entry="onUserPw"
                             />
 
 
@@ -56,7 +60,13 @@
         data(){
             return{
                 path : "",
-                showConfirm : false
+                showConfirm : false,
+                nik : "",
+                password : "",
+                form : {
+                    nik : "",
+                    password : ""
+                }
             }
         },
         mounted() {
@@ -69,16 +79,32 @@
             getpath(){
                 this.path = this.$route.name
             },
-            login(){
-                this.showConfirm  = true
-            },
             closeConfirm(){
                 this.showConfirm = false
+            },
+            
+            // login defined
+            onUserEntry(val){
+                this.nik = val
+            },
+            onUserPw(val){
+                this.password = val
+            },  
+            login(){
+                // alert(this.nik);
+                // alert(this.password);
+
+                //validate form cant empty
+                if(this.nik !== "" && this.password !== ""){
+                    this.showConfirm  = true
+                } else {
+                    alert('nik dan password tidak boleh kosong!!')
+                }
             }
         }
     }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>
