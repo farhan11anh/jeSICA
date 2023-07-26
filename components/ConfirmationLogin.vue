@@ -8,14 +8,32 @@
                 <p class="text-xs text-[#475467] mt-5 mb-5" >
                     Please enter the OTP code below to verify your email address to make sure that you are the rightful user
                 </p>
-                <Button title="Continue for Verification" background="bg-background-primary text-t-primary w-full" />
-                <Button @click="$emit('close-confirm')" background="bg-background-secondary text-t-secondary border border-b-secondary w-full" title="Back" />
+                <Button @click="$emit('send-to')" title="Continue for Verification" background="bg-background-primary text-t-primary w-full" />
+                <Button v-if="backButton === 'true'"  @click="$emit('close-confirm')" background="bg-background-secondary text-t-secondary border border-b-secondary w-full" title="Back" />
     
             </div>
         </div>
 
     </transition>
 </template>
+
+<script>
+    export default {
+        emits : ['send-to', 'close-confirm'],
+        props : {
+            'backButton' : {
+                type : String,
+                validator(val){
+                    return ['true', 'false'].includes(val)
+                },
+                required : true
+            },
+            'other' : {
+
+            }
+        }
+    }
+</script>
 
 <style>
     .overlay {

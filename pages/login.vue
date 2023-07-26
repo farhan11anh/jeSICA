@@ -48,7 +48,7 @@
         <div class="basis-5/12 bg-bg-login h-screen overflow-hidden">
         </div>
         
-        <ConfirmationLogin v-show="showConfirm" @close-confirm="closeConfirm"/>
+        <ConfirmationLogin backButton="true" v-show="showConfirm" @send-to="goTo('verification')" @close-confirm="closeConfirm"/>
     </div>
 </template>
 
@@ -66,13 +66,30 @@
                 form : {
                     nik : "",
                     password : ""
-                }
+                },
+                users : []
             }
         },
         mounted() {
             this.getpath()
+            this.getUsers()
         },  
         methods : {
+            async getUsers(){
+                try {
+                    const res = await fetch('/static/user.json')
+                    // if (!res.ok) {
+                    //     throw new Error('Network response was not ok');
+                    // }
+                    const data = await res.json()
+                    this.users = data.users
+                    // console.log(this.users);
+
+                }catch (error){
+                    this.users = []
+                    console.log(error);
+                }
+            },
             doTest(){
                 // 
             },
@@ -96,11 +113,23 @@
 
                 //validate form cant empty
                 if(this.nik !== "" && this.password !== ""){
-                    this.showConfirm  = true
+                    const user  = this.users.find(user=>user.nik == this.nik)
+                    if (user == undefined){
+                        alert('nik atau password tidak terdaftar')
+                    } else {
+                        this.showConfirm  = true
+                    }
                 } else {
                     alert('nik dan password tidak boleh kosong!!')
                 }
+            },
+            goTo(url){
+                this.$router.push({
+                    path : `/${url}`,
+                    query : {nik : this.nik}
+                })
             }
+   
         }
     }
 </script>
