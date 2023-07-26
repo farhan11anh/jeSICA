@@ -114,8 +114,8 @@
                 //validate form cant empty
                 if(this.nik !== "" && this.password !== ""){
                     const user  = this.users.find(user=>user.nik == this.nik)
-                    if (user == undefined){
-                        alert('nik atau password tidak terdaftar')
+                    if (user == undefined || this.password !== user.password){
+                        alert('nik tidak terdaftar atau password salah')
                     } else {
                         this.showConfirm  = true
                     }
