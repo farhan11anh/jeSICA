@@ -3,7 +3,7 @@
         <section class="bg-white">
             <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
                 <div class="flex flex-wrap">
-                    <div class="basis-1/2">
+                    <div class="md:basis-full lg:basis-1/2">
                         <h1 class="text-6xl font-bold text-left mb-7" >Meet Je<span class="text-background-primary" >SICA</span>, Your</h1>
                         <h1 class="text-6xl font-bold text-left mb-7" >Intelegence Chat Bot</h1>
                         <h1 class="text-6xl font-bold text-left" mb-7 >Companion</h1>
@@ -17,7 +17,7 @@
                         </div>
 
                     </div>
-                    <div class="basis-1/2">
+                    <div class="hidden md:hidden md:mb-5 lg:basis-1/2 lg:block">
                         <!-- <div class="bg-pattern h-80"></div> -->
                         <div class="img-banner relative h-64 md:h-80 lg:h-96">
                             <div class="absolute inset-0 bg-gradient-to-r from-transparent to-white"></div>
@@ -33,14 +33,19 @@
                     <div class="flex flex-wrap justify-between">
                         <Card
                             title="Ask Away"
-                            content="Type your questions or concerns in the chatbox, and Jessica will swiftly analyze and generate the best possible answers." />
+                            content="Type your questions or concerns in the chatbox, and Jessica will swiftly analyze and generate the best possible answers." 
+                            stylee="basis-full  md:basis-2/7 md:mb-0 mb-28"
+                            styleeChild="sm:w-1/2 md:w-full" />
                         <Card
                             title="Discover Solutions"
-                            content="Whether it's technical support, product information, or general inquiries, Jessica has you covered with reliable answers." />
-
+                            content="Whether it's technical support, product information, or general inquiries, Jessica has you covered with reliable answers." 
+                            stylee="basis-full  md:basis-2/7 md:mb-0 mb-28"
+                            styleeChild="sm:w-1/2 md:w-full" />
                         <Card 
                             title="Discover Solutions" 
-                            content="Whether it's technical support, product information, or general inquiries, Jessica has you covered with reliable answers." />
+                            content="Whether it's technical support, product information, or general inquiries, Jessica has you covered with reliable answers." 
+                            stylee="basis-full  md:basis-2/7 md:mb-0 mb-28"
+                            styleeChild="sm:w-1/2 md:w-full" />
                     </div>
                 </div>
             </div>

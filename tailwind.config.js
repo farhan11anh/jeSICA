@@ -36,13 +36,17 @@ module.exports = {
       // background
       'background' : {
         'primary' : "#E31B53",
+        'hover-primary' : "#C01048",
         'secondary' :"#FFFFFF",
+        'hover-secondary' : "#D0D5DD"
 
       },
       // text
       't' : {
         'primary' : "#FFFFFF",
+        'hover-primary' : "#FFFFFF",
         'secondary' : "#344054",
+        'hover-secondary' : "#1D2939",
         'second' : "#475467"
       },
       // border

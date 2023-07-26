@@ -18,7 +18,7 @@
                             <input v-model="message" placeholder="Ask me anything" class="w-full border-none" type="text">
                         </div>
                         <div class="basis=2/12">
-                            <Button @click="sendMessage" title=">" background="bg-background-primary text-t-primary" />
+                            <Button @click="sendMessage" title=">" background="bg-background-primary text-t-primary" class="hover:bg-background-hover-primary hover:text-t-hover-primary" />
                         </div>
                     </div>
                     <div class="flex justify-center">
