@@ -5,7 +5,7 @@
             <img class="mx-auto translate-y-4 top-1/2" :src="svg" alt="">
         </div>
         <input
-            @change="$emit('userEntry', $event.target.value)"   
+            @change="$emit('userEntry', $event.target.value)" 
             :value="modelValue" 
         class="w-full border-none basis-11/12" :name="name" :id="name" :type="typeP" placeholder="Enter your NIK Telkom" autocomplete="on">
         <div v-if="password == 'true'" @click="toggle" class="absolute right-5 top-1/2 -translate-y-3 cursor-pointer">

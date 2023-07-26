@@ -14,7 +14,7 @@
                             <Form
                                 name="email"
                                 title="NIK Telkom*"   
-                                type="email"  
+                                type="text"
                                 placeholder="Enter your NIK Telkom"
                                 icon="user"
                                 password="false"
