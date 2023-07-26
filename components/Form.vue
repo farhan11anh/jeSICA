@@ -5,8 +5,8 @@
             <img class="mx-auto translate-y-4 top-1/2" :src="svg" alt="">
         </div>
         <input
-            @change="$emit('userEntry', $event.target.value)" 
-            :value="modelValue" 
+            v-model="valueInput"
+            @input="emitVal"
         class="w-full border-none basis-11/12" :name="name" :id="name" :type="typeP" placeholder="Enter your NIK Telkom" autocomplete="on">
         <div v-if="password == 'true'" @click="toggle" class="absolute right-5 top-1/2 -translate-y-3 cursor-pointer">
             <img :src="hide ? '/assets/icons/eye.svg' : '/assets/icons/eyeOff.svg'" alt="">
@@ -25,11 +25,12 @@
             "password"
         ],
         emits : [
-            'toggle-hide'
+            'toggle-hide',
+            'user-entry'
         ],
         data(){
             return{
-                modelValue : "",
+                valueInput : "",
 
                 svg : `/assets/icons/${this.icon}.svg`,
                 hide : true,
@@ -38,7 +39,6 @@
         },
         methods : {
             toggle(){
-
                 this.$emit('toggle-hide')
 
                 this.hide = !this.hide
@@ -48,7 +48,11 @@
                     this.typeP = "password"
                 }
 
-                console.log(this.typeP);
+                // console.log(this.typeP);
+            },
+
+            emitVal(){
+                this.$emit('user-entry', this.valueInput)
             }
         }
     }

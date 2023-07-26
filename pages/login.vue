@@ -91,7 +91,7 @@
                 }
             },
             doTest(){
-                // 
+                // console.log('berhasil');
             },
             getpath(){
                 this.path = this.$route.name
@@ -108,10 +108,7 @@
                 this.password = val
             },  
             login(){
-                // alert(this.nik);
-                // alert(this.password);
-
-                //validate form cant empty
+                //validate form can't empty
                 if(this.nik !== "" && this.password !== ""){
                     const user  = this.users.find(user=>user.nik == this.nik)
                     if (user == undefined || this.password !== user.password){
