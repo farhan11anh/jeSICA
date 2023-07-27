@@ -9,6 +9,7 @@
         <input
             v-model="valueInput"
             @input="emitVal"
+            @keyup.enter="emitLogin"
         class="w-full border-none basis-11/12" :name="name" :id="name" :type="typeP" placeholder="Enter your NIK Telkom" autocomplete="on">
         <div v-if="password == 'true'" @click="toggleHides" class="absolute right-5 top-1/2 -translate-y-3 cursor-pointer">
             <img :src="hide ? '/assets/icons/eye.svg' : '/assets/icons/eyeOff.svg'" class=" max-w-full object-fill" alt="">
@@ -52,6 +53,9 @@
 
             emitVal(){
                 this.$emit('user-entry', this.valueInput)
+            },
+            emitLogin(){
+                this.$emit('log-in')
             }
         }
     }

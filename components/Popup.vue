@@ -4,7 +4,7 @@
             <div @click.stop class="modal h-[35rem] w-[24rem] bg-white fixed bottom-5 right-5 shadow-lg shadow-gray-600 rounded-md">
                 <div class="top">
                     <HeaderPopup />
-                    <div class="overflow-auto h-[22rem] p-4">
+                    <div ref="chatContainer" class="overflow-auto h-[22rem] p-4">
                         <BubleChat 
                             v-for="i in messages"
                             :jesica="i.isJesica"
@@ -15,7 +15,9 @@
                 <div class="footer p-4 border-t-[1px] border-gray-300">
                     <div class="flex gap-3 justify-between">
                         <div class="message basis-10/12 border border-[#667085] border-solid rounded-md overflow-hidden h-10">
-                            <input v-model="message" placeholder="Ask me anything" class="w-full border-none" type="text">
+                            <input v-model="message" 
+                            placeholder="Ask me anything" class="w-full border-none" type="text" 
+                            @keyup.enter="sendMessage">
                         </div>
                         <div class="basis=2/12">
                             <Button @click="sendMessage" title=">" background="bg-background-primary text-t-primary" class="hover:bg-background-hover-primary hover:text-t-hover-primary" />
@@ -51,6 +53,11 @@
                 ]
             }
         },
+        mounted() {
+            this.$nextTick(() => {
+                    this.scrollToBottom();
+            });
+        },
         methods : {
             sendMessage(){
                 const text = this.message
@@ -63,15 +70,28 @@
                 console.log(text);
                 this.message = ""
 
+                // Setelah pesan baru ditambahkan, scroll ke bawah
+                this.$nextTick(() => {
+                    this.scrollToBottom();
+                });
+
                 // jessica responese dummy
                 setTimeout(()=>{
                     this.messages.push(
-                    {
-                        isJesica : "true",
-                        msg : "halo ada yang bisa dibantu ?"
-                    }
-                )
+                        {
+                            isJesica : "true",
+                            msg : "halo ada yang bisa dibantu ?"
+                        }
+                    )
+                     // Setelah pesan baru ditambahkan, scroll ke bawah
+                    this.$nextTick(() => {
+                        this.scrollToBottom();
+                    });
                 }, 2000)
+            },
+
+            scrollToBottom(){
+                this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight;
             }
         }
     }

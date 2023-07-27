@@ -1,59 +1,59 @@
 <template>
-    <nav class="bg-bg-login bg-no-repeat bg-center bg-cover md:bg-none md:bg-white border-gray-200 fixed w-full top-0 left-0 z-20">
+    <nav class="bg-bg-login bg-no-repeat bg-center bg-cover md:bg-none md:bg-white border-gray-200 fixed w-full top-0 -left-2 z-20">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-center md:justify-between mx-auto p-4">
             <NuxtLink to="/" class="flex items-center">
-                <img src="/assets/img/logo.png" class="h-8 mr-3" alt="Telkomsigma Logo" />
+                <img src="/assets/img/logo.png" class="h-12 mr-3" alt="Telkomsigma Logo" />
             </NuxtLink>
         </div>
     </nav>
-    <div class="flex flex-wrap relative"> 
-        <div class="basis-full md:basis-7/12 relative">
-                        
-            <section class="bg-white">
-                <div class="py-2 px-4 mx-auto max-w-screen-xl text-center lg:py-3">
-                    <div class="content py-16 px-24 text-left">
-                        <div class=" font-bold font-nunito text-3xl mb-3">Welcome Back!</div>
-                        <div class="text-base text-[#475467]" >
-                            Login now to access internal data!
+    <div class="relative"> 
+        <div class="flex flex-wrap">
+            <div class="basis-full md:basis-7/12 relative">        
+                <section class="bg-white">
+                    <div class="py-4 px-12 mx-auto max-w-screen-xl text-center lg:py-3">
+                        <div class="content py-16 px-24 text-left">
+                            <div class=" font-bold font-nunito text-3xl mb-3">Welcome Back!</div>
+                            <div class="text-base text-[#475467]" >
+                                Login now to access internal data!
+                            </div>
+    
+                            <form class="mt-7" action="">
+                                <Form
+                                    name="email"
+                                    title="NIK Telkom*"   
+                                    type="text"
+                                    placeholder="Enter your NIK Telkom"
+                                    icon="user"
+                                    password="false"
+                                    @log-in="login"
+                                    @togle-hide="doTest"
+                                    @user-entry="onUserEntry"
+                                />
+    
+                                <Form
+                                    name="password"
+                                    title="Password*"   
+                                    type="password"  
+                                    placeholder="Enter your Password"
+                                    icon="password"
+                                    password="true"
+                                    @log-in="login"
+                                    @toggle-hide="doTest"
+                                    @user-entry="onUserPw"
+                                />
+    
+    
+                                <Button @click="login" title="Login" background="bg-background-primary text-t-primary w-full h-16" class="hover:bg-background-hover-primary hover:text-t-hover-primary" />
+                            </form>
                         </div>
-
-                        <form class="mt-7" action="">
-                            <Form
-                                name="email"
-                                title="NIK Telkom*"   
-                                type="text"
-                                placeholder="Enter your NIK Telkom"
-                                icon="user"
-                                password="false"
-
-                                @togle-hide="doTest"
-
-                                @user-entry="onUserEntry"
-                            />
-
-                            <Form
-                                name="password"
-                                title="Password*"   
-                                type="password"  
-                                placeholder="Enter your Password"
-                                icon="password"
-                                password="true"
-
-                                @toggle-hide="doTest"
-
-                                @user-entry="onUserPw"
-                            />
-
-
-                            <Button @click="login" title="Login" background="bg-background-primary text-t-primary w-full h-16" class="hover:bg-background-hover-primary hover:text-t-hover-primary" />
-                        </form>
                     </div>
-                </div>
-            </section>
+                </section>
+    
+            </div>
+            <div class="hidden md:block basis-5/12 bg-bg-login h-screen overflow-hidden">
+            </div>
+        </div>
 
-        </div>
-        <div class="hidden md:block basis-5/12 bg-bg-login h-screen overflow-hidden">
-        </div>
         
         <ConfirmationLogin backButton="true" v-show="showConfirm" @send-to="goTo('verification')" @close-confirm="closeConfirm"/>
     </div>
