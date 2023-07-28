@@ -12,22 +12,22 @@
                         <div class="flex gap-5 justify-between flex-wrap mt-5">
                             <div class=" grow">
                                 <div class="w-full h-28 border border-gray-300 relative box-border rounded-lg input-group">
-                                    <input class="otp absolute w-full top-1/2 -translate-y-1/2 text-center text-4xl h-full rounded-lg" type="text" maxlength="1" @input="moveToNextInput($event, 2)">
+                                    <input class="otp absolute w-full top-1/2 -translate-y-1/2 text-center text-4xl h-full rounded-lg" type="text" maxlength="1" v-model="input1" @input="moveToNextInput($event, 2)">
                                 </div>
                             </div>
                             <div class=" grow">
                                 <div class="w-full h-28 border border-gray-300 relative box-border rounded-lg input-group">
-                                    <input class="otp absolute w-full top-1/2 -translate-y-1/2 text-center text-4xl h-full rounded-lg" type="text" maxlength="1" @input="moveToNextInput($event, 3)">
+                                    <input class="otp absolute w-full top-1/2 -translate-y-1/2 text-center text-4xl h-full rounded-lg" type="text" maxlength="1" v-model="input2" @input="moveToNextInput($event, 3)">
                                 </div>
                             </div>
                             <div class=" grow">
                                 <div class="w-full h-28 border border-gray-300 relative box-border rounded-lg input-group">
-                                    <input class="otp absolute w-full top-1/2 -translate-y-1/2 text-center text-4xl h-full rounded-lg" type="text" maxlength="1" @input="moveToNextInput($event, 4)">
+                                    <input class="otp absolute w-full top-1/2 -translate-y-1/2 text-center text-4xl h-full rounded-lg" type="text" maxlength="1" v-model="input3" @input="moveToNextInput($event, 4)">
                                 </div>
                             </div>
                             <div class=" grow">
                                 <div class="w-full h-28 border border-gray-300 relative box-border rounded-lg input-group">
-                                    <input class="otp absolute w-full top-1/2 -translate-y-1/2 text-center text-4xl h-full rounded-lg" type="text" maxlength="1" @input="moveToNextInput($event, 5)">
+                                    <input class="otp absolute w-full top-1/2 -translate-y-1/2 text-center text-4xl h-full rounded-lg" type="text" maxlength="1" v-model="input4" @input="moveToNextInput($event, 5)">
                                 </div>
                             </div>
   
@@ -47,7 +47,9 @@
                 </div>
             </section>
 
-            <ConfirmationLogin backButton="false" v-show="showConfirm" @send-to="goTo('verification')" @close-confirm="closeConfirm"/>
+            <ConfirmationLogin backButton="false" v-show="showConfirm" 
+                @send-to="goTo('verification')" 
+                @close-confirm="closeConfirm"/>
 
         </div>
         <div class="basis-5/12 bg-bg-login h-screen overflow-hidden">
@@ -63,6 +65,10 @@
     export default {
         data(){
             return{
+                input1 : "",
+                input2 : "",
+                input3 : "",
+                input4 : "",
                 showConfirm : false ,
                 email : "",
                 users : [
@@ -111,7 +117,22 @@
             },
 
             send(){
-                this.showConfirm = true
+                const otp = '1111'
+                const context = this.input1 + this.input2 + this.input3 + this.input4
+
+                console.log(context);
+                if(otp == context) {
+                    this.showConfirm = true 
+                } else {
+                    alert('kode otp yang anda masukan salah')
+                }
+
+            },
+
+            goTo(){
+                this.$router.push({
+                    path : "/try-now"
+                })
             }
         }
     }

@@ -55,7 +55,10 @@
         </div>
 
         
-        <ConfirmationLogin backButton="true" v-show="showConfirm" @send-to="goTo('verification')" @close-confirm="closeConfirm"/>
+        <ConfirmationLogin backButton="true" 
+            v-show="showConfirm" 
+            @send-to="goTo('verification')" 
+            @close-confirm="closeConfirm"/>
     </div>
 </template>
 
