@@ -141,7 +141,7 @@
 
             focusNik(){
                 if(this.nik == ""){
-                    this.nikVal = true
+                    this.nikVal = false
                 } else {
                     this.nikVal = false
                 }
@@ -157,7 +157,7 @@
 
             focusPw(){
                 if(this.password == ""){
-                    this.pwVal = true
+                    this.pwVal = false
                 } else {
                     this.pwVal = false
                 }
@@ -180,6 +180,12 @@
                         this.showConfirm  = true
                     }
                 } else {
+                    if(this.nik == ""){
+                        this.nikVal = true
+                    }
+                    if(this.password == ""){
+                        this.pwVal = true
+                    }
                     alert('nik dan password tidak boleh kosong!!')
                 }
             },
