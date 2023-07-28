@@ -28,7 +28,14 @@
                                     @log-in="login"
                                     @togle-hide="doTest"
                                     @user-entry="onUserEntry"
+                                    @emit-validate="focusNik"
+                                    @emit-blur="blurNik"
                                 />
+                                <div class="h-5 mb-3" >
+                                    <div class="-mt-5" >
+                                        <span v-if="nikVal" class="text-red-600" >NIK tidak boleh kosong!!!</span>
+                                    </div>
+                                </div>
     
                                 <Form
                                     name="password"
@@ -40,7 +47,17 @@
                                     @log-in="login"
                                     @toggle-hide="doTest"
                                     @user-entry="onUserPw"
+
+                                    @emit-validate="focusPw"
+                                    @emit-blur="blurPW"
                                 />
+
+                                <div class="h-5 mb-3" >
+                                    <div class="-mt-5" >
+                                        <span v-if="pwVal" class="text-red-600" >Password tidak boleh kosong!!!</span>
+                                    </div>
+                                </div>
+
     
     
                                 <Button @click="login" title="Login" background="bg-background-primary text-t-primary w-full h-16" class="hover:bg-background-hover-primary hover:text-t-hover-primary" />
@@ -77,7 +94,11 @@
                     nik : "",
                     password : ""
                 },
-                users : []
+                users : [],
+
+                nikVal : false,
+                pwVal : false
+
             }
         },
         mounted() {
@@ -117,6 +138,38 @@
             onUserPw(val){
                 this.password = val
             },  
+
+            focusNik(){
+                if(this.nik == ""){
+                    this.nikVal = true
+                } else {
+                    this.nikVal = false
+                }
+
+            },
+            blurNik(){
+                if(this.nik == ""){
+                    this.nikVal = true
+                } else {
+                    this.nikVal = false
+                }
+            },
+
+            focusPw(){
+                if(this.password == ""){
+                    this.pwVal = true
+                } else {
+                    this.pwVal = false
+                }
+            },
+            blurPW(){
+                if(this.password == ""){
+                    this.pwVal = true
+                } else {
+                    this.pwVal = false
+                }
+            },
+
             login(){
                 //validate form can't empty
                 if(this.nik !== "" && this.password !== ""){

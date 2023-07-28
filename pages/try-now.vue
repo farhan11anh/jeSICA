@@ -8,7 +8,7 @@
 
 
       
-            <input type="text" v-model="find" placeholder="">
+            <input type="text" v-model="find" placeholder="" >
             <button class=" bg-background-primary text-white p-2 rounded-lg" @click="testing"> SEND > </button>
             <!-- <p>{{find}}</p> -->
 
@@ -18,7 +18,13 @@
             <p v-if="longText" class=" text-red-600">
                 text terlalu panjang !!!
             </p>
+
+
+            
+
         </div>
+
+
         <div v-else-if="loading == 'load'" >
             <div class="text-center">
                 <div role="status">
@@ -31,29 +37,112 @@
             </div>
         </div>
 
+        <div class="container">
+            <input type="text" v-model="jajal" :class="jajalOke ? 'border-red-600 shadow shadow-black': ''"  @focus="focusInput" @blur="exitInput">
+            <div class="h-10" >
+                <p v-if="jaValid" >Masukan teks !!!</p>
+            </div>
+            <p>{{ jajalOke }}</p>
+        </div>
+
+        <!-- <p>{{ form.email }}</p> -->
+        <input type="email" 
+                v-model="form.email"
+                placeholder="masukan email !" 
+                class="bg-t-second hover:outline-dashed hover:outline-yellow-300 text-white rounded-lg focus:border-blue-200" >
+
+                <p>{{ validatorz }}</p>
+
+                <!-- <p>{{ form.email }}</p> -->
+
+                <p v-if="!v$.form.email.required">Email is required.</p>
+
+
+        <!-- <div v-if="!$v.email.required">Email is required.</div>
+        <div v-if="!$v.email.email">Invalid email format.</div> -->
  
 
     </div>
 </template>
 
 <script>
+    import { minLength, required, email } from '@vuelidate/validators';
+    import { useVuelidate } from '@vuelidate/core';
+    import { reactive } from '@vue/composition-api';
+
     definePageMeta({
         layout : "navbar"
     })
 
     export default {
+        setup() {   
+            const form = reactive({
+                email:null
+            })
+
+            const validations = {
+                form : {
+                    email : {
+                        required,
+                        email
+                    }
+                }
+            }
+
+            const v$ = useVuelidate(validations, form);
+
+            return {
+                form,
+                v$,
+            };
+        },
         data(){
             return{
+                jajal : "",
+                jaValid : false,
                 find : "",
-                loading : true
+                loading : true,
+
+                // email : ""
             }
         },
         methods : {
+
+            focusInput(){
+                if(this.jajal == '') {
+                    this.jaValid = true
+                } else {
+                    this.jaValid = false
+                }
+            },
+            exitInput(){
+                if(this.jajal == '') {
+                    this.jaValid = true
+                } else {
+                    this.jaValid = false
+                }
+            },
+
             load(){
                 this.loading = 'load'
                 setTimeout(()=>{
                     this.loading = !true
                 }, 5000)
+            },
+
+            test(){
+                console.log(this.v$.form.email);
+            },
+            validateEmail(){
+                this.v$.form.email.required
+            },
+
+            validJajal(){
+                return this.jajal.length == 0
+            },
+
+            deviceDetect(){
+                return console.log(navigator.appVersion)
             }
         },
         computed : {
@@ -62,6 +151,30 @@
             },
             longText(){
                 return this.find.length > 10
+            },
+            validatorz(){
+                return this.v$.form.email.$error
+            },
+            validate111(){
+                this.validateEmail()
+            },
+
+            // jajalOke(){
+            //     if(this.jajal.length == 0){
+            //         this.jaValid = true
+            //     } else {
+            //         this.jaValid = false
+            //     }
+            // },
+        },
+        mounted() {
+            this.test()
+            this.deviceDetect()
+        },
+
+        watch : {
+            'form.email' : function(){
+                this.validateEmail()
             }
         }
         

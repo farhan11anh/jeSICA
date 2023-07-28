@@ -10,7 +10,9 @@
             v-model="valueInput"
             @input="emitVal"
             @keyup.enter="emitLogin"
-        class="w-full border-none basis-11/12" :name="name" :id="name" :type="typeP" placeholder="Enter your NIK Telkom" autocomplete="on">
+            @focus="emitValidate"
+            @blur="emitBlur"
+        class="w-full border-none basis-11/12" :name="name" :id="name" :type="typeP" :placeholder="placeholder" autocomplete="on">
         <div v-if="password == 'true'" @click="toggleHides" class="absolute right-5 top-1/2 -translate-y-3 cursor-pointer">
             <img :src="hide ? '/assets/icons/eye.svg' : '/assets/icons/eyeOff.svg'" class=" max-w-full object-fill" alt="">
         </div>
@@ -56,6 +58,12 @@
             },
             emitLogin(){
                 this.$emit('log-in')
+            },
+            emitValidate(){
+                this.$emit('emit-validate')
+            },
+            emitBlur(){
+                this.$emit('emit-blur')
             }
         }
     }
