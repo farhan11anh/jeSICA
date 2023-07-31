@@ -20,7 +20,7 @@
                             @keyup.enter="sendMessage">
                         </div>
                         <div class="basis=2/12">
-                            <Button @click="sendMessage" title=">" background="bg-background-primary text-t-primary" class="hover:bg-background-hover-primary hover:text-t-hover-primary" />
+                            <Button :disabled="isNullMessage" @click="sendMessage" title=">" background="bg-background-primary text-t-primary" class="hover:bg-background-hover-primary hover:text-t-hover-primary" />
                         </div>
                     </div>
                     <div class="flex justify-center">
@@ -57,6 +57,15 @@
             this.$nextTick(() => {
                     this.scrollToBottom();
             });
+        },
+        computed : {
+            isNullMessage(){
+                if(this.message == ""){
+                    return true
+                } else {
+                    return false
+                }
+            }
         },
         methods : {
             sendMessage(){
