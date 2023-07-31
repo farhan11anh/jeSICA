@@ -10,8 +10,8 @@
         <div class="flex flex-wrap">
             <div class="basis-full md:basis-7/12 relative">        
                 <section class="bg-white">
-                    <div class="py-4 px-12 mx-auto max-w-screen-xl text-center lg:py-3">
-                        <div class="content py-16 px-24 text-left">
+                    <div class="py-4 px-0 md:px-12 mx-auto max-w-screen-xl text-center lg:py-3">
+                        <div class="content px-10 py-16 md:px-24 text-left">
                             <div class=" font-bold font-nunito text-3xl mb-3">Welcome Back!</div>
                             <div class="text-base text-[#475467]" >
                                 Login now to access internal data!

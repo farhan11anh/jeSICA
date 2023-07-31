@@ -60,6 +60,12 @@
 
         <!-- <div v-if="!$v.email.required">Email is required.</div>
         <div v-if="!$v.email.email">Invalid email format.</div> -->
+
+        <div class="task container">
+            <div class="bg-red-300 rounded-sm shadow-2xl" >
+                
+            </div>
+        </div>
  
 
     </div>
@@ -69,6 +75,8 @@
     import { minLength, required, email } from '@vuelidate/validators';
     import { useVuelidate } from '@vuelidate/core';
     import { reactive } from '@vue/composition-api';
+
+    import { useTaskStore } from './../stores/index'
 
     definePageMeta({
         layout : "navbar"
@@ -94,6 +102,7 @@
             return {
                 form,
                 v$,
+                tasksStore : useTaskStore()
             };
         },
         data(){
@@ -102,7 +111,8 @@
                 jaValid : false,
                 find : "",
                 loading : true,
-
+                
+                
                 // email : ""
             }
         },
@@ -143,7 +153,13 @@
 
             deviceDetect(){
                 return console.log(navigator.appVersion)
-            }
+            },
+
+            // getTask(){
+            //     const tasks = useTaskStore()
+            //     console.log(tasks.tasks);
+                
+            // }
         },
         computed : {
             isValid(){
@@ -157,19 +173,12 @@
             },
             validate111(){
                 this.validateEmail()
-            },
-
-            // jajalOke(){
-            //     if(this.jajal.length == 0){
-            //         this.jaValid = true
-            //     } else {
-            //         this.jaValid = false
-            //     }
-            // },
+            }
         },
         mounted() {
             this.test()
             this.deviceDetect()
+            // this.getTask()
         },
 
         watch : {
