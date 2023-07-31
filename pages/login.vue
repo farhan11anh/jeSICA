@@ -28,8 +28,8 @@
                                     @log-in="login"
                                     @togle-hide="doTest"
                                     @user-entry="onUserEntry"
-                                    @emit-validate="focusNik"
-                                    @emit-blur="blurNik"
+                                    @emit-validate="focus('nik')"
+                                    @emit-blur="blur('nik')"
                                 />
                                 <div class="h-5 mb-3" >
                                     <div class="-mt-5" >
@@ -48,8 +48,8 @@
                                     @toggle-hide="doTest"
                                     @user-entry="onUserPw"
 
-                                    @emit-validate="focusPw"
-                                    @emit-blur="blurPW"
+                                    @emit-validate="focus('pw')"
+                                    @emit-blur="blur('pw')"
                                 />
 
                                 <div class="h-5 mb-3" >
@@ -137,39 +137,29 @@
             },
             onUserPw(val){
                 this.password = val
-            },  
-
-            focusNik(){
-                if(this.nik == ""){
+            }, 
+            focus(val){
+                if(val == 'nik') {
                     this.nikVal = false
-                } else {
-                    this.nikVal = false
-                }
-
-            },
-            blurNik(){
-                if(this.nik == ""){
-                    this.nikVal = true
-                } else {
-                    this.nikVal = false
-                }
-            },
-
-            focusPw(){
-                if(this.password == ""){
-                    this.pwVal = false
-                } else {
+                } else if(val == 'pw'){
                     this.pwVal = false
                 }
             },
-            blurPW(){
-                if(this.password == ""){
-                    this.pwVal = true
+            blur(val){
+                if(val == 'nik'){
+                    if(this.nik == ""){
+                        this.nikVal = true
+                    } else {
+                        this.nikVal = false
+                    }
                 } else {
-                    this.pwVal = false
+                    if(this.password == ""){
+                        this.pwVal = true
+                    } else {
+                        this.pwVal = false
+                    }
                 }
             },
-
             login(){
                 //validate form can't empty
                 if(this.nik !== "" && this.password !== ""){
@@ -186,7 +176,6 @@
                     if(this.password == ""){
                         this.pwVal = true
                     }
-                    alert('nik dan password tidak boleh kosong!!')
                 }
             },
             goTo(url){
