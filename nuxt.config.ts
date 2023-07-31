@@ -1,6 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  plugins: ['/e:/---- SIGMA ----/jeSICA/plugins/pinia.js'],
+  modules: [
+    // ...
+    '@pinia/nuxt',
+  ],
+  plugins: [],
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
 

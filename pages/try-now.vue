@@ -18,10 +18,6 @@
             <p v-if="longText" class=" text-red-600">
                 text terlalu panjang !!!
             </p>
-
-
-            
-
         </div>
 
 
@@ -60,12 +56,17 @@
 
         <!-- <div v-if="!$v.email.required">Email is required.</div>
         <div v-if="!$v.email.email">Invalid email format.</div> -->
-
+        <input type="text">
+        <button @click="tasksStore.add" class="bg-red-600 text-white p-2 rounded-md" >add</button>
         <div class="task container">
-            <div class="bg-red-300 rounded-sm shadow-2xl" >
-                
+            <div v-for="(item, index) in tasksStore.tasks" :key="index" class="bg-red-300 rounded-sm shadow-2xl w-1/2 mx-auto p-5 mb-5" >
+                {{ item.title }}
             </div>
         </div>
+
+        {{ tasksStore.greet }}
+
+    
  
 
     </div>
