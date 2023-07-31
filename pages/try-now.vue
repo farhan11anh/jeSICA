@@ -10,7 +10,6 @@
       
             <input type="text" v-model="find" placeholder="" >
             <button class=" bg-background-primary text-white p-2 rounded-lg" @click="testing"> SEND > </button>
-            <!-- <p>{{find}}</p> -->
 
             <p v-if="isValid" class=" text-red-600">
                 text tidak boleh kosong !!!
@@ -56,9 +55,12 @@
 
         <!-- <div v-if="!$v.email.required">Email is required.</div>
         <div v-if="!$v.email.email">Invalid email format.</div> -->
-        <input type="text">
-        <button @click="tasksStore.add" class="bg-red-600 text-white p-2 rounded-md" >add</button>
-        <div class="task container">
+
+        <div class="task container mx-auto">
+            <div class="mx-auto w-1/2">
+                <input type="text" class="w-10/12 rounded-md" v-model="task">
+                <button @click="addTask" class="bg-red-600 text-white p-2 rounded-md w-2/12">add</button>
+            </div>
             <div v-for="(item, index) in tasksStore.tasks" :key="index" class="bg-red-300 rounded-sm shadow-2xl w-1/2 mx-auto p-5 mb-5" >
                 {{ item.title }}
             </div>
@@ -112,6 +114,9 @@
                 jaValid : false,
                 find : "",
                 loading : true,
+
+                // task input 
+                task : ''
                 
                 
                 // email : ""
@@ -155,12 +160,10 @@
             deviceDetect(){
                 return console.log(navigator.appVersion)
             },
-
-            // getTask(){
-            //     const tasks = useTaskStore()
-            //     console.log(tasks.tasks);
-                
-            // }
+            addTask(){
+                this.tasksStore.add(this.task)
+                this.task = ""
+            }
         },
         computed : {
             isValid(){

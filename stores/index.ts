@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import { defineStore, acceptHMRUpdate } from "pinia";
 
 export const useTaskStore = defineStore('taskStore', {
   state: () => ({
@@ -21,13 +21,14 @@ export const useTaskStore = defineStore('taskStore', {
     }
   },
   actions : {
-    add(){
-      const user = { id : 3, title : "third", desc : 'desc the third tale' }
+    add(val:string){
+      const user = { id : 3, title : val, desc : 'desc the third tale' }
       this.tasks.push(user)
     }
   }
 })
 
-// if(import.meta.hot) {
-//   import.meta.hot.accept(acceptHMRUpdate(useTaskStore, import.meta.hot));
-// }
+// make sure to pass the right store definition, `useAuth` in this case.
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useTaskStore, import.meta.hot))
+}
