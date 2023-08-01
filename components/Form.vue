@@ -14,7 +14,7 @@
             @blur="emitBlur"
         class="w-full border-none basis-11/12" :name="name" :id="name" :type="typeP" :placeholder="placeholder" autocomplete="on">
         <div v-if="password == 'true'" @click="toggleHides" class="absolute right-5 top-1/2 -translate-y-3 cursor-pointer">
-            <img :src="hide ? '/assets/icons/eye.svg' : '/assets/icons/eyeOff.svg'" class=" max-w-full object-fill" alt="">
+            <img :src="hide ? '/img/eye.svg' : '/img/eyeOff.svg'" class=" max-w-full object-fill" alt="">
         </div>
     </div>
 </template>
