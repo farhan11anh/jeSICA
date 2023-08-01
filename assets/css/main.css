@@ -21,3 +21,13 @@
     src: local(''),
         url('/assets/font/Inter-VariableFont_slnt,wght.ttf') format('ttf')   
 }
+
+.btn-primary{
+    @apply w-fit text-white text-base font-inter font-semibold leading-7 px-5 py-3 bg-primary-600 rounded-lg shadow border border-primary-600 justify-center items-center gap-3 inline-flex hover:bg-primary-700 focus:border-white
+}
+.btn-secondary{
+    @apply w-fit text-gray-700 text-base font-inter font-semibold leading-7 px-5 py-3 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-3 inline-flex hover:bg-gray-50 focus:border-gray-300
+}
+.btn-tertiary{
+    @apply w-full text-gray-700 text-base font-inter font-semibold leading-7 px-5 py-3 rounded-lg justify-start items-center gap-3 inline-flex hover:bg-white
+}

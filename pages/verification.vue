@@ -65,6 +65,7 @@
     export default {
         data(){
             return{
+                min : "", sec : "",
                 input1 : "",
                 input2 : "",
                 input3 : "",
@@ -84,12 +85,15 @@
                         nik : '33333333',
                         email : "Rizukey@sigma.co.id"
                     }
-                ]
+                ],
+
+               
             }
         },
         mounted(){
             // console.log(this.$route.query.nik);
             this.findEmailWithNIK(this.$route.query.nik)
+            this.startTimer(60*5)
         },
         methods : {
             findEmailWithNIK(nik){
@@ -116,6 +120,29 @@
                 }
             },
 
+            // timer 
+
+            startTimer(duration) {
+                var timer = duration, minutes, seconds;
+                setInterval(function () {
+                    minutes = parseInt(timer / 60, 10);
+                    seconds = parseInt(timer % 60, 10);
+
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                    // display.textContent = minutes + ":" + seconds;
+                    this.min = minutes
+                    this.sec = seconds
+
+                    console.log(this.min + ':' + this.sec);
+
+                    if (--timer < 0) {
+                        timer = duration;
+                    }
+                }, 1000);
+            },
+
             send(){
                 const otp = '1111'
                 const context = this.input1 + this.input2 + this.input3 + this.input4
@@ -131,7 +158,7 @@
 
             goTo(){
                 this.$router.push({
-                    path : "/try-now"
+                    path : "/chatPage"
                 })
             }
         }

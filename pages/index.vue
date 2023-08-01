@@ -5,10 +5,10 @@
                 <div class="flex flex-wrap">
                     <div class="md:basis-full lg:basis-1/2">
                         <h1 class="text-6xl font-bold text-left mb-7" >Meet Je<span class="text-background-primary" >SICA</span>, Your</h1>
-                        <h1 class="text-6xl font-bold text-left mb-7" >Intelligence Chat Bot</h1>
+                        <h1 class="text-6xl font-bold text-left mb-7" >AI Assistant</h1>
                         <h1 class="text-6xl font-bold text-left" mb-7 >Companion</h1>
                         <p class="mt-10 text-left text-xl font-normal text-f-second" >
-                            Are you tired of waiting for answers or need instant assistance? Jessica is here to save the day! As an AI-driven chat bot, she's designed to provide fast and accurate responses to all your inquiries about Telkomsigma's products and services.
+                            Are you tired of waiting for answers or need instant assistant? Jessica is here to save the day! As an AI Assistant, she's designed to provide fast and accurate responses to all your inquiries about Telkomsigma's products and services.
                         </p>
 
                         <div class="flex mt-10">
