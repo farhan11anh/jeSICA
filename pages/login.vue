@@ -94,7 +94,26 @@
                     nik : "",
                     password : ""
                 },
-                users : [],
+                users : [
+                        {
+                            "id" : 1,
+                            "nik" : "11111111",
+                            "password" : "11111111",
+                            "email" : "Suzume@sigma.co.id"
+                        },
+                        {
+                            "id" : 2,
+                            "nik" : "22222222",
+                            "password" : "22222222",
+                            "email" : "Aqua@sigma.co.id"
+                        },
+                        {
+                            "id" : 3,
+                            "nik" : "33333333",
+                            "password" : "33333333",
+                            "email" : "Rizukey@sigma.co.id"
+                        }
+                ],
 
                 nikVal : false,
                 pwVal : false
@@ -103,24 +122,25 @@
         },
         mounted() {
             this.getpath()
-            this.getUsers()
+            // this.getUsers()
         },  
         methods : {
-            async getUsers(){
-                try {
-                    const res = await fetch('/static/user.json')
-                    // if (!res.ok) {
-                    //     throw new Error('Network response was not ok');
-                    // }
-                    const data = await res.json()
-                    this.users = data.users
-                    // console.log(this.users);
+            // simulation get user data
+            // async getUsers(){
+            //     try {
+            //         const res = await fetch('/static/user.json')
+            //         // if (!res.ok) {
+            //         //     throw new Error('Network response was not ok');
+            //         // }
+            //         const data = await res.json()
+            //         this.users = data.users
+            //         // console.log(this.users);
 
-                }catch (error){
-                    this.users = []
-                    console.log(error);
-                }
-            },
+            //     }catch (error){
+            //         this.users = []
+            //         console.log(error);
+            //     }
+            // },
             doTest(){
                 // console.log('berhasil');
             },
