@@ -34,7 +34,7 @@
             return{
                 valueInput : "",
 
-                svg : `./assets/icons/${this.icon}.svg`,
+                svg : `./assets/img/${this.icon}.svg`,
                 hide : true,
                 typeP : this.type
             }
