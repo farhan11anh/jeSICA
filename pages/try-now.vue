@@ -68,8 +68,18 @@
 
         {{ tasksStore.greet }}
 
+
+
+
+        <div class="container w-3/4 mx-auto bg-background---gray--900 text-white p-3">
+            <input type="text" placeholder="ask ?" v-model="msg" class="m-3 mx-auto w-1/2 text-black">
+            <button class="bg-red-300 p-2 rounded-sm" @click="sendMessage(msg)" >  send </button>
+            <div class="bg-yellow-300 w-3/4 text-black h-36 mx-auto p-3">
+                Response : {{ answer }}
+            </div>
+        </div>
+
     
- 
 
     </div>
 </template>
@@ -117,12 +127,44 @@
 
                 // task input 
                 task : ''
+
+
+                ,msg : "",
+                answer : ""
                 
                 
                 // email : ""
             }
         },
         methods : {
+
+            async sendMessage(msg){
+                const data = {
+                    "text" : msg
+                }
+
+                try {
+                    const resp = await $fetch( 'http://192.168.1.45:8000/sendChat', {
+                        method: 'POST',
+                        body: data
+                    } );
+
+                    console.log(resp.textResponse);
+
+                    this.answer = resp.textResponse
+                    // if (!resp.ok) {
+                    //     throw new Error('Network response was not ok');
+                    // }
+
+                    // const dd = await resp.json()
+                    // console.log(dd);
+                } catch (error) {
+                    console.error('Fetch error:', error);
+                    alert('error')
+                }
+
+                // console.log(dd);
+            },
 
             focusInput(){
                 if(this.jajal == '') {

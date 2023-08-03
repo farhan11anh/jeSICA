@@ -10,6 +10,8 @@
                             :jesica="i.isJesica"
                             :msg="i.msg"
                          />
+
+                         <BubleLoad v-if="waitResp" />
                     </div>
                 </div>
                 <div class="footer p-4 border-t-[1px] border-gray-300">
@@ -37,20 +39,25 @@
 </template>
 
 <script>
+    // import Bard from "bard-ai";
+    // import { Configuration, OpenAIApi } from "openai";
+
     export default {
         data(){
             return{
                 message : "",
                 messages : [
-                    {
-                        isJesica : "true",
-                        msg : "Jadi kamu belum tahu tentang JSC ya? Okey, aku bakal jelasin secara singkat. Jadi, JSC itu kepanjangannya Jogja Solution Center. Karena namanya ada Jogja-nya, berarti letak JSC ada di Daerah Istimewa Yogyakarta. JSC itu menyediakan layanan B2B Digital IT Services yang saat ini masih berfokus di daerah regional 4 (Jawa Tengah dan DIY) dan regional 5 (Jawa Timur). JSC sendiri adalah sebuah unit yang dibentuk langsung oleh Telkomsigma, keren kan."
-                    },
-                    {
-                        isJesica : "false",
-                        msg : "Wow, menarik! Jadi, JSC merupakan bagian dari Telkomsigma, ya? Apa layanan yang ditawarkan oleh JSC?"
-                    }
-                ]
+                    // {
+                    //     isJesica : "true",
+                    //     msg : "Jadi kamu belum tahu tentang JSC ya? Okey, aku bakal jelasin secara singkat. Jadi, JSC itu kepanjangannya Jogja Solution Center. Karena namanya ada Jogja-nya, berarti letak JSC ada di Daerah Istimewa Yogyakarta. JSC itu menyediakan layanan B2B Digital IT Services yang saat ini masih berfokus di daerah regional 4 (Jawa Tengah dan DIY) dan regional 5 (Jawa Timur). JSC sendiri adalah sebuah unit yang dibentuk langsung oleh Telkomsigma, keren kan."
+                    // },
+                    // {
+                    //     isJesica : "false",
+                    //     msg : "Wow, menarik! Jadi, JSC merupakan bagian dari Telkomsigma, ya? Apa layanan yang ditawarkan oleh JSC?"
+                    // }
+                ],
+
+                waitResp : false
             }
         },
         mounted() {
@@ -60,7 +67,7 @@
         },
         computed : {
             isNullMessage(){
-                if(this.message == ""){
+                if(this.message == "" || this.waitResp == true){
                     return true
                 } else {
                     return false
@@ -68,36 +75,95 @@
             }
         },
         methods : {
-            sendMessage(){
-                const text = this.message
+            async sendMessage(){
+                const text = { "text" : this.message}
                 this.messages.push(
                     {
                         isJesica : "false",
-                        msg : text
+                        msg : this.message
                     }
                 )
-                console.log(text);
+                // console.log(text);
                 this.message = ""
+                // grayout send
+                this.waitResp = true
+
 
                 // Setelah pesan baru ditambahkan, scroll ke bawah
                 this.$nextTick(() => {
-                    this.scrollToBottom();
+                     this.scrollToBottom();
                 });
 
+
+
+
+                try {
+                    const resp = await $fetch( 'http://192.168.1.45:8000/sendChat', {
+                        method: 'POST',
+                        body: text
+                    } );
+
+                    console.log(resp);
+
+                    if(resp){
+                        this.waitResp = false
+                        this.messages.push(
+                            {
+                                isJesica : "true",
+                                msg : resp.textResponse
+                            }
+                        )
+                         // Setelah pesan baru ditambahkan, scroll ke bawah
+                        this.$nextTick(() => {
+                            this.scrollToBottom();
+                        });
+
+                    }
+
+                } catch (error) {
+                    this.waitResp = false
+                    console.error('Fetch error:', error);
+                    alert('error server')
+                }
+                
+
+
+
                 // jessica responese dummy
-                setTimeout(()=>{
-                    this.messages.push(
-                        {
-                            isJesica : "true",
-                            msg : "halo ada yang bisa dibantu ?"
-                        }
-                    )
-                     // Setelah pesan baru ditambahkan, scroll ke bawah
-                    this.$nextTick(() => {
-                        this.scrollToBottom();
-                    });
-                }, 2000)
+                // setTimeout(()=>{
+                //     this.messages.push(
+                //         {
+                //             isJesica : "true",
+                //             msg : "halo ada yang bisa dibantu ?"
+                //         }
+                //     )
+                //      // Setelah pesan baru ditambahkan, scroll ke bawah
+                //     this.$nextTick(() => {
+                //         this.scrollToBottom();
+                //     });
+                // }, 2000)
             },
+
+            // async sendMessage2(){
+            //     const cookies = 'ZAgiz6ExQt6x1g-dss4AgF10oPMgo9FsSpD__82MPVcs5fAARbgPEcX3detjpjQDBHxPMQ.'
+            //     const bard = new Bard(cookies)
+            //     // const resp = await bard.ask('hello')
+            //     console.log(bard.ask('hi'));
+
+            //     // const key = "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"
+            //     // const configuration = new Configuration({
+            //     //     apiKey: key,
+            //     // });
+            //     // const openai = new OpenAIApi(configuration);
+
+            //     // const completion = await openai.createChatCompletion({
+            //     //     model: "gpt-3.5-turbo",
+            //     //     messages: [{"role": "system", "content": "You are a helpful assistant."}, {role: "user", content: "Hello world"}],
+            //     // });
+
+            //     // console.log(completion.data.choices[0].message);
+
+            // },
 
             scrollToBottom(){
                 this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight;
