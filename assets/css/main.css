@@ -3,31 +3,33 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .btn-primary {
+        @apply w-fit text-white font-inter font-semibold leading-7 px-4 py-1 bg-primary-600 rounded-lg shadow border border-primary-600 justify-center items-center gap-3 inline-flex hover:bg-primary-700 focus:border-[#F4EBFF]
+    }
 
+    .btn-secondary {
+        @apply w-fit text-gray-700 font-inter font-semibold leading-7 px-4 py-1 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-3 inline-flex hover:bg-gray-50 focus:border-[#F2F4F7]
+    }
+
+    .btn-tertiary {
+        @apply w-full text-gray-700 font-inter font-semibold leading-7 px-4 py-1 rounded-lg justify-start items-center gap-3 inline-flex hover:bg-white
+    }
+}
 
 @font-face {
     font-family: 'Nunito';
     font-style: normal;
-    font-weight:600;
+    font-weight: 600;
     src: local(''),
         url('/assets/font/Nunito-Italic-VariableFont_wght.ttf') format('ttf'),
-        url('/assets/font/Nunito-VariableFont_wght.ttf') format('ttf')    
+        url('/assets/font/Nunito-VariableFont_wght.ttf') format('ttf')
 }
 
 @font-face {
     font-family: 'Inter';
     font-style: normal;
-    font-weight:600;
+    font-weight: 600;
     src: local(''),
-        url('/assets/font/Inter-VariableFont_slnt,wght.ttf') format('ttf')   
-}
-
-.btn-primary{
-    @apply w-fit text-white text-base font-inter font-semibold leading-7 px-5 py-3 bg-primary-600 rounded-lg shadow border border-primary-600 justify-center items-center gap-3 inline-flex hover:bg-primary-700 focus:border-white
-}
-.btn-secondary{
-    @apply w-fit text-gray-700 text-base font-inter font-semibold leading-7 px-5 py-3 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-3 inline-flex hover:bg-gray-50 focus:border-gray-300
-}
-.btn-tertiary{
-    @apply w-full text-gray-700 text-base font-inter font-semibold leading-7 px-5 py-3 rounded-lg justify-start items-center gap-3 inline-flex hover:bg-white
+        url('/assets/font/Inter-VariableFont_slnt,wght.ttf') format('ttf')
 }
