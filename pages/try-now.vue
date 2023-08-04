@@ -79,6 +79,8 @@
             </div>
         </div>
 
+
+        <!-- <p>API Base URL: {{ $env.apiBaseUrl }}</p> -->
     
 
     </div>
@@ -96,6 +98,12 @@
     })
 
     export default {
+
+        env : {
+            apiBaseUrl: process.env.API_BASE_URL,
+            debugMode: process.env.DEBUG_MODE === 'true'
+        },
+
         setup() {   
             const form = reactive({
                 email:null
@@ -130,7 +138,9 @@
 
 
                 ,msg : "",
-                answer : ""
+                answer : "",
+
+                config : useRuntimeConfig()
                 
                 
                 // email : ""
@@ -190,6 +200,7 @@
 
             test(){
                 console.log(this.v$.form.email);
+                console.log(this.config.public.apiBase);
             },
             validateEmail(){
                 this.v$.form.email.required

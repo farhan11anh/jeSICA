@@ -11,7 +11,12 @@
                             :msg="i.msg"
                          />
 
-                         <BubleLoad v-if="waitResp" />
+                         <BubleChat 
+                            v-if="waitResp"
+                            jesica="true"
+                            msg=".."
+                            wait-res="true"
+                        />
                     </div>
                 </div>
                 <div class="footer p-4 border-t-[1px] border-gray-300">
@@ -22,7 +27,7 @@
                             @keyup.enter="sendMessage">
                         </div>
                         <div class="basis=2/12">
-                            <Button :disabled="isNullMessage" @click="sendMessage" title=">" background="bg-background-primary text-t-primary" class="hover:bg-background-hover-primary hover:text-t-hover-primary" />
+                            <Button :disabled="isNullMessage" @click="sendMessage" title=">" background="bg-background-primary text-t-primary" class="hover:bg-background-hover-primary hover:text-t-hover-primary" :class="isNullMessage ? 'cursor-not-allowed' : ''" />
                         </div>
                     </div>
                     <div class="flex justify-center">
@@ -57,7 +62,8 @@
                     // }
                 ],
 
-                waitResp : false
+                waitResp : false,
+                config : useRuntimeConfig()
             }
         },
         mounted() {
@@ -94,10 +100,8 @@
                      this.scrollToBottom();
                 });
 
-
-
-
                 try {
+                    const url = ''
                     const resp = await $fetch( 'http://192.168.1.45:8000/sendChat', {
                         method: 'POST',
                         body: text
@@ -121,9 +125,23 @@
                     }
 
                 } catch (error) {
-                    this.waitResp = false
-                    console.error('Fetch error:', error);
                     alert('error server')
+
+
+                    this.waitResp = false
+
+                    this.messages.push(
+                            {
+                                isJesica : "true",
+                                msg : 'tidak ada response'
+                            }
+                        )
+                         // Setelah pesan baru ditambahkan, scroll ke bawah
+                        this.$nextTick(() => {
+                            this.scrollToBottom();
+                    });
+
+                    console.error('Fetch error:', error);
                 }
                 
 

@@ -60,7 +60,7 @@
 
     
     
-                                <Button @click="login" title="Login" background="bg-background-primary text-t-primary w-full h-16" class="hover:bg-background-hover-primary hover:text-t-hover-primary" />
+                                <Button @click="login" title="Login" :loadLogin="loadLogin" background="bg-background-primary text-t-primary w-full h-16" class="hover:bg-background-hover-primary hover:text-t-hover-primary" :class="this.loadLogin == 'true' ? 'disabled not-allowed' : ''" />
                             </form>
                         </div>
                     </div>
@@ -83,9 +83,11 @@
     // definePageMeta({
     //     layout : "navbar"
     // })
+    // const jwt = require('jsonwebtoken');
     export default {
         data(){
             return{
+                config : useRuntimeConfig(),
                 path : "",
                 showConfirm : false,
                 nik : "",
@@ -116,14 +118,21 @@
                 ],
 
                 nikVal : false,
-                pwVal : false
+                pwVal : false,
+
+                loadLogin : 'false'
 
             }
         },
         mounted() {
             this.getpath()
             // this.getUsers()
-        },  
+        },
+        computed : {
+            loadLogin(){
+                return this.loadLogin
+            }
+        },
         methods : {
             // simulation get user data
             // async getUsers(){
@@ -180,25 +189,55 @@
                     }
                 }
             },
-            login(){
-                //validate form can't empty
-                if(this.nik !== "" && this.password !== ""){
-                    const user  = this.users.find(user=>user.nik == this.nik)
-                    if (user == undefined || this.password !== user.password){
-                        alert('nik tidak terdaftar atau password salah')
-                    } else {
-                        this.showConfirm  = true
-                    }
-                } else {
-                    if(this.nik == ""){
-                        this.nikVal = true
-                    }
-                    if(this.password == ""){
-                        this.pwVal = true
-                    }
+            async login(){
+                this.loadLogin = 'true'
+                const data = {
+                    username : this.nik,
+                    password : this.password
                 }
+                try {
+                    const url = this.config.public.apiBase
+                    const resp = await $fetch(`${url}/login`, {
+                        method : 'POST',
+                        body : data
+                    })
+
+                    console.log(resp);
+
+                    if(resp.success){
+                        this.loadLogin = 'false'
+                        
+                        this.showConfirm  = true
+                    } else {
+                        this.loadLogin = 'false'
+
+                        alert('salah nik / login')
+                    }
+                } catch (error) {
+                    this.loadLogin = 'false'
+                    
+                }
+
+                //validate form can't empty
+                // if(this.nik !== "" && this.password !== ""){
+                //     const user  = this.users.find(user=>user.nik == this.nik)
+                //     if (user == undefined || this.password !== user.password){
+                //         alert('nik tidak terdaftar atau password salah')
+                //     } else {
+
+                //         this.showConfirm  = true
+                //     }
+                // } else {
+                //     if(this.nik == ""){
+                //         this.nikVal = true
+                //     }
+                //     if(this.password == ""){
+                //         this.pwVal = true
+                //     }
+                // }
             },
             goTo(url){
+
                 this.$router.push({
                     path : `/${url}`,
                     query : {nik : this.nik}

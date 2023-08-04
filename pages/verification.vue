@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="text-center text-[#475467] mt-5 mb-5" >
-                            <p> Send OTP code in <strong class="text-black" >12:00</strong> </p>
+                            <countDown />
                         </div>
 
                         <Button
@@ -59,13 +59,16 @@
 </template>
 
 <script>
+    import {ref} from 'vue'
     definePageMeta({
         layout : "navbar"
     })
+
+    const timer = ref(null)
     export default {
         data(){
             return{
-                min : "", sec : "",
+                min : "1", sec : "1",
                 input1 : "",
                 input2 : "",
                 input3 : "",
@@ -84,6 +87,10 @@
                     {
                         nik : '33333333',
                         email : "Rizukey@sigma.co.id"
+                    },
+                    {
+                        nik : 'bagus',
+                        email : "bagos31@sigma.co.id"
                     }
                 ],
 
@@ -94,6 +101,9 @@
             // console.log(this.$route.query.nik);
             this.findEmailWithNIK(this.$route.query.nik)
             this.startTimer(60*5)
+
+            // this.$refs['timer'].innerHTML= 1
+
         },
         methods : {
             findEmailWithNIK(nik){
@@ -135,7 +145,8 @@
                     this.min = minutes
                     this.sec = seconds
 
-                    console.log(this.min + ':' + this.sec);
+                    // console.log(this.min + ':' + this.sec);
+
 
                     if (--timer < 0) {
                         timer = duration;
@@ -160,6 +171,13 @@
                 this.$router.push({
                     path : "/chatPage"
                 })
+            }
+        }, 
+
+        computed : {
+            
+            countDown(){
+                return this.showConfirm
             }
         }
     }
