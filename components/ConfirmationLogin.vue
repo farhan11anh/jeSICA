@@ -18,8 +18,15 @@
 </template>
 
 <script>
+    import { useLoginStore } from './../stores/login'
+
     export default {
         emits : ['send-to', 'close-confirm'],
+        data() {
+            return{
+                loginStore : useLoginStore()
+            }
+        },
         props : {
             'backButton' : {
                 type : String,

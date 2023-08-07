@@ -52,14 +52,7 @@
             return{
                 message : "",
                 messages : [
-                    // {
-                    //     isJesica : "true",
-                    //     msg : "Jadi kamu belum tahu tentang JSC ya? Okey, aku bakal jelasin secara singkat. Jadi, JSC itu kepanjangannya Jogja Solution Center. Karena namanya ada Jogja-nya, berarti letak JSC ada di Daerah Istimewa Yogyakarta. JSC itu menyediakan layanan B2B Digital IT Services yang saat ini masih berfokus di daerah regional 4 (Jawa Tengah dan DIY) dan regional 5 (Jawa Timur). JSC sendiri adalah sebuah unit yang dibentuk langsung oleh Telkomsigma, keren kan."
-                    // },
-                    // {
-                    //     isJesica : "false",
-                    //     msg : "Wow, menarik! Jadi, JSC merupakan bagian dari Telkomsigma, ya? Apa layanan yang ditawarkan oleh JSC?"
-                    // }
+                    // message user and JeSICA ...
                 ],
 
                 waitResp : false,
@@ -102,7 +95,7 @@
 
                 try {
                     const url = ''
-                    const resp = await $fetch( 'http://192.168.1.45:8000/sendChat', {
+                    const resp = await $fetch( `${this.config.public.apiBase}/sendChat`, {
                         method: 'POST',
                         body: text
                     } );
@@ -161,27 +154,6 @@
                 //     });
                 // }, 2000)
             },
-
-            // async sendMessage2(){
-            //     const cookies = 'ZAgiz6ExQt6x1g-dss4AgF10oPMgo9FsSpD__82MPVcs5fAARbgPEcX3detjpjQDBHxPMQ.'
-            //     const bard = new Bard(cookies)
-            //     // const resp = await bard.ask('hello')
-            //     console.log(bard.ask('hi'));
-
-            //     // const key = "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"
-            //     // const configuration = new Configuration({
-            //     //     apiKey: key,
-            //     // });
-            //     // const openai = new OpenAIApi(configuration);
-
-            //     // const completion = await openai.createChatCompletion({
-            //     //     model: "gpt-3.5-turbo",
-            //     //     messages: [{"role": "system", "content": "You are a helpful assistant."}, {role: "user", content: "Hello world"}],
-            //     // });
-
-            //     // console.log(completion.data.choices[0].message);
-
-            // },
 
             scrollToBottom(){
                 this.$refs.chatContainer.scrollTop = this.$refs.chatContainer.scrollHeight;

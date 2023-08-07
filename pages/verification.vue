@@ -60,6 +60,7 @@
 
 <script>
     import {ref} from 'vue'
+    import { useLoginStore } from './../stores/login'
     definePageMeta({
         layout : "navbar"
     })
@@ -93,6 +94,7 @@
                         email : "bagos31@sigma.co.id"
                     }
                 ],
+                loginStore : useLoginStore()
 
                
             }
@@ -101,6 +103,7 @@
             // console.log(this.$route.query.nik);
             this.findEmailWithNIK(this.$route.query.nik)
             this.startTimer(60*5)
+            console.log(this.loginStore.otp);
 
             // this.$refs['timer'].innerHTML= 1
 
@@ -155,12 +158,13 @@
             },
 
             send(){
-                const otp = '1111'
+                const otp = this.loginStore.otp
                 const context = this.input1 + this.input2 + this.input3 + this.input4
 
                 console.log(context);
                 if(otp == context) {
                     this.showConfirm = true 
+                    this.loginStore.changeOtp("")
                 } else {
                     alert('kode otp yang anda masukan salah')
                 }
@@ -168,6 +172,7 @@
             },
 
             goTo(){
+                // this.loginStore.saveUser()
                 this.$router.push({
                     path : "/chatPage"
                 })

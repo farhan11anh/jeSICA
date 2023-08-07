@@ -84,10 +84,12 @@
     //     layout : "navbar"
     // })
     // const jwt = require('jsonwebtoken');
+    import { useLoginStore } from './../stores/login'
     export default {
         data(){
             return{
                 config : useRuntimeConfig(),
+                loginStore : useLoginStore(),
                 path : "",
                 showConfirm : false,
                 nik : "",
@@ -206,7 +208,7 @@
 
                     if(resp.success){
                         this.loadLogin = 'false'
-                        
+                        this.loginStore.changeOtp(resp.data)
                         this.showConfirm  = true
                     } else {
                         this.loadLogin = 'false'
