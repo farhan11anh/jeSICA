@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import axios from 'axios';
 // import jwtDecode from 'jwt-decode'
 
 export const useAuthStore = defineStore('auth', {
@@ -13,18 +14,15 @@ export const useAuthStore = defineStore('auth', {
             // const config = useRuntimeConfig()
             // const url = config.public.apiBase
             // return $fetch(`${url}/login`,{
-            return $fetch(`https://api.escuelajs.co/api/v1/auth/login`,{
-                method : "POST",
-                body : {
+            return axios.post(`https://api.escuelajs.co/api/v1/auth/login`,{
                     email : nik,  
                     password : password
-                }
             })
             .then((response) => {
                 console.log(response);
-                const token = response.access_token
+                const token = response.data.access_token
                 this.token = token
-                const refreshToken = response.refresh_token
+                const refreshToken = response.data.refresh_token
                 this.refreshToken = refreshToken
                 return token
             })

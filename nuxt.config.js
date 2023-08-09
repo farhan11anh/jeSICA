@@ -10,6 +10,7 @@ export default defineNuxtConfig({
   modules: [
     // ...
     '@pinia/nuxt',
+    // '~/plugins/axios',
   ],
   plugins: [],
   devtools: { enabled: true },
