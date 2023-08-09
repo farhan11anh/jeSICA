@@ -1,9 +1,8 @@
 <template>
     <div class="flex gap-3 mb-5" :class="position">
-        <Avatar v-if="jesica === 'true'" online="false" width="w-10 relative" />
-        <div class="rounded-lg p-4 max-w-[16rem] text-base" :class="color">
-      
-            <div v-if="waitRes == 'true' " >
+        <Avatar online="false" width="w-10 relative" />
+        <div class="balon rounded-lg p-4 max-w-[16rem] text-base" :class="color">
+            <div>
                 <div class="text-center">
                     <div role="status">
                         <svg aria-hidden="true" class="inline w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,26 +13,16 @@
                     </div>
                 </div>
             </div>
-
-            <p v-else  >
-                {{ msg }}
-            </p>
-    
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        props : [
-            'jesica',
-            'msg',
-            'waitRes'
-        ],
         data(){
             return{
-                position : this.jesica === "true" ? "justify-start" : "justify-end",
-                color : this.jesica === "true" ? "bg-[#F2F4F7] text-[#475467]" : "bg-[#E31B54] text-[#FCFCFD]"
+                position : "justify-start",
+                color : "bg-[#F2F4F7] text-[#475467]" 
         
             }
         }

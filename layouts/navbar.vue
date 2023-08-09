@@ -1,16 +1,14 @@
 <template>
     <div>
-        
-        
         <nav class="bg-white border-gray-200 fixed w-full top-0 left-0 z-20">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <a href="#" class="flex items-center">
-                    <img src="/assets/img/logo.png" class="h-8 mr-3" alt="Telkomsigma Logo" />
-                </a>
+                <NuxtLink to="/" class="flex items-center">
+                    <img src="/assets/img/logo.png" class=" h-12 mr-3" alt="Telkomsigma Logo" />
+                </NuxtLink>
 
                 <div class="flex md:order-last">
-                    <Button background="bg-background-secondary text-t-secondary border border-b-secondary" title="Login" />
-                    <Button background="bg-background-primary text-t-primary" title="Sign Up" />
+                    <Button @click="goTo('login')" background="bg-background-secondary text-t-secondary border border-b-secondary" class="hover:text-t-hover-secondary hover:border-gray-400 hover:bg-background-secondary" title="Login" />
+                    <Button @click="goTo('try-now')" background="bg-background-primary text-t-primary" class="hover:bg-background-hover-primary hover:text-t-hover-primary" title="Try Now" />
                 </div>
 
                 <div class="flex md:order-2">
@@ -25,10 +23,10 @@
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto mx-auto" id="navbar-cta">
                     <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
                         <li>
-                            <a href="#" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0" aria-current="page">Home</a>
+                            <NuxtLink to="/" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0" aria-current="page">Home</NuxtLink>
                         </li>
                         <li>
-                            <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Product & Services</a>
+                            <NuxtLink to="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Product & Services</NuxtLink>
                         </li>
                         <li>
                             <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">About Us</a>
@@ -40,6 +38,8 @@
                             <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Career</a>
                         </li>
                     </ul>
+
+                    
                 </div>
             </div>
         </nav>
@@ -50,3 +50,33 @@
         
     </div>
 </template>
+
+<script>
+    export default {
+        data(){
+            return{
+                url : ""
+            }
+        },
+        created(){
+            // this.$nuxt.$on('get-path', ($event)=>this.getData($event))
+        },  
+        mounted(){
+            this.getPath()
+        },
+        methods : {
+            goTo(url){
+                navigateTo({
+                    path : `/${url}`
+                })
+            },
+            getPath(){
+                this.url = this.$route.name
+                console.log(this.url);
+            },
+            getData(e){
+                console.log(e);
+            }
+        }
+    }
+</script>

@@ -3,7 +3,7 @@
 <nav class="bg-gray-50 border border-gray-300 rounded-t-md">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div class="flex gap-3 place-items-center">
-            <Avatar online="true" width="w-12" />
+            <Avatar online="true" width="w-12 relative" />
             <div class="font-semibold text-[#344054]" >JeSICA</div>
         </div>
 
