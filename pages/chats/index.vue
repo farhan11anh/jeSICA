@@ -3,7 +3,7 @@
     <div class="container mx-auto w-2/3 flex-col space-y-4">
       <div class="flex">
         <div class="inline-flex space-x-4">
-          <card>
+          <card-recomend>
             <span>
               <svg
                 width="24"
@@ -38,8 +38,8 @@
                 Kurang lebih 2-3 Baris.
               </span>
             </div>
-          </card>
-          <card>
+          </card-recomend>
+          <card-recomend>
             <span>
               <svg
                 width="24"
@@ -74,11 +74,11 @@
                 Kurang lebih 2-3 Baris.
               </span>
             </div>
-          </card>
+          </card-recomend>
         </div>
       </div>
       <div>
-        <card>
+        <card-recomend>
           <div class="flex justify-start flex-col space-y-4">
             <span class="text-xl font-body font-semibold text-gray-900"
               >Suggestions</span
@@ -125,7 +125,7 @@
               </NuxtLink>
             </div>
           </div>
-        </card>
+        </card-recomend>
       </div>
     </div>
   </div>
