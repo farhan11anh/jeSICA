@@ -1,9 +1,9 @@
 <template>
-  <div class="p-8">
-    <div class="container mx-auto w-2/3 flex-col space-y-4">
+  <div class="p-8 flex items-center">
+    <div class="container mx-auto w-full flex-col space-y-4">
       <div class="flex">
         <div class="inline-flex space-x-4">
-          <card-recomend>
+          <card-recomend class="w-full">
             <span>
               <svg
                 width="24"
@@ -39,7 +39,7 @@
               </span>
             </div>
           </card-recomend>
-          <card-recomend>
+          <card-recomend class="w-full">
             <span>
               <svg
                 width="24"

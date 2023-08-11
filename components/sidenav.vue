@@ -191,7 +191,7 @@
                   Settings
                 </NuxtLink>
                 <NuxtLink to="##" class="btn-tertiary">
-                  <div class="w-5 h-5 relative">
+                  <span class="w-5 h-5 relative">
                     <svg
                       width="20"
                       height="20"
@@ -210,12 +210,12 @@
                         />
                       </g>
                     </svg>
-                  </div>
-                  <div
+                  </span>
+                  <span
                     class="text-red-600 text-base font-semibold leading-normal"
                   >
                     Log Out
-                  </div>
+                  </span>
                 </NuxtLink>
               </div>
             </nav>
