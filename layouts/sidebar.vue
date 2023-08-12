@@ -8,7 +8,9 @@
     >
       <div class="flex-1">
         <div class="flex flex-col h-screen text-sm justify-between">
-          <HeaderChatIndex/>
+          <div class="sm:invisible">
+            <HeaderChatIndex />
+          </div>
           <div class="flex grow h-full overflow-auto p-5 row-span-full">
             <slot />
           </div>
@@ -20,8 +22,8 @@
 </template>
 
 <script setup>
-import HeaderChatIndex from "../components/headerChatIndex.vue";
-import Sidenav from "../components/sidenav.vue";
+import HeaderChatIndex from '../components/headerChatIndex.vue';
+import Sidenav from '../components/sidenav.vue';
 </script>
 
 <style scoped></style>

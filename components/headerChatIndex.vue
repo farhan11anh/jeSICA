@@ -1,6 +1,6 @@
 <template>
   <header
-    class="top-0 w-full h-16 p-4 bg-white border-b border-gray-200 backdrop-blur-sm justify-between items-center gap-4 inline-flex"
+    class="top-0 w-full h-fit p-2 sm:p-4 border-b border-gray-200 backdrop-blur-sm justify-between items-center inline-flex"
   >
     <div class="sm:hidden">
       <div class="flex flex-col items-center justify-between">
@@ -28,30 +28,35 @@
         </button>
       </div>
     </div>
-    <div class="w-full flex flex-row items-center justify-center gap-2">
-      <div class="invisible">
-        <span class="w-fit font-body font-semibold"
-          >Jessica’s Introduction</span
-        >
-        <span>
-          <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar">
-            <svg
-              class="w-2.5 h-2.5 ml-2.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 10 6"
+    <div class="hidden">
+      <div class="w-full flex flex-row items-center justify-center gap-2">
+        <div class="invisible">
+          <span class="w-fit font-body font-semibold"
+            >Jessica’s Introduction</span
+          >
+          <span>
+            <button
+              id="dropdownNavbarLink"
+              data-dropdown-toggle="dropdownNavbar"
             >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="m1 1 4 4 4-4"
-              />
-            </svg>
-          </button>
-        </span>
+              <svg
+                class="w-2.5 h-2.5 ml-2.5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 10 6"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 1 4 4 4-4"
+                />
+              </svg>
+            </button>
+          </span>
+        </div>
       </div>
     </div>
     <div class="sm:hidden">

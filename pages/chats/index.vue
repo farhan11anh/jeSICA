@@ -1,6 +1,6 @@
 <template>
-  <div class="p-4 md:p-8 flex items-center">
-    <div class="container mx-auto w-full flex-col space-y-4">
+  <div class="container mx-auto w-full">
+  <div class="p-4 md:p-8 flex items-center flex-col space-y-4">
       <div class="flex">
         <div class="inline-flex space-x-4">
           <card-recomend class="w-full">
