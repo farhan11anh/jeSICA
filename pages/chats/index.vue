@@ -1,5 +1,5 @@
 <template>
-  <div class="p-8 flex items-center">
+  <div class="p-4 md:p-8 flex items-center">
     <div class="container mx-auto w-full flex-col space-y-4">
       <div class="flex">
         <div class="inline-flex space-x-4">

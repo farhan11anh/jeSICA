@@ -2,7 +2,7 @@
   <header
     class="top-0 w-full h-16 p-4 bg-white border-b border-gray-200 backdrop-blur-sm justify-between items-center gap-4 inline-flex"
   >
-    <div class="md:hidden">
+    <div class="sm:hidden">
       <div class="flex flex-col items-center justify-between">
         <button class="btn-tertiary">
           <span>
@@ -29,14 +29,12 @@
       </div>
     </div>
     <div class="w-full flex flex-row items-center justify-center gap-2">
+      <div class="invisible">
         <span class="w-fit font-body font-semibold"
           >Jessica’s Introduction</span
         >
         <span>
-          <button
-            id="dropdownNavbarLink"
-            data-dropdown-toggle="dropdownNavbar"
-          >
+          <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar">
             <svg
               class="w-2.5 h-2.5 ml-2.5"
               aria-hidden="true"
@@ -54,8 +52,9 @@
             </svg>
           </button>
         </span>
+      </div>
     </div>
-    <div class="md:hidden">
+    <div class="sm:hidden">
       <div class="flex flex-col items-center justify-between">
         <button class="btn-secondary">
           <svg

@@ -9,7 +9,7 @@
         <!-- {{ Msg() }} -->
         <input
           type="text"
-          class="self-stretch px-7 py-4 bg-white rounded-lg shadow border border-gray-300 justify-start items-center gap-2 inline-flex"
+          class="self-stretch px-7 py-4 bg-white rounded-lg shadow border border-gray-300 justify-start items-center gap-2 inline-flex focus:border-primary-600"
           placeholder="Ask me Anything"
           :value="message"
         />
