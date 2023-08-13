@@ -6,7 +6,8 @@ export const useChatStore = defineStore('chat', {
         messages : [
        
         ],
-        scroll : false
+        scroll : false,
+        waitResp : false
 
         
     }),
@@ -28,6 +29,9 @@ export const useChatStore = defineStore('chat', {
 
         scrollDown(){
             this.scroll = !this.scroll
+        },
+        changeWait(val){
+            this.waitResp = val
         }
     },
     getters: {

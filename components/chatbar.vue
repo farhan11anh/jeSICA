@@ -18,6 +18,8 @@
       <button type="submit" 
               class="btn-primary"
               @click="sendMessage()"
+              :disabled="isNullMessage"
+              :class="isNullMessage ? 'cursor-not-allowed' : ''"
       
       >
         <div class="w-5 h-5 relative">
@@ -66,20 +68,40 @@
         isJesica : "false",
         msg : msg.value
       }
-      chatStore.addMessages(data)
+      addChat(data, true)
+      
+      setTimeout(()=>{
+        const d = {
+          isJesica : "true",
+          msg : "ada yang bisa saya bantu ?"
+        }
+        // panggil fungsi add cht
+        addChat(d, false)
 
-      msg.value = ""
-
-      chatStore.scrollDown()
-
-      // $nextTick(() => {
-      //     scrollToBottom();
-      // });
+      }, 2000)
     }
 
-    // const scrollToBottom = () => {
-    //   $refs.chatContainer.scrollTop = $refs.chatContainer.scrollHeight;
-    // }
+    const addChat = (data, wait) => {
+      chatStore.addMessages(data)
+      msg.value = ""
+      chatStore.changeWait(wait)
+      // ubah nilai agar bisa trigger scroll
+      chatStore.scrollDown()
+    }
+
+    const waitingResp = ref(false)
+    watch(()=>chatStore.waitResp, (newVal)=>{
+      waitingResp.value = newVal
+      // console.log(waitingResp);
+    })
+
+    const isNullMessage = computed(()=> {
+      if(msg.value == "" || waitingResp.value == true) {
+        return true
+      } else {
+        return false
+      }
+    })
 
   </script>
   

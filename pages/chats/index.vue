@@ -1,6 +1,6 @@
 <template>
   <div  class="container mx-auto w-full h-auto">
-    <div v-if="false" class="h-full p-4 md:p-8 flex justify-center items-center flex-col space-y-4">
+    <div v-if="messages.length == 0" class="h-full p-4 md:p-8 flex justify-center items-center flex-col space-y-4">
       <div class="flex">
         <div class="inline-flex space-x-4">
           <card-recomend class="w-full">
@@ -135,6 +135,13 @@
         :jesica="i.isJesica"
         :msg="i.msg" 
       />
+
+      <BubleChat 
+        v-if="waitingResp"
+        jesica="true"
+        msg=".."
+        wait-res="true"
+      />
     </div>
   </div>
 </template>
@@ -186,32 +193,12 @@ watch(()=>chatStore.messages, (newMessages)=> {
   messages.value = newMessages
 })
 
+const waitingResp = ref(false)
 
-
-
-function masuk(){
-  messages.value = [
-    {
-      msg : 1,
-      isJesica : "false"
-    },
-    {
-      msg : 3333,
-      isJesica : "true"
-    },
-    {
-      msg : 1,
-      isJesica : "true"
-    },
-    {
-      l : 1,
-      ra : 2
-    }
-  ]
-}
-function cek(){
-  console.log(messages);
-}
+watch(()=>chatStore.waitResp, (newVal)=>{
+  waitingResp.value = newVal
+  // console.log(waitingResp);
+})
 
 definePageMeta({
   layout: 'sidebar'
