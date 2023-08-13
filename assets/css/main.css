@@ -23,17 +23,17 @@
 }
 
 .btn-primary{
-    @apply w-fit text-white text-base font-inter font-semibold leading-7 px-5 py-3 bg-primary-600 rounded-lg shadow border border-primary-600 justify-center items-center gap-3 inline-flex hover:bg-primary-700 focus:border-white
+    @apply w-fit text-white text-sm font-inter font-semibold leading-normal px-5 py-3 bg-primary-600 rounded-lg shadow border-4 border-primary-600 justify-center items-center gap-3 inline-flex hover:bg-primary-700 hover:border-primary-700 active:border-primary-400 lg:text-base
 }
 .btn-secondary{
-    @apply w-fit text-gray-700 text-base font-inter font-semibold leading-7 px-5 py-3 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-3 inline-flex hover:bg-gray-50 focus:border-gray-300
+    @apply w-fit text-gray-700 text-sm font-inter font-semibold leading-normal px-5 py-3 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-3 inline-flex hover:bg-gray-50 focus:border-gray-300 lg:text-base
 }
 .btn-tertiary{
-    @apply w-full text-gray-700 text-base font-inter font-semibold leading-7 px-5 py-3 rounded-lg justify-start items-center gap-3 inline-flex hover:bg-white
+    @apply w-fit text-gray-700 text-sm font-inter font-semibold leading-normal px-5 py-3 rounded-lg justify-start items-center gap-3 inline-flex hover:bg-white lg:text-base
 }
 
 @layer{
     .card{
-        @apply p-6 flex-col space-y-8 bg-gray-25 rounded-lg justify-start items-start grow-0
+        @apply p-6 flex-col space-y-8 bg-gray-25 rounded-lg justify-start items-start
     }
 }

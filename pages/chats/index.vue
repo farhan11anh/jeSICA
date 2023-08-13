@@ -1,9 +1,9 @@
 <template>
-  <div class="p-8">
-    <div class="container mx-auto w-2/3 flex-col space-y-4">
+  <div class="container mx-auto w-full h-auto">
+  <div class="h-full p-4 md:p-8 flex justify-center items-center flex-col space-y-4">
       <div class="flex">
         <div class="inline-flex space-x-4">
-          <card-recomend>
+          <card-recomend class="w-full">
             <span>
               <svg
                 width="24"
@@ -39,7 +39,7 @@
               </span>
             </div>
           </card-recomend>
-          <card-recomend>
+          <card-recomend class="w-full">
             <span>
               <svg
                 width="24"
@@ -93,7 +93,7 @@
               <!-- suggestions -->
               <NuxtLink
                 to="###"
-                class="flex justify-center items-center gap-2 px-4 py-2 bg-white rounded-full border hover:bg-gray-50 active:bg-gray-100"
+                class="flex w-fit justify-center items-center gap-2 px-4 py-2 bg-white rounded-full border hover:bg-gray-50 active:bg-gray-100"
                 v-for="templatechat in questionTemplates"
               >
                 <span
@@ -142,13 +142,7 @@ definePageMeta({
 
 // Define the data properties
 const questionTemplates = ref([]);
-const inputChat = ref("");
 
-// Function to handle the 'chatbar-clicked' event
-const handleChatbarClicked = (message) => {
-  // Handle the received message
-  inputChat.value = message;
-};
 
 // Listen for the 'chatbar-clicked' event on the event bus
 onMounted(() => {
@@ -172,10 +166,6 @@ onMounted(() => {
     },
   ];
 });
-
-function amin(val) {
-  $emit("syukur", val);
-}
 
 definePageMeta({
   layout: 'sidebar'
