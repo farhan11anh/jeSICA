@@ -11,7 +11,7 @@
           <div class="sm:invisible">
             <HeaderChatIndex />
           </div>
-          <div class="flex grow h-full overflow-auto p-5 row-span-full">
+          <div ref="chatContainer" class="flex grow h-full overflow-auto p-5 row-span-full">
             <slot />
           </div>
           <Chatbar />
@@ -24,6 +24,24 @@
 <script setup>
 import HeaderChatIndex from '../components/headerChatIndex.vue';
 import Sidenav from '../components/sidenav.vue';
+import { ref, onMounted, nextTick } from "vue";
+import {useChatStore} from '../stores/chat'
+// define chat store pinia
+const chatStore = useChatStore()
+
+
+watch(()=>chatStore.scroll, (scroll)=>{
+  //scroll down ketika data messages pada pinia berubah
+  nextTick(() => {
+    scrollToBottom();
+  });
+})
+
+const chatContainer = ref(null)
+const scrollToBottom = () => {
+  // console.log(chatContainer.value);
+  chatContainer.value.scrollTop = chatContainer.value.scrollHeight;
+}
 </script>
 
 <style scoped></style>

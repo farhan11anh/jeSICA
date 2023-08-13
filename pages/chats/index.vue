@@ -1,6 +1,6 @@
 <template>
-  <div class="container mx-auto w-full h-auto">
-  <div class="h-full p-4 md:p-8 flex justify-center items-center flex-col space-y-4">
+  <div  class="container mx-auto w-full h-auto">
+    <div v-if="false" class="h-full p-4 md:p-8 flex justify-center items-center flex-col space-y-4">
       <div class="flex">
         <div class="inline-flex space-x-4">
           <card-recomend class="w-full">
@@ -78,7 +78,7 @@
         </div>
       </div>
       <div>
-        <card-recomend>
+        <div class="card" >
           <div class="flex justify-start flex-col space-y-4">
             <span class="text-xl font-body font-semibold text-gray-900"
               >Suggestions</span
@@ -92,13 +92,14 @@
             >
               <!-- suggestions -->
               <NuxtLink
-                to="###"
                 class="flex w-fit justify-center items-center gap-2 px-4 py-2 bg-white rounded-full border hover:bg-gray-50 active:bg-gray-100"
                 v-for="templatechat in questionTemplates"
+                key="templatechat.id"
+                @click="assignChat(templatechat.title)"
               >
                 <span
                   class="text-base font-body font-base text-gray-700"
-                  @click="amin(templatechat.title)"
+                  
                 >
                   {{ templatechat.title }}
                 </span>
@@ -125,15 +126,22 @@
               </NuxtLink>
             </div>
           </div>
-        </card-recomend>
+        </div>
       </div>
+    </div>
+    <div v-else >
+      <BubleChat 
+        v-for="i of messages"
+        :jesica="i.isJesica"
+        :msg="i.msg" 
+      />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-
+import { ref, onMounted, nextTick } from "vue";
+import {useChatStore} from '../../stores/chat'
 definePageMeta({
   middleware: [
     'auth'
@@ -142,7 +150,12 @@ definePageMeta({
 
 // Define the data properties
 const questionTemplates = ref([]);
+// define chat store pinia
+const chatStore = useChatStore()
 
+function assignChat(msg){
+  chatStore.setMessage(msg)
+}
 
 // Listen for the 'chatbar-clicked' event on the event bus
 onMounted(() => {
@@ -166,6 +179,39 @@ onMounted(() => {
     },
   ];
 });
+
+const messages = ref(chatStore.messages)
+// sinkronisasi dengan data baru pada pinia
+watch(()=>chatStore.messages, (newMessages)=> {
+  messages.value = newMessages
+})
+
+
+
+
+function masuk(){
+  messages.value = [
+    {
+      msg : 1,
+      isJesica : "false"
+    },
+    {
+      msg : 3333,
+      isJesica : "true"
+    },
+    {
+      msg : 1,
+      isJesica : "true"
+    },
+    {
+      l : 1,
+      ra : 2
+    }
+  ]
+}
+function cek(){
+  console.log(messages);
+}
 
 definePageMeta({
   layout: 'sidebar'

@@ -203,7 +203,7 @@ const props = withDefaults(
     modelValue?: boolean;
   }>(),
   {
-    modelValue: true,
+    modelValue: false,
   }
 );
 

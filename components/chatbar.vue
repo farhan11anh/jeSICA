@@ -11,10 +11,15 @@
           type="text"
           class="self-stretch px-2 py-3 bg-white rounded-lg shadow border border-gray-300 justify-start items-center gap-2 whitespace-normal break-all inline-flex focus:ring-primary-600"
           placeholder="Ask me Anything"
-          :value="message"
+          v-model="msg"
+          @keyup.enter="sendMessage"
         />
       </div>
-      <button type="submit" class="btn-primary">
+      <button type="submit" 
+              class="btn-primary"
+              @click="sendMessage()"
+      
+      >
         <div class="w-5 h-5 relative">
           <svg
             width="20"
@@ -46,6 +51,36 @@
   </div>
   </template>
   
-  <script setup></script>
+  <script setup>
+    import {useChatStore} from '../stores/chat'
+    const chatStore = useChatStore()
+
+    const msg = ref('')
+
+    watch(()=> chatStore.message, (newChat) => {
+      msg.value = newChat
+    })
+
+    const sendMessage = () => {
+      const data = {
+        isJesica : "false",
+        msg : msg.value
+      }
+      chatStore.addMessages(data)
+
+      msg.value = ""
+
+      chatStore.scrollDown()
+
+      // $nextTick(() => {
+      //     scrollToBottom();
+      // });
+    }
+
+    // const scrollToBottom = () => {
+    //   $refs.chatContainer.scrollTop = $refs.chatContainer.scrollHeight;
+    // }
+
+  </script>
   
   <style lang="scss" scoped></style>
