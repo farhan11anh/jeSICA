@@ -110,8 +110,8 @@
         },
         methods : {
             findEmailWithNIK(nik){
-                const user = this.users.find(val=>val.nik == nik)
-                this.email = user.email
+                // const user = this.users.find(val=>val.nik == nik)
+                this.email = nik
             },
 
             moveToNextInput(event, nextIndex) {

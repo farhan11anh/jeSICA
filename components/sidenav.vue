@@ -149,7 +149,7 @@
                 </div>
                 <span v-if="!isOpen"> Settings </span>
               </NuxtLink>
-              <NuxtLink to="##" class="btn-tertiary">
+              <NuxtLink @click="logOut" to="#" class="btn-tertiary">
                 <span class="w-5 h-5 relative">
                   <svg
                     width="20"
@@ -248,6 +248,16 @@ const toggleSidebar = () => {
 watch(isOpen, (val) => {
   emit('update:modelValue', val);
 });
+
+function logOut(){
+  const logOut = confirm('mau logout ?')
+  if(logOut){
+    if(process.client){
+        localStorage.removeItem('token')
+        return navigateTo('/')
+    }
+  }
+}
 </script>
 
 

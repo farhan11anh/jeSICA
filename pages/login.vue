@@ -80,14 +80,13 @@
 </template>
 
 <script>
-    // definePageMeta({
-    //     layout : "navbar"
-    // })
-    // const jwt = require('jsonwebtoken');
     import { useLoginStore } from './../stores/login'
+    import { useAuthStore } from '@/stores/auth';
+
     export default {
         data(){
             return{
+                authStore : useAuthStore() ,
                 config : useRuntimeConfig(),
                 loginStore : useLoginStore(),
                 path : "",
@@ -193,29 +192,44 @@
             },
             async login(){
                 this.loadLogin = 'true'
+                // const data = {
+                //     username : this.nik,
+                //     password : this.password
+                // }
                 const data = {
-                    username : this.nik,
+                    nik : this.nik,
                     password : this.password
                 }
                 try {
-                    const url = this.config.public.apiBase
-                    const resp = await $fetch(`${url}/login`, {
-                        method : 'POST',
-                        body : data
-                    })
+                    // const url = this.config.public.apiBase
+                    // const resp = await $fetch(`${url}/login`, {
+                    //     method : 'POST',
+                    //     body : data
+                    // })
 
-                    console.log(resp);
-
-                    if(resp.success){
+                    const token = await this.authStore.login(data)
+                    if (token) {
+                        // Redirect or perform other actions
+                        console.log(token);
                         this.loadLogin = 'false'
-                        this.loginStore.changeOtp(resp.data)
                         this.showConfirm  = true
-                    } else {
-                        this.loadLogin = 'false'
-
-                        alert('salah nik / login')
+                        this.loginStore.changeOtp('1111')
                     }
+
+                    // console.log(resp);
+
+                    // if(resp.success){
+                    //     this.loadLogin = 'false'
+                    //     this.loginStore.changeOtp(resp.data)
+                    //     this.showConfirm  = true
+                    // } else {
+                    //     this.loadLogin = 'false'
+
+                    //     alert('salah nik / login')
+                    // }
                 } catch (error) {
+                    console.log('fail');
+                    alert('salah nik / login')
                     this.loadLogin = 'false'
                     
                 }

@@ -99,7 +99,7 @@
             </ul>
           </div>
 
-          <div :class="{ 'hidden lg:flex flex-row gap-4': !openMenu, 'flex flex-col lg:flex-row gap-4 px-4 py-6 lg:px-0 lg:py-2.5': openMenu }">
+          <div v-show="isLogin" :class="{ 'hidden lg:flex flex-row gap-4': !openMenu, 'flex flex-col lg:flex-row gap-4 px-4 py-6 lg:px-0 lg:py-2.5': openMenu }">
               <Button @click="goTo('login')" background="bg-background-secondary !mb-0 !mr-0 text-t-secondary border border-b-secondary" class="hover:text-t-hover-secondary hover:border-gray-400 hover:bg-background-secondary" title="Login" />
               <Button @click="goTo('try-now')" background="bg-background-primary !mb-0 !mr-0 text-t-primary" class="hover:bg-background-hover-primary hover:text-t-hover-primary" title="Try Now" />
           </div>
@@ -141,5 +141,14 @@ export default {
       console.log(e);
     },
   },
+  computed : {
+    isLogin(){
+      let login = ""
+      if(process.client){
+        login = localStorage.getItem('token') ? false : true
+      }
+      return login
+    }
+  }
 };
 </script>

@@ -48,5 +48,5 @@
     .card{
         @apply p-6 flex-col space-y-8 bg-gray-25 rounded-lg justify-start items-start
     }
-        url('/assets/font/Inter-VariableFont_slnt,wght.ttf') format('ttf')
+        /* url('/assets/font/Inter-VariableFont_slnt,wght.ttf') format('ttf') */
 }

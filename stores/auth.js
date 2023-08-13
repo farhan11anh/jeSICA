@@ -1,7 +1,5 @@
 import { defineStore } from 'pinia'
 import axios from 'axios';
-// import { log } from 'console';
-// import jwtDecode from 'jwt-decode'
 
 export const useAuthStore = defineStore('auth', {
     state : () => ({
@@ -66,7 +64,10 @@ export const useAuthStore = defineStore('auth', {
         },
 
         logOut(){
-            localStorage.removeItem('token')
+            if(process.client){
+                localStorage.removeItem('token')
+            }
+            return 'success'
         }
     },
     getters: {

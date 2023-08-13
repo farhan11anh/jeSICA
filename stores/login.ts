@@ -20,6 +20,11 @@ export const useLoginStore = defineStore('loginStore', {
     saveUser(data:any){
         this.users.user_id = data.user_id
         this.users.exp = data.exp
+    },
+    logOut(){
+      if(process.client){
+        localStorage.removeItem('token')
+      }
     }
   }
 })
