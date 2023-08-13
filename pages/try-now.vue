@@ -3,14 +3,29 @@
 
     <div>
         <br>
-        <button @click="login" class=" p-5 bg-red-600 text-white rounded-md" >
+        <button @click="login" 
+        class=" px-5 h-8 bg-red-600 mb-5 text-white rounded-md" >
             TEST
         </button>
+        <br>
 
         <button 
             @click="cek" 
-            class="p-5 bg-yellow-600 rounded-md"
+            class="px-5 h-8 mb-5 bg-yellow-600 rounded-md"
         >cek</button>
+        <br>
+        <button 
+            @click="refresh" 
+            class="px-5 h-8 mb-5 bg-yellow-100 rounded-md"
+        >refresh</button> <br>
+        <button 
+            @click="isLogin" 
+            class="px-5 h-8 mb-5 bg-yellow-100 rounded-md"
+        >IS LOGIN</button> <br>
+        <button 
+            @click="logOut" 
+            class="px-5 h-8 mb-5 bg-red-600 rounded-md"
+        >LOGOUT</button> <br>
     </div>
 </template>
 
@@ -21,13 +36,14 @@
 
     import { useTaskStore } from './../stores/index'
 
-    import { useAuthStore } from './../stores/auth';
+    import { useAuthStore } from '@/stores/auth';
 
     definePageMeta({
         layout : "navbar"
     })
 
     export default {
+        middleware: ['auth'],
 
         // env : {
         //     apiBaseUrl: process.env.API_BASE_URL,
@@ -39,13 +55,14 @@
             const login = async () => {
                 try {
                     const token = await authStore.login({
-                    nik: "john@mail.com",
-                    password: "changeme"
-                })
+                        nik: "john@mail.com",
+                        password: "changeme"
+                    })
 
-                if (token) {
-                    // Redirect or perform other actions
-                }
+                    if (token) {
+                        // Redirect or perform other actions
+                        console.log(token);
+                    }
                 } catch (error) {
                     console.error(error)
                 }
@@ -53,12 +70,34 @@
 
             const cek = () => {
                 const a = authStore.token
-                const b = authStore.refreshToken
+                // const b = authStore.refreshToken
                 console.log(a);
-                console.log(b);
+                // console.log(b);
             }
 
-            return { login, cek }
+            const refresh = async () => {
+                try {
+                    let token = await authStore.refreshTokenn()
+                    if(token){
+                        console.log(token);
+                    }
+                } catch (error) {
+                    console.error(error)
+                }
+
+            }
+
+            const isLogin = () => {
+                const a = authStore.isLogin()
+                console.log(a);
+            }
+
+            function logOut() {
+                authStore.logOut()
+                alert('berhasil logout')
+            }
+
+            return { login, cek, refresh, isLogin, logOut }
         },
 
         // setup() {   

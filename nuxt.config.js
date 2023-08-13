@@ -12,7 +12,10 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     // '~/plugins/axios',
   ],
-  plugins: [],
+  plugins: [
+    // '/e:/---- SIGMA ----/jeSICA/plugins/axios.js'
+    // './plugins/axios'
+  ],
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
 
@@ -29,5 +32,13 @@ export default defineNuxtConfig({
       apiBase: '', // can be overridden by NUXT_PUBLIC_API_BASE environment variable
     }
   },
+
+  routes: [
+    {
+      path: '/chats',
+      component: 'pages/ChatPage.vue',
+      middleware: 'auth'
+    }
+  ]
 
 })

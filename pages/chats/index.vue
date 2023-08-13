@@ -134,6 +134,12 @@
 <script setup>
 import { ref, onMounted } from "vue";
 
+definePageMeta({
+  middleware: [
+    'auth'
+  ],
+});
+
 // Define the data properties
 const questionTemplates = ref([]);
 const inputChat = ref("");
