@@ -20,9 +20,9 @@
                             <form class="mt-7" action="">
                                 <Form
                                     name="email"
-                                    title="NIK Telkom*"   
+                                    title="Email Telkom*"   
                                     type="text"
-                                    placeholder="Enter your NIK Telkom"
+                                    placeholder="Enter your email Telkom"
                                     icon="user"
                                     password="false"
                                     @log-in="login"
@@ -33,7 +33,7 @@
                                 />
                                 <div class="h-5 mb-3" >
                                     <div class="-mt-5" >
-                                        <span v-if="nikVal" class="text-red-600" >NIK tidak boleh kosong!!!</span>
+                                        <span v-if="nikVal" class="text-red-600" >email tidak boleh kosong!!!</span>
                                     </div>
                                 </div>
     
@@ -47,7 +47,6 @@
                                     @log-in="login"
                                     @toggle-hide="doTest"
                                     @user-entry="onUserPw"
-
                                     @emit-validate="focus('pw')"
                                     @emit-blur="blur('pw')"
                                 />
@@ -58,8 +57,6 @@
                                     </div>
                                 </div>
 
-    
-    
                                 <Button @click="login" title="Login" :loadLogin="loadLogin" background="bg-background-primary text-t-primary w-full h-16" class="hover:bg-background-hover-primary hover:text-t-hover-primary" :class="this.loadLogin == 'true' ? 'disabled not-allowed' : ''" />
                             </form>
                         </div>

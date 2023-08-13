@@ -174,7 +174,7 @@
             goTo(){
                 // this.loginStore.saveUser()
                 this.$router.push({
-                    path : "/chatPage"
+                    path : "/chats"
                 })
             }
         }, 
