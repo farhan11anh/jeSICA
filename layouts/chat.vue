@@ -1,6 +1,6 @@
 <template>
   <div class="overflow-hidden w-full h-full relative flex z-0">
-    <div class="hidden md:block">
+    <div class="hidden sm:block">
       <Sidenav />
     </div>
     <div

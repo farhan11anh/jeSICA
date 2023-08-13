@@ -1,6 +1,6 @@
 <template>
-  <div class="container mx-auto w-full">
-  <div class="p-4 md:p-8 flex items-center flex-col space-y-4">
+  <div class="container mx-auto w-full h-auto">
+  <div class="h-full p-4 md:p-8 flex justify-center items-center flex-col space-y-4">
       <div class="flex">
         <div class="inline-flex space-x-4">
           <card-recomend class="w-full">
@@ -93,7 +93,7 @@
               <!-- suggestions -->
               <NuxtLink
                 to="###"
-                class="flex justify-center items-center gap-2 px-4 py-2 bg-white rounded-full border hover:bg-gray-50 active:bg-gray-100"
+                class="flex w-fit justify-center items-center gap-2 px-4 py-2 bg-white rounded-full border hover:bg-gray-50 active:bg-gray-100"
                 v-for="templatechat in questionTemplates"
               >
                 <span
@@ -136,13 +136,7 @@ import { ref, onMounted } from "vue";
 
 // Define the data properties
 const questionTemplates = ref([]);
-const inputChat = ref("");
 
-// Function to handle the 'chatbar-clicked' event
-const handleChatbarClicked = (message) => {
-  // Handle the received message
-  inputChat.value = message;
-};
 
 // Listen for the 'chatbar-clicked' event on the event bus
 onMounted(() => {
@@ -166,10 +160,6 @@ onMounted(() => {
     },
   ];
 });
-
-function amin(val) {
-  $emit("syukur", val);
-}
 
 definePageMeta({
   layout: 'sidebar'

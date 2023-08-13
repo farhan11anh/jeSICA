@@ -1,7 +1,7 @@
 <template>
   <div class="overflow-hidden w-full h-full relative flex z-0">
     <div class="hidden sm:block">
-      <Sidenav />
+      <Sidenav/>
     </div>
     <div
       class="relative flex h-screen max-w-full max-h-screen flex-1 overflow-hidden justify-between"

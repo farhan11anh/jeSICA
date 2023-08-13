@@ -28,6 +28,61 @@
         </button>
       </div>
     </div>
+
+    <!-- drawer -->
+
+    <!-- drawer init and show -->
+    <div class="text-center">
+      <button
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        type="button"
+        data-drawer-target="drawer-navigation"
+        data-drawer-show="drawer-navigation"
+        aria-controls="drawer-navigation"
+      >
+        Show navigation
+      </button>
+    </div>
+
+    <!-- drawer component -->
+    <div
+      id="drawer-navigation"
+      class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-64 dark:bg-gray-800"
+      tabindex="-1"
+      aria-labelledby="drawer-navigation-label"
+    >
+      <h5
+        id="drawer-navigation-label"
+        class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400"
+      >
+        Menu
+      </h5>
+      <button
+        type="button"
+        data-drawer-hide="drawer-navigation"
+        aria-controls="drawer-navigation"
+        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 right-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
+      >
+        <svg
+          class="w-3 h-3"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 14 14"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+          />
+        </svg>
+        <span class="sr-only">Close menu</span>
+      </button>
+     <mobileSidenav/>
+    </div>
+
     <div class="hidden">
       <div class="w-full flex flex-row items-center justify-center gap-2">
         <div class="invisible">
@@ -35,10 +90,7 @@
             >Jessica’s Introduction</span
           >
           <span>
-            <button
-              id="dropdownNavbarLink"
-              data-dropdown-toggle="dropdownNavbar"
-            >
+            <button>
               <svg
                 class="w-2.5 h-2.5 ml-2.5"
                 aria-hidden="true"
@@ -61,7 +113,7 @@
     </div>
     <div class="sm:hidden">
       <div class="flex flex-col items-center justify-between">
-        <button class="btn-secondary">
+        <NuxtLink to="/chats" class="btn-secondary">
           <svg
             width="20"
             height="20"
@@ -80,12 +132,21 @@
               />
             </g>
           </svg>
-        </button>
+        </NuxtLink>
       </div>
     </div>
   </header>
 </template>
 
-<script setup></script>
+<script setup>
+import mobileSidenav from './mobileSidenav.vue';
+import { onMounted } from 'vue';
+import { initFlowbite } from 'flowbite';
+
+// initialize components based on data attribute selectors
+onMounted(() => {
+  initFlowbite();
+});
+</script>
 
 <style lang="scss" scoped></style>

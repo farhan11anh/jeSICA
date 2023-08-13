@@ -4,12 +4,12 @@
   >
     <div class="self-stretch justify-start gap-1.5 inline-flex">
       <div
-        class="grow shrink basis-0 flex-col justify-start gap-1.5 inline-flex"
+        class="grow shrink basis-0 flex-col justify-start gap-1.5 inline-flex focus-within:ring-primary-600"
       >
         <!-- {{ Msg() }} -->
         <input
           type="text"
-          class="self-stretch px-7 py-4 bg-white rounded-lg shadow border border-gray-300 justify-start items-center gap-2 inline-flex focus:border-primary-600"
+          class="self-stretch px-2 py-3 bg-white rounded-lg shadow border border-gray-300 justify-start items-center gap-2 whitespace-normal break-all inline-flex focus:ring-primary-600"
           placeholder="Ask me Anything"
           :value="message"
         />

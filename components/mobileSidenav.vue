@@ -1,19 +1,16 @@
 <template>
   <div
     class="flex-shrink-0 overflow-x-hidden bg-white border-r h-full"
-    :class="isOpen ? 'w-fit' : 'w-60'"
+   style="width: 240px;"
   >
     <div class="h-full w-full">
       <div class="flex h-full min-h-0 flex-col">
         <nav
-          class="flex flex-col h-screen w-full p-2 gap justify-between"
+          class="fixed flex flex-col h-screen w-full p-2 gap justify-between"
           aria-label="Chat History"
         >
           <div class="justify-center flex">
-            <div
-              class="flex justify-between gap-2"
-              :class="isOpen ? 'flex-col' : 'flex-row'"
-            >
+            <div class="flex justify-between gap-2">
               <NuxtLink to="/chats" class="btn-secondary">
                 <svg
                   width="20"
@@ -33,33 +30,11 @@
                     />
                   </g>
                 </svg>
-                <span v-if="!isOpen">New Chat</span>
+                <span>New Chat</span>
               </NuxtLink>
-              <button class="btn-secondary" @click="toggleSidebar()">
-                <span>
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g id="layout-left">
-                      <path
-                        id="Icon"
-                        d="M7.5 2.5V17.5M6.5 2.5H13.5C14.9001 2.5 15.6002 2.5 16.135 2.77248C16.6054 3.01217 16.9878 3.39462 17.2275 3.86502C17.5 4.3998 17.5 5.09987 17.5 6.5V13.5C17.5 14.9001 17.5 15.6002 17.2275 16.135C16.9878 16.6054 16.6054 16.9878 16.135 17.2275C15.6002 17.5 14.9001 17.5 13.5 17.5H6.5C5.09987 17.5 4.3998 17.5 3.86502 17.2275C3.39462 16.9878 3.01217 16.6054 2.77248 16.135C2.5 15.6002 2.5 14.9001 2.5 13.5V6.5C2.5 5.09987 2.5 4.3998 2.77248 3.86502C3.01217 3.39462 3.39462 3.01217 3.86502 2.77248C4.3998 2.5 5.09987 2.5 6.5 2.5Z"
-                        stroke="#344054"
-                        stroke-width="1.66667"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </g>
-                  </svg>
-                </span>
-              </button>
             </div>
           </div>
-          <div class="flex-col flex-1 overflow-y-auto" v-if="!isOpen">
+          <div class="flex-col flex-1 overflow-y-auto">
             <div class="flex flex-col gap-2 pb-2 text-gray-700 text-sm">
               <div>
                 <span>
@@ -72,10 +47,9 @@
                       </h3>
                     </div>
                     <ol>
-                      <li class="relative z-[15] h-auto my-2"  v-for="templatechat in questionTemplates">
+                      <li class="relative z-[15] h-auto my-2">
                         <NuxtLink
-                          class="flex p-4 items-center gap-3 relative rounded-lg border hover:bg-primary-50 cursor-pointer break-all bg-gray-50 focus:border-primary-600"
-                          to="/chats/chat"
+                          class="flex p-4 items-center gap-3 relative rounded-lg hover:bg-primary-50 cursor-pointer break-all bg-gray-50"
                         >
                           <svg
                             width="16"
@@ -106,7 +80,52 @@
                           <div
                             class="flex-1 max-h-5 overflow-hidden whitespace-normal relative font-body"
                           >
-                           {{ templatechat.title }}
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Impedit, id nulla assumenda sunt neque fuga
+                            aliquam omnis quaerat at incidunt ipsum temporibus
+                            cumque aperiam ipsa optio laboriosam corrupti saepe
+                            doloremque!
+                          </div>
+                        </NuxtLink>
+                      </li>
+                      <li class="relative z-[15] h-auto my-2">
+                        <NuxtLink
+                          class="flex py-3 px-3 items-center gap-3 relative rounded-lg hover:bg-primary-50 cursor-pointer break-all bg-gray-50 focus:border-primary-600"
+                        >
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              id="message-chat-square"
+                              clip-path="url(#clip0_5915_24236)"
+                            >
+                              <path
+                                id="Icon"
+                                d="M6.66671 9.99992L4.61654 12.0757C4.33056 12.3653 4.18758 12.51 4.06468 12.5202C3.95805 12.5291 3.85365 12.4862 3.78401 12.405C3.70374 12.3114 3.70374 12.1079 3.70374 11.7009V10.661C3.70374 10.2959 3.40476 10.0317 3.04351 9.9788V9.9788C2.1692 9.85073 1.48256 9.16409 1.35449 8.28978C1.33337 8.14562 1.33337 7.9736 1.33337 7.62955V4.53325C1.33337 3.41315 1.33337 2.85309 1.55136 2.42527C1.74311 2.04895 2.04907 1.74299 2.42539 1.55124C2.85322 1.33325 3.41327 1.33325 4.53337 1.33325H9.46671C10.5868 1.33325 11.1469 1.33325 11.5747 1.55124C11.951 1.74299 12.257 2.04895 12.4487 2.42527C12.6667 2.85309 12.6667 3.41315 12.6667 4.53325V7.33325M12.6667 14.6666L11.2158 13.6578C11.0118 13.516 10.9098 13.4451 10.7988 13.3949C10.7003 13.3503 10.5968 13.3178 10.4904 13.2982C10.3706 13.2761 10.2464 13.2761 9.99799 13.2761H8.80004C8.0533 13.2761 7.67994 13.2761 7.39472 13.1308C7.14384 13.003 6.93986 12.799 6.81203 12.5481C6.66671 12.2629 6.66671 11.8895 6.66671 11.1428V9.46659C6.66671 8.71985 6.66671 8.34648 6.81203 8.06126C6.93986 7.81038 7.14384 7.60641 7.39472 7.47858C7.67994 7.33325 8.0533 7.33325 8.80004 7.33325H12.5334C13.2801 7.33325 13.6535 7.33325 13.9387 7.47858C14.1896 7.60641 14.3936 7.81038 14.5214 8.06126C14.6667 8.34648 14.6667 8.71985 14.6667 9.46658V11.2761C14.6667 11.8974 14.6667 12.208 14.5652 12.453C14.4299 12.7797 14.1703 13.0393 13.8436 13.1746C13.5986 13.2761 13.288 13.2761 12.6667 13.2761V14.6666Z"
+                                stroke="#E31B54"
+                                stroke-width="1.33333"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_5915_24236">
+                                <rect width="16" height="16" fill="white" />
+                              </clipPath>
+                            </defs>
+                          </svg>
+                          <div
+                            class="flex-1 max-h-5 overflow-hidden whitespace-normal relative font-body"
+                          >
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Impedit, id nulla assumenda sunt neque fuga
+                            aliquam omnis quaerat at incidunt ipsum temporibus
+                            cumque aperiam ipsa optio laboriosam corrupti saepe
+                            doloremque!
                           </div>
                         </NuxtLink>
                       </li>
@@ -117,7 +136,7 @@
             </div>
           </div>
           <footer class="border-t border-gray-50 pt-2">
-            <div class="justify-center flex flex-col" :class="isOpen ? 'items-center' : 'items-start'">
+            <div class="justify-center flex flex-col">
               <NuxtLink to="#" class="btn-tertiary">
                 <div class="w-5 h-5 relative">
                   <svg
@@ -147,7 +166,7 @@
                     </g>
                   </svg>
                 </div>
-                <span v-if="!isOpen"> Settings </span>
+                <span> Settings </span>
               </NuxtLink>
               <NuxtLink to="##" class="btn-tertiary">
                 <span class="w-5 h-5 relative">
@@ -172,7 +191,6 @@
                 </span>
                 <span
                   class="text-red-600 text-base font-semibold leading-normal"
-                  v-if="!isOpen"
                 >
                   Log Out
                 </span>
@@ -186,50 +204,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch} from "vue";
+// import { onMounted } from 'vue';
+// import { initFlowbite } from 'flowbite';
 
-// Define an interface for the question templates
-interface QuestionTemplate {
-  id: number;
-  title: string;
-}
-
-// Define the data properties
-const questionTemplates = ref<QuestionTemplate[]>([]);
-
-// Define props with default values
+// // initialize components based on data attribute selectors
+// onMounted(() => {
+//   initFlowbite();
+// });
 const props = withDefaults(
   defineProps<{
     modelValue?: boolean;
   }>(),
   {
     modelValue: true,
-  }
+  },
 );
-
-// Extract prop as a ref
-const isOpen = ref(props.modelValue);
-
-// Listen for the 'chatbar-clicked' event on the event bus
-onMounted(() => {
-  // Simulate the question templates loading after 1 second
-  setTimeout(() => {
-    questionTemplates.value = [
-      { id: 1, title: "Hari Senin pakai seragam apa ya?" },
-      { id: 2, title: "Bagaimana peraturan berpakaian?" },
-      { id: 3, title: "Bagaimana caranya mengklaim asuransi?" },
-      { id: 4, title: "Bagaimana cara mengajukan cuti?" },
-    ];
-  }, 1000);
-});
-
-// Watch for changes in modelValue prop
-
 
 const emit = defineEmits(['update:modelValue']);
 
 const { modelValue } = toRefs(props);
 
+const isOpen = ref(props.modelValue);
 
 console.log(props.modelValue);
 
@@ -249,7 +244,5 @@ watch(isOpen, (val) => {
   emit('update:modelValue', val);
 });
 </script>
-
-
 
 <style scoped></style>
