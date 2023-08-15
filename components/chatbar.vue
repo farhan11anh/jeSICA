@@ -63,22 +63,46 @@
       msg.value = newChat
     })
 
-    const sendMessage = () => {
+    const sendMessage = async () => {
       const data = {
         isJesica : "false",
         msg : msg.value
       }
+      const chat = msg.value
       addChat(data, true)
-      
-      setTimeout(()=>{
-        const d = {
-          isJesica : "true",
-          msg : "ada yang bisa saya bantu ?"
-        }
-        // panggil fungsi add cht
-        addChat(d, false)
 
-      }, 2000)
+      try {
+        const url = 'http://192.168.1.43:8000/sendAzure'
+        const resp = await $fetch(url, {
+          method: 'POST',
+          body: {
+            text : chat
+          }
+        })
+        console.log(resp);
+
+        if(resp) {
+          const d = {
+            isJesica : "true",
+            msg : resp.textResponse
+          }
+          addChat(d, false)
+        }
+      } catch (error) {
+        console.log('err');
+      }
+
+      
+      
+      // setTimeout(()=>{
+      //   const d = {
+      //     isJesica : "true",
+      //     msg : "ada yang bisa saya bantu ?"
+      //   }
+      //   // panggil fungsi add cht
+      //   addChat(d, false)
+
+      // }, 2000)
     }
 
     const addChat = (data, wait) => {

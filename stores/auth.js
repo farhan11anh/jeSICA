@@ -11,26 +11,17 @@ export const useAuthStore = defineStore('auth', {
 
     actions : {
         async login({nik, password}) {
-            // console.log(nik);
-            // const config = useRuntimeConfig()
-            // const url = config.public.apiBase
-            // return $fetch(`${url}/login`,{
-            return await axios.post(`https://api.escuelajs.co/api/v1/auth/login`,{
+
+            const config = useRuntimeConfig()
+            const url = config.public.apiBase
+            return await axios.post(`${url}/login`,{
                     email : nik,  
                     password : password
             })
             .then((response) => {
-                // console.log(response);
-                const token = response.data.access_token
-                this.token = token
-                const refreshToken = response.data.refresh_token
-                this.refreshToken = refreshToken
-                const data = {
-                    'token' : token
-                }
-                localStorage.setItem('token', JSON.stringify(data))
-
-                return token
+                console.log(response);
+                const otp = response.data.data
+                return otp
             })
             .catch((error)=>{
                 throw error
@@ -44,6 +35,21 @@ export const useAuthStore = defineStore('auth', {
             // } else {
             //     return false
             // }
+        },
+
+        async setToken(otp){
+            const otp = otp
+            return await axios.post(`${url}/verifOTP`,{
+                "otp" : otp
+            })
+            .then((response) => {
+                console.log(response);
+                const token = response.access
+                localStorage.setItem('token', token)
+            })
+            .catch((error)=>{
+                throw error
+            })
         },
         async refreshTokenn(){
             try {

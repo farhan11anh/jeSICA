@@ -1,4 +1,9 @@
 <template>
+    <Head>
+        <Title>
+            JeSICA
+        </Title>
+    </Head>
     <nav class="bg-bg-login bg-no-repeat bg-center bg-cover md:bg-none md:bg-white border-gray-200 fixed w-full top-0 -left-2 z-20">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-center md:justify-between mx-auto p-4">
             <NuxtLink to="/" class="flex items-center">
@@ -132,25 +137,6 @@
             }
         },
         methods : {
-            // simulation get user data
-            // async getUsers(){
-            //     try {
-            //         const res = await fetch('/static/user.json')
-            //         // if (!res.ok) {
-            //         //     throw new Error('Network response was not ok');
-            //         // }
-            //         const data = await res.json()
-            //         this.users = data.users
-            //         // console.log(this.users);
-
-            //     }catch (error){
-            //         this.users = []
-            //         console.log(error);
-            //     }
-            // },
-            doTest(){
-                // console.log('berhasil');
-            },
             getpath(){
                 this.path = this.$route.name
             },
@@ -204,13 +190,13 @@
                     //     body : data
                     // })
 
-                    const token = await this.authStore.login(data)
-                    if (token) {
+                    const otp = await this.authStore.login(data)
+                    if (otp) {
                         // Redirect or perform other actions
-                        console.log(token);
+                        console.log(otp);
                         this.loadLogin = 'false'
                         this.showConfirm  = true
-                        this.loginStore.changeOtp('1111')
+                        this.loginStore.changeOtp(otp)
                     }
 
                     // console.log(resp);
@@ -230,24 +216,6 @@
                     this.loadLogin = 'false'
                     
                 }
-
-                //validate form can't empty
-                // if(this.nik !== "" && this.password !== ""){
-                //     const user  = this.users.find(user=>user.nik == this.nik)
-                //     if (user == undefined || this.password !== user.password){
-                //         alert('nik tidak terdaftar atau password salah')
-                //     } else {
-
-                //         this.showConfirm  = true
-                //     }
-                // } else {
-                //     if(this.nik == ""){
-                //         this.nikVal = true
-                //     }
-                //     if(this.password == ""){
-                //         this.pwVal = true
-                //     }
-                // }
             },
             goTo(url){
 

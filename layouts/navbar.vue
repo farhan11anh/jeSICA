@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <nav class="bg-whiteborder-gray-200 bg-white fixed w-screen top-0 left-0 z-20">
       <div

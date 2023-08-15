@@ -92,7 +92,7 @@
             >
               <!-- suggestions -->
               <NuxtLink
-                class="flex w-fit justify-center items-center gap-2 px-4 py-2 bg-white rounded-full border hover:bg-gray-50 active:bg-gray-100"
+                class="flex w-fit justify-center items-center gap-2 px-4 py-2 bg-white rounded-full border hover:bg-gray-50 active:bg-gray-100 cursor-pointer"
                 v-for="templatechat in questionTemplates"
                 key="templatechat.id"
                 @click="assignChat(templatechat.title)"
