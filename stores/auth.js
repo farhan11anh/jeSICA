@@ -18,14 +18,14 @@ export const useAuthStore = defineStore('auth', {
                     email : nik,  
                     password : password
             })
-            .then((response) => {
-                console.log(response);
-                const otp = response.data.data
-                return otp
-            })
-            .catch((error)=>{
-                throw error
-            })
+            // .then((response) => {
+            //     console.log(response);
+            //     const otp = response.data.data
+            //     return otp
+            // })
+            // .catch((error)=>{
+            //     throw error
+            // })
         },
         isLogin(){
             console.log(localStorage.getItem('token'));
@@ -38,38 +38,41 @@ export const useAuthStore = defineStore('auth', {
         },
 
         async setToken(otp){
+            console.log(otp);
             const config = useRuntimeConfig()
             const url = config.public.apiBase
-            return await axios.post(`${url}/verifOTP`,{
-                otp : otp
+            return await $fetch(`${url}/verifOTP`,{
+                method : "POST",
+                body : {
+                    otp : otp
+                }
             })
             .then((response) => {
                 console.log(response);
-                const token = response.access
-                localStorage.setItem('token', token)
+                // const token = response.access
+                // localStorage.setItem('token', token)
             })
             .catch((error)=>{
                 throw error
-                console.log(error);
             })
         },
-        async refreshTokenn(){
-            try {
-                const response = await axios.post('https://api.escuelajs.co/api/v1/auth/refresh-token', {
-                    refreshToken: this.refreshToken
-                })
+        // async refreshTokenn(){
+        //     try {
+        //         const response = await axios.post('https://api.escuelajs.co/api/v1/auth/refresh-token', {
+        //             refreshToken: this.refreshToken
+        //         })
 
-                // console.log(response);
-                const token = response.data.access_token
-                this.token = token
-                const refreshToken = response.data.refresh_token
-                this.refreshToken = refreshToken
-                return token
-                // return 'success'
-            } catch (error) {
-                throw error
-            }
-        },
+        //         // console.log(response);
+        //         const token = response.data.access_token
+        //         this.token = token
+        //         const refreshToken = response.data.refresh_token
+        //         this.refreshToken = refreshToken
+        //         return token
+        //         // return 'success'
+        //     } catch (error) {
+        //         throw error
+        //     }
+        // },
 
         logOut(){
             if(process.client){

@@ -190,14 +190,27 @@
                     //     body : data
                     // })
 
-                    const otp = await this.authStore.login(data)
-                    if (otp) {
-                        // Redirect or perform other actions
-                        console.log(otp);
+                    await this.authStore.login(data)
+                    .then((response)=>{
                         this.loadLogin = 'false'
                         this.showConfirm  = true
-                        this.loginStore.changeOtp(otp)
-                    }
+                        const cookies = response
+                        console.log(cookies);
+
+                        // cookies.forEach(cookie=>{
+                        //     document.cookie = cookie
+                        // })
+                    })
+                    .catch((error)=>{
+                        throw error
+                    })
+                    // if (otp) {
+                    //     // Redirect or perform other actions
+                    //     console.log(otp);
+                    //     this.loadLogin = 'false'
+                    //     this.showConfirm  = true
+                    //     this.loginStore.changeOtp(otp)
+                    // }
 
                     // console.log(resp);
 
