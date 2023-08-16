@@ -61,6 +61,7 @@
 <script>
     import {ref} from 'vue'
     import { useLoginStore } from './../stores/login'
+    import { useAuthStore } from '../stores/auth'
     definePageMeta({
         layout : "navbar"
     })
@@ -94,7 +95,8 @@
                         email : "bagos31@sigma.co.id"
                     }
                 ],
-                loginStore : useLoginStore()
+                loginStore : useLoginStore(),
+                authStore : useAuthStore()
 
                
             }
@@ -164,16 +166,19 @@
                 console.log(context);
                 if(otp == context) {
                     this.showConfirm = true 
-                    this.loginStore.changeOtp("")
                 } else {
                     alert('kode otp yang anda masukan salah')
                 }
 
             },
 
-            goTo(){
+            async goTo(){
                 // this.loginStore.saveUser()
-                
+                const otp = this.loginStore.otp
+                console.log(otp);
+                const resp = await this.authStore.setToken(otp)
+                console.log(resp);
+                this.loginStore.changeOtp("")
                 this.$router.push({
                     path : "/chats"
                 })

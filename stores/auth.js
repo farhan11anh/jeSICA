@@ -38,9 +38,10 @@ export const useAuthStore = defineStore('auth', {
         },
 
         async setToken(otp){
-            const otp = otp
+            const config = useRuntimeConfig()
+            const url = config.public.apiBase
             return await axios.post(`${url}/verifOTP`,{
-                "otp" : otp
+                otp : otp
             })
             .then((response) => {
                 console.log(response);
@@ -49,6 +50,7 @@ export const useAuthStore = defineStore('auth', {
             })
             .catch((error)=>{
                 throw error
+                console.log(error);
             })
         },
         async refreshTokenn(){
