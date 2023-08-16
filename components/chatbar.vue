@@ -4,7 +4,7 @@
   >
     <div class="self-stretch justify-start gap-1.5 inline-flex">
       <div
-        class="grow shrink basis-0 flex-col justify-start gap-1.5 inline-flex focus-within:ring-primary-600"
+        class="flex-grow shrink basis-0 flex-col justify-start gap-1.5 inline-flex focus-within:ring-primary-600"
       >
         <!-- {{ Msg() }} -->
         <input

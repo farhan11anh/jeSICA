@@ -74,7 +74,7 @@
                     <ol>
                       <li class="relative z-[15] h-auto my-2"  v-for="templatechat in questionTemplates">
                         <NuxtLink
-                          class="flex p-4 items-center gap-3 relative rounded-lg border hover:bg-primary-50 cursor-pointer break-all bg-gray-50 focus:border-primary-600"
+                          class="flex p-4 items-center gap-3 relative rounded-lg border hover:bg-primary-50 cursor-pointer break-all bg-gray-50 focus:border-primary-600 focus:bg-primary-50"
                           to="/chats/chat"
                         >
                           <svg
@@ -186,7 +186,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch} from "vue";
+import { ref, onMounted, watch} from "vue";
 
 // Define an interface for the question templates
 interface QuestionTemplate {
