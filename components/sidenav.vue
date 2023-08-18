@@ -73,13 +73,13 @@
                     </div>
                     <ol>
                       <li class="relative z-[15] h-auto my-2" 
-                   
                       v-for="(templatechat, index) in questionTemplates"
                       :key="templatechat.history_id"
+                      @click="changeToActive(index)"
                       >
                         <NuxtLink
                           class="flex p-4 items-center gap-3 relative rounded-lg border hover:bg-primary-50 cursor-pointer break-all bg-gray-50 focus:border-primary-600"
-                          to="/chats/chat"
+                          
                         >
                           <svg
                             width="16"
@@ -112,10 +112,10 @@
                           >
                            {{ templatechat.history_title }}
                           </div>
-                          <div class="flex gap-2" :class="isEdit[key] ? 'hidden' : ''" 
+                          <div class="flex gap-2" :class="questionTemplates[index].isEdit ? '' : 'hidden'" 
                               
                          
-                                  > {{ templatechat.history_title }}
+                                  >
                             <img  src="/public/img/edit.svg" alt="">
                             <img src="/public/img/trash.svg" alt="">
                           </div>
@@ -205,15 +205,28 @@ const chatStore = useChatStore();
 interface QuestionTemplate {
   history_id: number;
   history_title: string;
+  isEdit?:boolean
+}
+
+// change active chat 
+const changeToActive = (val:any) => {
+  let q = questionTemplates.value.find((val)=>{
+    if(val.isEdit=true){
+      return val.isEdit=false
+    } else {
+      val
+    }
+  })
+  questionTemplates.value[val].isEdit = true
 }
 
 // Define the data properties
 const questionTemplates = ref<QuestionTemplate[]>([]);
 
 // hide and show edit
-const isEdit = reactive(
-  questionTemplates
-)
+// const isEdit = reactive(
+//   questionTemplates
+// )
 
 // Define props with default values
 const props = withDefaults(
@@ -240,9 +253,6 @@ const emit = defineEmits(['update:modelValue']);
 
 const { modelValue } = toRefs(props);
 
-
-console.log(props.modelValue);
-
 watch(
   modelValue,
   (val) => {
@@ -262,7 +272,12 @@ watch(isOpen, (val) => {
 function getHistoryChat(val:string){
   chatStore.getHistoryByUserId(val)
   .then((resp:any)=>{
-    console.log(resp.data.data);
+    // console.log(resp.data.data);
+    const data = resp.data.data
+    data.map((val:any)=>{
+      val.isEdit = false
+    })
+    
     
     questionTemplates.value = resp.data.data
   })
