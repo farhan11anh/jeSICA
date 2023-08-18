@@ -171,28 +171,48 @@
             },
 
             send(){
-                const otp = this.loginStore.otp
-                const context = this.input1 + this.input2 + this.input3 + this.input4
+                // const otp = this.loginStore.otp
+                // const context = this.input1 + this.input2 + this.input3 + this.input4
 
-                console.log(context);
-                if(otp == context) {
-                    this.showConfirm = true 
-                } else {
-                    alert('kode otp yang anda masukan salah')
-                }
+                // console.log(context);
+                // if(otp == context) {
+                //     this.showConfirm = true 
+                // } else {
+                //     alert('kode otp yang anda masukan salah')
+                // }
+
+                this.showConfirm = true 
 
             },
 
             async goTo(){
                 // this.loginStore.saveUser()
-                const otp = this.loginStore.otp
-                console.log(otp);
-                const resp = await this.authStore.setToken(otp)
-                console.log(resp);
-                this.loginStore.changeOtp("")
-                this.$router.push({
-                    path : "/chats"
-                })
+                const otp = this.input1 + this.input2 + this.input3 + this.input4
+                const email = this.$route.query.nik
+                // console.log(otp);
+                // this.loginStore.changeOtp("")
+                try {
+                    await this.authStore.setToken(otp, email)
+                    .then((resp)=>{
+                        console.log(resp.data.access_token);
+                        const token = resp.data.access_token
+                        try {
+                            // clearTimeout(timeoutId);
+                            localStorage.setItem('token', token)
+                            this.$router.push({
+                                path : "/chats"
+                            })
+                        } catch (error) {
+                            alert('gagal login')
+                        }
+
+                        // document.cookie = "token=10831; expires=Thu, 01 Jan 2023 00:00:00 UTC; path=/"
+                    })
+        
+                  
+                } catch (error) {
+                    throw error;
+                }
             }
         }, 
 

@@ -37,23 +37,16 @@ export const useAuthStore = defineStore('auth', {
             // }
         },
 
-        async setToken(otp){
+        async setToken(otp, email){
             console.log(otp);
             const config = useRuntimeConfig()
             const url = config.public.apiBase
             return await $fetch(`${url}/verifOTP`,{
                 method : "POST",
                 body : {
-                    otp : otp
+                    otp : otp,
+                    email : email
                 }
-            })
-            .then((response) => {
-                console.log(response);
-                // const token = response.access
-                // localStorage.setItem('token', token)
-            })
-            .catch((error)=>{
-                throw error
             })
         },
         // async refreshTokenn(){

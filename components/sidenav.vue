@@ -72,7 +72,11 @@
                       </h3>
                     </div>
                     <ol>
-                      <li class="relative z-[15] h-auto my-2"  v-for="templatechat in questionTemplates">
+                      <li class="relative z-[15] h-auto my-2" 
+                   
+                      v-for="(templatechat, index) in questionTemplates"
+                      :key="templatechat.history_id"
+                      >
                         <NuxtLink
                           class="flex p-4 items-center gap-3 relative rounded-lg border hover:bg-primary-50 cursor-pointer break-all bg-gray-50 focus:border-primary-600"
                           to="/chats/chat"
@@ -106,7 +110,14 @@
                           <div
                             class="flex-1 max-h-5 overflow-hidden whitespace-normal relative font-body"
                           >
-                           {{ templatechat.title }}
+                           {{ templatechat.history_title }}
+                          </div>
+                          <div class="flex gap-2" :class="isEdit[key] ? 'hidden' : ''" 
+                              
+                         
+                                  > {{ templatechat.history_title }}
+                            <img  src="/public/img/edit.svg" alt="">
+                            <img src="/public/img/trash.svg" alt="">
                           </div>
                         </NuxtLink>
                       </li>
@@ -186,16 +197,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch} from "vue";
+import { ref, onMounted, onUnmounted, watch, reactive} from "vue";
+import { useChatStore } from '../stores/chat'
+const chatStore = useChatStore();
 
 // Define an interface for the question templates
 interface QuestionTemplate {
-  id: number;
-  title: string;
+  history_id: number;
+  history_title: string;
 }
 
 // Define the data properties
 const questionTemplates = ref<QuestionTemplate[]>([]);
+
+// hide and show edit
+const isEdit = reactive(
+  questionTemplates
+)
 
 // Define props with default values
 const props = withDefaults(
@@ -212,15 +230,7 @@ const isOpen = ref(props.modelValue);
 
 // Listen for the 'chatbar-clicked' event on the event bus
 onMounted(() => {
-  // Simulate the question templates loading after 1 second
-  setTimeout(() => {
-    questionTemplates.value = [
-      { id: 1, title: "Hari Senin pakai seragam apa ya?" },
-      { id: 2, title: "Bagaimana peraturan berpakaian?" },
-      { id: 3, title: "Bagaimana caranya mengklaim asuransi?" },
-      { id: 4, title: "Bagaimana cara mengajukan cuti?" },
-    ];
-  }, 1000);
+  getHistoryChat('1');
 });
 
 // Watch for changes in modelValue prop
@@ -248,6 +258,15 @@ const toggleSidebar = () => {
 watch(isOpen, (val) => {
   emit('update:modelValue', val);
 });
+
+function getHistoryChat(val:string){
+  chatStore.getHistoryByUserId(val)
+  .then((resp:any)=>{
+    console.log(resp.data.data);
+    
+    questionTemplates.value = resp.data.data
+  })
+}
 
 function logOut(){
   const logOut = confirm('mau logout ?')
