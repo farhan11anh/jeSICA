@@ -72,11 +72,14 @@
       addChat(data, true)
 
       try {
-        const url = 'http://192.168.1.43:8000/sendAzure'
-        const resp = await $fetch(url, {
+        const config = useRuntimeConfig()
+        const url = config.public.apiBase
+        const resp = await $fetch(`${url}/sendAzure`, {
           method: 'POST',
           body: {
-            text : chat
+            text : chat,
+            user_id : 1,
+            history_id : ""
           }
         })
         console.log(resp);
