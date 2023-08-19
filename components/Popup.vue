@@ -120,10 +120,7 @@
 
                 } catch (error) {
                     alert('error server')
-
-
                     this.waitResp = false
-
                     this.messages.push(
                             {
                                 isJesica : "true",

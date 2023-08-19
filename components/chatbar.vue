@@ -92,22 +92,15 @@
           addChat(d, false)
         }
       } catch (error) {
-        console.log('err');
+        const d = {
+          isJesica : "true",
+          msg : "server tidak merespon ..."
+        }
+        addChat(d, false)
       }
-
-      
-      
-      // setTimeout(()=>{
-      //   const d = {
-      //     isJesica : "true",
-      //     msg : "ada yang bisa saya bantu ?"
-      //   }
-      //   // panggil fungsi add cht
-      //   addChat(d, false)
-
-      // }, 2000)
     }
 
+    // template send chat 
     const addChat = (data, wait) => {
       chatStore.addMessages(data)
       msg.value = ""
