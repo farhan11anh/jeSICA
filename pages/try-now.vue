@@ -48,11 +48,14 @@
     // and take appropriate actions based on the result.
   };
   
-//   onMounted(() => {
-//     const firstInput = otpValues[0];
-//     if (firstInput) {
-//       // Assuming you want to focus the first input on mount
-//       firstInput.value.focus();
-//     }
-//   });
+  onMounted(() => {
+    const hola = $fetch(`${import.meta.env.NUXT_PUBLIC_API_BASE}/`)
+    const base_url = import.meta.env.NUXT_PUBLIC_API_BASE
+    console.log(base_url);
+    // const firstInput = otpValues[0];
+    // if (firstInput) {
+    //   // Assuming you want to focus the first input on mount
+    //   firstInput.value.focus();
+    // }
+  });
   </script>

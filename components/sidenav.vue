@@ -293,9 +293,9 @@ function getHistoryChat(val:string){
       questionTemplates.value = resp.data.data
       loadList.value = 'loaded'
     })
-    .catch((error:any) => {
-      // throw error
+    .catch((error: any) => {
       loadList.value = 'error'
+      throw error
 
     })
     
