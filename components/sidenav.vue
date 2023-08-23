@@ -14,7 +14,7 @@
               class="flex justify-between gap-2"
               :class="isOpen ? 'flex-col' : 'flex-row'"
             >
-              <NuxtLink to="/chats" class="btn-secondary">
+              <NuxtLink @click="newChat()" class="btn-secondary cursor-pointer">
                 <svg
                   width="20"
                   height="20"
@@ -79,6 +79,7 @@
                       >
                         <NuxtLink
                           class="flex p-4 items-center gap-3 relative rounded-lg border hover:bg-primary-50 cursor-pointer break-all bg-gray-50 focus:border-primary-600"
+                          :class="templatechat.isEdit ? 'border-red-600' : ''"
                           
                         >
                           <svg
@@ -110,12 +111,13 @@
                           <div
                             class="flex-1 max-h-5 overflow-hidden whitespace-normal relative font-body"
                           >
-                           {{ templatechat.history_title }}
+                           <p v-if="templatechat.isRename? false : true" >{{ templatechat.history_title }}</p>
+                           <input v-else @click.stop v-model="titleTemp" class="edit-blank"  type="text">
                           </div>
                           <div class="flex gap-2" 
                                 :class="questionTemplates[index].isEdit ? '' : 'hidden'" 
                                 >
-                            <img  src="/public/img/edit.svg" alt="">
+                            <img @click="renameHistory(index)" @click.stop  src="/public/img/edit.svg" alt="">
                             <img src="/public/img/trash.svg" alt="">
                           </div>
                         </NuxtLink>
@@ -216,13 +218,18 @@ import { ref, onMounted, onUnmounted, watch, reactive} from "vue";
 import { useChatStore } from '../stores/chat'
 const chatStore = useChatStore();
 
-const loadList = ref('loading')
+// loading waiting content from BE
+const loadList = ref('loading');
+
+// judul sementara saat edit judul history
+const titleTemp = ref<any>("");
 
 // Define an interface for the question templates
 interface QuestionTemplate {
   history_id: number;
   history_title: string;
-  isEdit?:boolean
+  isEdit?:boolean;
+  isRename?:boolean
 }
 
 // change active chat show edit button
@@ -235,7 +242,12 @@ const changeToActive = (val:any, history_id:any) => {
     .catch((err:any)=>{
       throw err
     })
-  
+    renameActive()
+    changeHistory(val)
+}
+
+// change active and disactive unselect history list
+const changeHistory = (val:any) => {
   let q = questionTemplates.value.find((val)=>{
     if(val.isEdit=true){
       return val.isEdit=false
@@ -243,7 +255,32 @@ const changeToActive = (val:any, history_id:any) => {
       val
     }
   })
-  questionTemplates.value[val].isEdit = true
+
+  if(val!=="false"){
+    questionTemplates.value[val].isEdit = true 
+  }
+}
+
+// change rename History and disable 
+const renameActive = () => {
+  questionTemplates.value.find((val)=>{
+    if(val.isRename=true){
+      val.isRename=false
+    } else {
+      val
+    }
+  })
+}
+
+// edit data 
+const renameHistory = (val:any) => {
+  renameActive()
+  let q = questionTemplates.value.find((value)=>{
+    return value
+  })
+  questionTemplates.value[val].isRename = true
+
+  titleTemp.value = q?.history_title
 }
 
 // Define the data properties
@@ -269,7 +306,6 @@ onMounted(() => {
 });
 
 // Watch for changes in modelValue prop
-
 const emit = defineEmits(['update:modelValue']);
 
 const { modelValue } = toRefs(props);
@@ -296,7 +332,8 @@ function getHistoryChat(val:string){
       // console.log(resp.data.data);
       const data = resp.data.data
       data.map((val:any)=>{
-        val.isEdit = false
+        val.isEdit = false;
+        val.isRename = false;
       })
       questionTemplates.value = resp.data.data
       loadList.value = 'loaded'
@@ -308,6 +345,11 @@ function getHistoryChat(val:string){
     })
     
 
+}
+
+const newChat = () => {
+  chatStore.newChat()
+  changeHistory("false")
 }
 
 function logOut(){
@@ -323,4 +365,16 @@ function logOut(){
 
 
 
-<style scoped></style>
+<style scoped>
+  .edit-blank{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    padding: 0; margin: 0;
+  }
+
+  .edit-blank:focus {
+    padding: 0; margin: 0; outline: 0; border: 0;
+  }
+</style>

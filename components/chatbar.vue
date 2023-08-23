@@ -55,7 +55,9 @@
   
   <script setup>
     import {useChatStore} from '../stores/chat'
+    import { useAuthStore } from '../stores/auth';
     const chatStore = useChatStore()
+    const $auth = useAuthStore()
 
     const msg = ref('')
 
@@ -74,15 +76,19 @@
       try {
         const config = useRuntimeConfig()
         const url = config.public.apiBase
+        const token = $auth.token
         const resp = await $fetch(`${url}/sendAzure`, {
           method: 'POST',
+          headers : {
+            'Authorization':`Bearer ${localStorage.getItem("token")}`
+          },
           body: {
             text : chat,
             user_id : 1,
             history_id : ""
           }
         })
-        console.log(resp);
+        // console.log(resp.headers);
 
         if(resp) {
           const d = {
