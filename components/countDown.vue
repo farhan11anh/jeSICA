@@ -26,7 +26,7 @@
           minutes.value--;
           seconds.value = 59;
         } else {
-            alert('waktu telah habis')
+            // alert('waktu telah habis')
           clearInterval(intervalId);
         }
       }

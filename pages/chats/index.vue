@@ -1,5 +1,6 @@
 <template>
-  <div  class="container mx-auto w-full h-auto">
+  <div  class="container mx-auto w-full h-auto relative">
+    <!-- <HeaderChat class="" v-if="messages.length !== 0" /> -->
     <div v-if="messages.length == 0" class="h-full p-4 md:p-8 flex justify-center items-center flex-col space-y-4">
       <div class="flex">
         <div class="inline-flex space-x-4">

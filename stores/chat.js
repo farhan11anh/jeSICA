@@ -64,6 +64,10 @@ export const useChatStore = defineStore('chat', {
             } catch (error) {
                 throw error
             }
+        },
+
+        async newChat(){
+            this.messages = []
         }
     },
     getters: {

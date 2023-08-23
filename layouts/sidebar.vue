@@ -13,8 +13,8 @@
     >
       <div class="flex-1">
         <div class="flex flex-col h-screen text-sm justify-between">
-          <div class="sm:invisible">
-            <HeaderChatIndex />
+          <div class="">
+            <HeaderChat v-if="lengthMessage != 0" />
           </div>
           <div ref="chatContainer" class="flex grow h-full overflow-auto p-5 row-span-full">
             <slot />
@@ -34,12 +34,19 @@ import {useChatStore} from '../stores/chat'
 // define chat store pinia
 const chatStore = useChatStore()
 
+const lengthMessage = ref(0)
+
 
 watch(()=>chatStore.scroll, (scroll)=>{
   //scroll down ketika data messages pada pinia berubah
   nextTick(() => {
     scrollToBottom();
   });
+})
+
+watch(()=>chatStore.messages, (msg)=>{
+  lengthMessage.value = msg.length
+  // console.log(lengthMessage.value);
 })
 
 const chatContainer = ref(null)
