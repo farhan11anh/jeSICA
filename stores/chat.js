@@ -11,7 +11,9 @@ export const useChatStore = defineStore('chat', {
         scroll : false,
         waitResp : false,
 
-        historyChat : []
+        historyChat : [],
+
+        id_history : ""
 
         
     }),
@@ -68,6 +70,10 @@ export const useChatStore = defineStore('chat', {
 
         async newChat(){
             this.messages = []
+        },
+
+        async setIdHistory(val){
+            return this.id_history = val
         }
     },
     getters: {
