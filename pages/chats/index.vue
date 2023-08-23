@@ -201,8 +201,12 @@ watch(()=>chatStore.waitResp, (newVal)=>{
   // console.log(waitingResp);
 })
 
+watch(() => chatStore.messages, () => {
+  userSentChat.value = true;
+});
+
 definePageMeta({
-  layout: 'sidebar'
+  layout: userSentChat.value ? 'chat' : 'sidebar'
 })
 </script>
 
