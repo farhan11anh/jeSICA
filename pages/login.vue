@@ -25,7 +25,7 @@
                             <form class="mt-7" action="">
                                 <Form
                                     name="email"
-                                    title="Email Telkom*"   
+                                    title="Email*"   
                                     type="text"
                                     placeholder="Enter your email Telkom"
                                     icon="user"

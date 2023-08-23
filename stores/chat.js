@@ -50,6 +50,20 @@ export const useChatStore = defineStore('chat', {
             } catch (error) {
                 throw error;
             }
+        },
+
+        async retrieveChatById(id_history){
+            const config = useRuntimeConfig()
+            const url = config.public.apiBase
+            try {
+                const data =  await axios.post(`${url}/getChats`, {
+                    "history_id" : id_history
+                })
+                this.messages = data.data.data
+                console.log(this.messages);
+            } catch (error) {
+                throw error
+            }
         }
     },
     getters: {

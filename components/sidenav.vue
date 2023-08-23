@@ -75,7 +75,7 @@
                       <li v-if="loadList == 'loaded'" class="relative z-[15] h-auto my-2" 
                       v-for="(templatechat, index) in questionTemplates"
                       :key="templatechat.history_id"
-                      @click="changeToActive(index)"
+                      @click="changeToActive(index, templatechat.history_id)"
                       >
                         <NuxtLink
                           class="flex p-4 items-center gap-3 relative rounded-lg border hover:bg-primary-50 cursor-pointer break-all bg-gray-50 focus:border-primary-600"
@@ -226,7 +226,16 @@ interface QuestionTemplate {
 }
 
 // change active chat show edit button
-const changeToActive = (val:any) => {
+const changeToActive = (val:any, history_id:any) => {
+  chatStore.retrieveChatById(history_id)
+    .then((resp:any)=> {
+      // console.log(resp);
+      chatStore.scrollDown()
+    })
+    .catch((err:any)=>{
+      throw err
+    })
+  
   let q = questionTemplates.value.find((val)=>{
     if(val.isEdit=true){
       return val.isEdit=false
@@ -260,7 +269,6 @@ onMounted(() => {
 });
 
 // Watch for changes in modelValue prop
-
 
 const emit = defineEmits(['update:modelValue']);
 

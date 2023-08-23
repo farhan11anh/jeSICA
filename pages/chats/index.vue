@@ -188,6 +188,7 @@ onMounted(() => {
 });
 
 const messages = ref(chatStore.messages)
+
 // sinkronisasi dengan data baru pada pinia
 watch(()=>chatStore.messages, (newMessages)=> {
   messages.value = newMessages

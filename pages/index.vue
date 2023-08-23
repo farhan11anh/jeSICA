@@ -1,7 +1,7 @@
 <template>
     <Head>
         <Title>
-            JeSICA
+            JeSICA - AI Assistant Companion
         </Title>
     </Head>
     <div class="relative w-screen" >
