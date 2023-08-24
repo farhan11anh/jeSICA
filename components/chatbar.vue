@@ -61,6 +61,8 @@
 
     const msg = ref('')
 
+    const id_history = ref("")
+
     watch(()=> chatStore.message, (newChat) => {
       msg.value = newChat
     })
@@ -77,6 +79,8 @@
         const config = useRuntimeConfig()
         const url = config.public.apiBase
         const token = $auth.token
+
+        const id = chatStore.id_history
         const resp = await $fetch(`${url}/sendAzure`, {
           method: 'POST',
           headers : {
@@ -85,7 +89,7 @@
           body: {
             text : chat,
             user_id : 1,
-            history_id : ""
+            history_id : id
           }
         })
         // console.log(resp.headers);
@@ -113,6 +117,14 @@
       chatStore.changeWait(wait)
       // ubah nilai agar bisa trigger scroll
       chatStore.scrollDown()
+    }
+
+    onMounted(() => {
+      setIdHistory()
+    });
+
+    const setIdHistory = () => {
+      id_history.value = chatStore.id_history
     }
 
     const waitingResp = ref(false)

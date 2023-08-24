@@ -244,6 +244,9 @@ const changeToActive = (val:any, history_id:any) => {
     })
     renameActive()
     changeHistory(val)
+    chatStore.setIdHistory(history_id)
+    // console.log(chatStore.id_history);
+    
 }
 
 // change active and disactive unselect history list
@@ -349,6 +352,7 @@ function getHistoryChat(val:string){
 
 const newChat = () => {
   chatStore.newChat()
+  chatStore.setIdHistory("")
   changeHistory("false")
 }
 
