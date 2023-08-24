@@ -79,6 +79,22 @@ export const useChatStore = defineStore('chat', {
             return this.id_history = val
         },
 
+        async renameChat(history_id, history_title){
+            const config = useRuntimeConfig()
+            const url = config.public.apiBase
+            try {
+                return await axios.post(`${url}/renameHistory`, {
+                    "history_id" : history_id,
+                    "history_title" : history_title
+                })
+                // .then(()=>{
+                //     alert('berhasil edit')
+                // })
+            } catch (error) {
+                alert('gagal ubah data')
+            }
+        },
+
         async deleteChatById(val){
             const config = useRuntimeConfig()
             const url = config.public.apiBase

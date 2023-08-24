@@ -117,9 +117,12 @@
                           <div class="flex gap-2" 
                                 :class="questionTemplates[index].isEdit ? '' : 'hidden'" 
                                 >
-                            <img @click="renameHistory(index)" @click.stop  src="/public/img/edit.svg" alt="">
-                            <img @click="deletHistory(templatechat.history_id)" src="/public/img/trash.svg" alt="">
+                            <img v-if="templatechat.isRename? false : true" @click="renameHistory(index)" @click.stop  src="/public/img/edit.svg" alt="">
+                            <img v-if="templatechat.isRename? false : true" @click="deletHistory(templatechat.history_id)" @click.stop src="/public/img/trash.svg" alt="">
+
+                            <div v-else @click.stop class="cursor-pointer border border-black p-1 rounded-lg" @click="historyRename(templatechat.history_id, titleTemp)" >SET</div>
                           </div>
+                      
                         </NuxtLink>
                       </li>
                       <li v-else-if="loadList == 'loading'" class="relative z-20 h-auto my-2" >
@@ -285,6 +288,14 @@ const renameHistory = (val:any) => {
   titleTemp.value = q?.history_title
 }
 
+// submit rename 
+const historyRename = (history_id:any, history_title:any) => {
+  chatStore.renameChat(history_id, history_title)
+  .then(()=> {
+    getHistoryChat('1');
+  })
+}
+
 // Define the data properties
 const questionTemplates = ref<QuestionTemplate[]>([]);
 
@@ -368,6 +379,9 @@ watch(()=>chatStore.historyChat, (val:any)=>{
   // getHistoryChat('1');
   // console.log(val);
   questionTemplates.value = val
+
+  // mengaktifkan history baru.
+  changeHistory(0)
 })
 
 const newChat = () => {
