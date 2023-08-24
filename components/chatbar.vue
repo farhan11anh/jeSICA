@@ -78,10 +78,17 @@
       try {
         const config = useRuntimeConfig()
         const url = config.public.apiBase
-        const token = $auth.token
 
-        const id = chatStore.id_history
-        const resp = await $fetch(`${url}/sendAzure`, {
+        // id yang akan dipanggil (menentukan akan membuat chat baru ataupun melanjutkan chat.)
+        let id = chatStore.id_history
+
+        // melakukan set history
+        if(chatStore.messages.length >= 2) {
+          id = chatStore.historyChat[0].history_id
+        }
+
+        // mengirim chat menggunakan api dari be.
+        await $fetch(`${url}/sendAzure`, {
           method: 'POST',
           headers : {
             'Authorization':`Bearer ${localStorage.getItem("token")}`
@@ -94,19 +101,16 @@
         })
         // console.log(resp.headers);
         .then((resp)=> {
-
           const d = {
             isJesica : "true",
             msg : resp.textResponse
           }
           addChat(d, false)
-          chatStore.getHistoryByUserId("1")
+
+          if(chatStore.messages.length <= 3){
+            chatStore.getHistoryByUserId("1")
+          }
         })
-        // if(resp) {
-
-
-          
-        // }
       } catch (error) {
         const d = {
           isJesica : "true",

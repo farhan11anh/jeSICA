@@ -353,9 +353,11 @@ const deletHistory = (val:any) => {
   if(confDel){
     chatStore.deleteChatById(val)
     .then((val:any)=> {
-      alert("berhasil hapus history")
-      chatStore.getHistoryByUserId("1")
+      // alert("berhasil hapus history")
+      
       newChat()
+      
+      chatStore.getHistoryByUserId("1")
     })
   } else {
     alert("gagal hapus history")
@@ -384,8 +386,6 @@ function logOut(){
   }
 }
 </script>
-
-
 
 <style scoped>
   .edit-blank{

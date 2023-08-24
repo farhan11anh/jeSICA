@@ -72,6 +72,7 @@ export const useChatStore = defineStore('chat', {
 
         async newChat(){
             this.messages = []
+            console.log(this.messages);
         },
 
         async setIdHistory(val){
