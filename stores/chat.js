@@ -10,12 +10,9 @@ export const useChatStore = defineStore('chat', {
         ],
         scroll : false,
         waitResp : false,
-
         historyChat : [],
+        id_history : "",
 
-        id_history : ""
-
-        
     }),
 
     actions: {
@@ -45,9 +42,14 @@ export const useChatStore = defineStore('chat', {
             const url = config.public.apiBase
             console.log(url);
             try {
-                return await axios.post(`${url}/getHistories`,{
+                const history =  await axios.post(`${url}/getHistories`,{
                     "user_id" : val
                 })
+                this.historyChat = history.data.data
+                // .then((history)=> {
+                //     console.log(history);
+                // })
+                return history
                 
             } catch (error) {
                 throw error;
@@ -70,10 +72,23 @@ export const useChatStore = defineStore('chat', {
 
         async newChat(){
             this.messages = []
+            console.log(this.messages);
         },
 
         async setIdHistory(val){
             return this.id_history = val
+        },
+
+        async deleteChatById(val){
+            const config = useRuntimeConfig()
+            const url = config.public.apiBase
+            try {
+                return await axios.post(`${url}/deleteHistory`, {
+                    "history_id" : val
+                })
+            } catch (error) {
+                throw error
+            }
         }
     },
     getters: {
