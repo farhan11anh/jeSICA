@@ -118,7 +118,7 @@
                                 :class="questionTemplates[index].isEdit ? '' : 'hidden'" 
                                 >
                             <img @click="renameHistory(index)" @click.stop  src="/public/img/edit.svg" alt="">
-                            <img src="/public/img/trash.svg" alt="">
+                            <img @click="deletHistory(templatechat.history_id)" src="/public/img/trash.svg" alt="">
                           </div>
                         </NuxtLink>
                       </li>
@@ -215,7 +215,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch, reactive} from "vue";
-import { useChatStore } from '../stores/chat'
+import { useChatStore } from '~/stores/chat'
 const chatStore = useChatStore();
 
 // loading waiting content from BE
@@ -245,8 +245,7 @@ const changeToActive = (val:any, history_id:any) => {
     renameActive()
     changeHistory(val)
     chatStore.setIdHistory(history_id)
-    // console.log(chatStore.id_history);
-    
+    // console.log(chatStore.id_history); 
 }
 
 // change active and disactive unselect history list
@@ -346,9 +345,28 @@ function getHistoryChat(val:string){
       throw error
 
     })
-    
-
 }
+
+// fungsi hapus history
+const deletHistory = (val:any) => {
+  const confDel = confirm("yakin ingin menghapus history ?")
+  if(confDel){
+    chatStore.deleteChatById(val)
+    .then((val:any)=> {
+      alert("berhasil hapus history")
+      chatStore.getHistoryByUserId("1")
+      newChat()
+    })
+  } else {
+    alert("gagal hapus history")
+  }
+}
+
+watch(()=>chatStore.historyChat, (val:any)=>{
+  // getHistoryChat('1');
+  // console.log(val);
+  questionTemplates.value = val
+})
 
 const newChat = () => {
   chatStore.newChat()

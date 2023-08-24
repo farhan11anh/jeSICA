@@ -93,14 +93,20 @@
           }
         })
         // console.log(resp.headers);
+        .then((resp)=> {
 
-        if(resp) {
           const d = {
             isJesica : "true",
             msg : resp.textResponse
           }
           addChat(d, false)
-        }
+          chatStore.getHistoryByUserId("1")
+        })
+        // if(resp) {
+
+
+          
+        // }
       } catch (error) {
         const d = {
           isJesica : "true",
