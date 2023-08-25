@@ -27,7 +27,7 @@
                                     name="email"
                                     title="Email*"   
                                     type="text"
-                                    placeholder="Enter your email Telkom"
+                                    placeholder="Enter your email"
                                     icon="user"
                                     password="false"
                                     @log-in="login"

@@ -78,6 +78,8 @@
       try {
         const config = useRuntimeConfig()
         const url = config.public.apiBase
+        const userData = JSON.parse(localStorage.getItem('user_data'))
+        const userID = userData.data.data.user_id
 
         // id yang akan dipanggil (menentukan akan membuat chat baru ataupun melanjutkan chat.)
         let id = chatStore.id_history
@@ -95,7 +97,7 @@
           },
           body: {
             text : chat,
-            user_id : 1,
+            user_id : userID,
             history_id : id
           }
         })

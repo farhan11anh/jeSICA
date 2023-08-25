@@ -14,7 +14,7 @@
       <div class="flex-1">
         <div class="flex flex-col h-screen text-sm justify-between">
           <div class="">
-            <HeaderChat v-if="lengthMessage != 0" />
+            <HeaderChat v-if="lengthMessages > 0" />
           </div>
           <div ref="chatContainer" class="flex grow h-full overflow-auto p-5 row-span-full">
             <slot />
@@ -36,6 +36,12 @@ const chatStore = useChatStore()
 
 const lengthMessage = ref(0)
 
+const lengthMessages = computed({
+  get(){
+    return lengthMessage.value
+  }
+})
+
 
 watch(()=>chatStore.scroll, (scroll)=>{
   //scroll down ketika data messages pada pinia berubah
@@ -44,9 +50,10 @@ watch(()=>chatStore.scroll, (scroll)=>{
   });
 })
 
-watch(()=>chatStore.messages, (msg)=>{
-  lengthMessage.value = msg.length
-  // console.log(lengthMessage.value);
+// melihat perubahan data pada state messages pinia
+chatStore.$subscribe((mutation, state) => {
+  const msg = state.messages.length
+  lengthMessage.value = msg
 })
 
 const chatContainer = ref(null)

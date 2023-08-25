@@ -28,6 +28,8 @@ export const useChatStore = defineStore('chat', {
                     msg : data.msg
                 }
             )
+
+            console.log(this.messages.length);
         },
 
         scrollDown(){
@@ -40,10 +42,13 @@ export const useChatStore = defineStore('chat', {
         async getHistoryByUserId(val){
             const config = useRuntimeConfig()
             const url = config.public.apiBase
-            console.log(url);
+            const userData = JSON.parse(localStorage.getItem('user_data'))
+            const userID = userData.data.data.user_id
+            console.log(userID);
+            // console.log(url);
             try {
                 const history =  await axios.post(`${url}/getHistories`,{
-                    "user_id" : val
+                    "user_id" : userID
                 })
                 this.historyChat = history.data.data
                 // .then((history)=> {
@@ -72,7 +77,7 @@ export const useChatStore = defineStore('chat', {
 
         async newChat(){
             this.messages = []
-            console.log(this.messages);
+            // console.log(this.messages);
         },
 
         async setIdHistory(val){

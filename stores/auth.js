@@ -18,23 +18,10 @@ export const useAuthStore = defineStore('auth', {
                     email : nik,  
                     password : password
             })
-            // .then((response) => {
-            //     console.log(response);
-            //     const otp = response.data.data
-            //     return otp
-            // })
-            // .catch((error)=>{
-            //     throw error
-            // })
+
         },
         isLogin(){
             console.log(localStorage.getItem('token'));
-            // const token = localStorage.getItem(token) ? true : false
-            // if(token) {
-            //     return true
-            // } else {
-            //     return false
-            // }
         },
 
         async setToken(otp, email){
@@ -67,9 +54,20 @@ export const useAuthStore = defineStore('auth', {
         //     }
         // },
 
+        async verificationToken(token){
+            const config = useRuntimeConfig()
+            const url = config.public.apiBase
+            return await axios.post(`${url}/verifToken`,{},{
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            })
+        },
+
         logOut(){
             if(process.client){
                 localStorage.removeItem('token')
+                localStorage.removeItem('user_data')
             }
             return 'success'
         }

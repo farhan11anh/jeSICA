@@ -185,18 +185,40 @@
 
             },
 
+
+            //save user data but ...
+            // saveDataFromToken(token){
+            //     console.log(token);
+            //     try {
+            //         this.authStore.verificationToken(token)
+            //             .then((UserData)=> {
+            //                 const data = JSON.stringify(UserData)
+            //                 localStorage.setItem('user_data', data)
+            //             })
+            //     } catch (error) {
+            //         // gagalkan  login bila gagal .........
+            //         // localStorage.removeItem('token')
+            //         throw error
+            //     }
+       
+            // },
+
             async goTo(){
-                // this.loginStore.saveUser()
                 const otp = this.input1 + this.input2 + this.input3 + this.input4
                 const email = this.$route.query.nik
-                // console.log(otp);
-                // this.loginStore.changeOtp("")
                 try {
                     await this.authStore.setToken(otp, email)
                     .then((resp)=>{
-                        console.log(resp.data.access_token);
+                        // console.log(resp.data.access_token);
                         const token = resp.data.access_token
                         try {
+                            // saveDataFromToken(token)
+                            // save user data
+                            this.authStore.verificationToken(token)
+                                .then((UserData)=> {
+                                    const data = JSON.stringify(UserData)
+                                    localStorage.setItem('user_data', data)
+                                })
                             // clearTimeout(timeoutId);
                             localStorage.setItem('token', token)
                             this.$router.push({
@@ -205,15 +227,12 @@
                         } catch (error) {
                             alert('gagal login')
                         }
-
-                        // document.cookie = "token=10831; expires=Thu, 01 Jan 2023 00:00:00 UTC; path=/"
                     })
-        
-                  
                 } catch (error) {
                     throw error;
                 }
-            }
+            },
+
         }, 
 
         computed : {
