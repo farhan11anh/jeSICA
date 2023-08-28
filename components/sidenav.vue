@@ -65,11 +65,11 @@
                 <span>
                   <div class="relative" style="height: auto">
                     <div class="sticky top-0 z-[16]">
-                      <h3
+                      <!-- <h3
                         class="h-9 pb-2 pt-3 px-3 text-xs text-gray-500 font-medium text-ellipsis overflow-hidden break-all"
                       >
                         Today
-                      </h3>
+                      </h3> -->
                     </div>
                     <ol>
                       <li v-if="loadList == 'loaded'" class="relative z-[15] h-auto my-2" 
@@ -77,6 +77,10 @@
                       :key="templatechat.history_id"
                       @click="changeToActive(index, templatechat.history_id)"
                       >
+                      <div class="sticky top-2 z-40" v-if="questionTemplates[index].history_category !== questionTemplates[index-1]?.history_category" >
+                        <!-- huruf besar di awal kata -->
+                        {{ templatechat.history_category.charAt(0).toUpperCase() + templatechat.history_category.slice(1) }}
+                      </div>
                         <NuxtLink
                           class="flex p-4 items-center gap-3 relative rounded-lg border hover:bg-primary-50 cursor-pointer break-all bg-gray-50 focus:border-primary-600"
                           :class="templatechat.isEdit ? 'border-red-600' : ''"
@@ -232,7 +236,9 @@ interface QuestionTemplate {
   history_id: number;
   history_title: string;
   isEdit?:boolean;
-  isRename?:boolean
+  isRename?:boolean;
+  history_category:string
+
 }
 
 // change active chat show edit button
@@ -264,6 +270,7 @@ const changeHistory = (val:any) => {
   if(val!=="false"){
     questionTemplates.value[val].isEdit = true 
   }
+  
 }
 
 // change rename History and disable 
