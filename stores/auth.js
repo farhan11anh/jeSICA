@@ -64,10 +64,37 @@ export const useAuthStore = defineStore('auth', {
             })
         },
 
-        logOut(){
+        async saveDevice(device, browser, ip){
+            const config = useRuntimeConfig()
+            const url = config.public.apiBase
+            try {
+                await axios.post(`${url}/saveDevice`, {
+                    "device_name" : device,
+                    "browser_name" : browser,
+                    "ip_address" : ip
+                })
+            } catch (error) {
+                throw error
+            }
+        },
+
+        async logOut(){
             if(process.client){
-                localStorage.removeItem('token')
-                localStorage.removeItem('user_data')
+                const config = useRuntimeConfig()
+                const url = config.public.apiBase
+                try {
+                    await axios.post(`${url}/logout`, {
+                        "access_token" : localStorage?.getItem('token')
+                    })
+                        .then((data)=> {
+                            localStorage.removeItem('token')
+                            localStorage.removeItem('user_data')
+
+                            navigateTo('/')
+                        })
+                } catch (error) {
+                    alert('GAGAL LOGOUT')
+                }
             }
             return 'success'
         }

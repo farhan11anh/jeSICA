@@ -63,14 +63,8 @@
             <div class="flex flex-col gap-2 pb-2 text-gray-700 text-sm">
               <div>
                 <span>
-                  <div class="relative" style="height: auto">
-                    <div class="sticky top-0 z-[16]">
-                      <!-- <h3
-                        class="h-9 pb-2 pt-3 px-3 text-xs text-gray-500 font-medium text-ellipsis overflow-hidden break-all"
-                      >
-                        Today
-                      </h3> -->
-                    </div>
+                  <div class="relative h-[90vh]" style="height: auto">
+                
                     <ol>
                       <li v-if="loadList == 'loaded'" class="relative z-[15] h-auto my-2" 
                       v-for="(templatechat, index) in questionTemplates"
@@ -223,7 +217,9 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch, reactive} from "vue";
 import { useChatStore } from '~/stores/chat'
+import { useAuthStore } from "~/stores/auth";
 const chatStore = useChatStore();
+const authStore = useAuthStore();
 
 // loading waiting content from BE
 const loadList = ref('loading');
@@ -322,7 +318,10 @@ const isOpen = ref(props.modelValue);
 
 // Listen for the 'chatbar-clicked' event on the event bus
 onMounted(() => {
-  getHistoryChat('1');
+  setTimeout(()=>{
+    getHistoryChat("userID")
+  }, 1000)
+  
 });
 
 // Watch for changes in modelValue prop
@@ -346,8 +345,11 @@ watch(isOpen, (val) => {
   emit('update:modelValue', val);
 });
 
-function getHistoryChat(val:string){
-    chatStore.getHistoryByUserId(val)
+async function getHistoryChat(val:string){
+    const userData = await JSON.parse(localStorage.getItem('user_data') || "")
+    const userID = await userData.data.data.user_id
+    console.log(userID);
+    await chatStore.getHistoryByUserId(userID)
     .then((resp:any)=>{
       // console.log(resp.data.data);
       const data = resp.data.data
@@ -401,8 +403,8 @@ function logOut(){
   const logOut = confirm('mau logout ?')
   if(logOut){
     if(process.client){
-        localStorage.removeItem('token')
-        return navigateTo('/')
+        // localStorage.removeItem('token')
+        authStore.logOut()
     }
   }
 }

@@ -1,4 +1,11 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json"
+  "extends": "./.nuxt/tsconfig.json", 
+
+  // "paths": {
+  //   "@components": ["src/components"],
+  //   "@scss": ["src/styles/scss"],
+  //   "@img": ["src/assests/images"],
+  //   "@": ["src"],
+  // }
 }

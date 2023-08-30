@@ -105,12 +105,12 @@
         .then((resp)=> {
           const d = {
             isJesica : "true",
-            msg : resp.textResponse
+            msg : resp.data.text_response
           }
           addChat(d, false)
 
           if(chatStore.messages.length <= 3){
-            chatStore.getHistoryByUserId("1")
+            chatStore.getHistoryByUserId(userID)
           }
         })
       } catch (error) {

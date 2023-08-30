@@ -42,18 +42,11 @@ export const useChatStore = defineStore('chat', {
         async getHistoryByUserId(val){
             const config = useRuntimeConfig()
             const url = config.public.apiBase
-            const userData = JSON.parse(localStorage.getItem('user_data'))
-            const userID = userData.data.data.user_id
-            console.log(userID);
-            // console.log(url);
             try {
                 const history =  await axios.post(`${url}/getHistories`,{
-                    "user_id" : userID
+                    "user_id" : val
                 })
                 this.historyChat = history.data.data
-                // .then((history)=> {
-                //     console.log(history);
-                // })
                 return history
                 
             } catch (error) {

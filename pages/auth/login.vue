@@ -82,7 +82,7 @@
 </template>
 
 <script>
-    import { useLoginStore } from './../stores/login'
+    import { useLoginStore } from '@/stores/login'
     import { useAuthStore } from '@/stores/auth';
 
     export default {
@@ -234,8 +234,10 @@
 
                 this.$router.push({
                     path : `/${url}`,
-                    query : {nik : this.nik}
+                    query : {nik : this.nik},
+                    hash : "#login"
                 })
+                // this.$router.replace({hash : "#login"})
             }
    
         }

@@ -57,7 +57,8 @@
                 ],
 
                 waitResp : false,
-                config : useRuntimeConfig()
+                config : useRuntimeConfig(),
+                isFirstSendMessage : "true"
             }
         },
         mounted() {
@@ -76,7 +77,10 @@
         },
         methods : {
             async sendMessage(){
-                const text = { "text" : this.message}
+                const text = { 
+                    "text" : this.message,
+                    "first" : this.isFirstSendMessage
+                }
                 this.messages.push(
                     {
                         isJesica : "false",
@@ -96,19 +100,20 @@
 
                 try {
                     const url = ''
-                    const resp = await $fetch( `${this.config.public.apiBase}/sendChat`, {
+                    const resp = await $fetch( `${this.config.public.apiBase}/sendPalm`, {
                         method: 'POST',
                         body: text
-                    } );
+                    } )
 
                     console.log(resp);
 
                     if(resp){
+                        this.isFirstSendMessage = "false"
                         this.waitResp = false
                         this.messages.push(
                             {
                                 isJesica : "true",
-                                msg : resp.textResponse
+                                msg : resp.data.text_response
                             }
                         )
                          // Setelah pesan baru ditambahkan, scroll ke bawah

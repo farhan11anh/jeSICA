@@ -23,6 +23,8 @@
   
   <script setup>
   import { ref, onMounted } from 'vue';
+
+  import axios from 'axios';
   
   const otpDigits = 4;
   const otpValues = Array.from({ length: otpDigits }, () => ref(''));
@@ -47,11 +49,31 @@
     // For example, you can compare `enteredOTP` with the expected OTP
     // and take appropriate actions based on the result.
   };
+
+  const testHash = async () => {
+    const config = useRuntimeConfig()
+    const url = config.public.apiBase
+    await axios.get(`${url}/testHash`)
+    .response((data)=>{
+      console.log(data);
+    })
+  }
+
+  const { isMobile, isDesktop, isAndroid, isChrome, isCrawler, isFirefox, isWindows, isApple, isDesktopOrTablet, isIos } = useDevice();
   
   onMounted(() => {
     const hola = $fetch(`${import.meta.env.NUXT_PUBLIC_API_BASE}/`)
     const base_url = import.meta.env.NUXT_PUBLIC_API_BASE
     console.log(base_url);
+    console.log(isMobile);
+    console.log(isDesktop);
+    console.log(isAndroid);
+    console.log(isChrome);
+    console.log(isFirefox);
+
+  // testHash()
+
+    // console.log(this.$isMobile());
     // const firstInput = otpValues[0];
     // if (firstInput) {
     //   // Assuming you want to focus the first input on mount
