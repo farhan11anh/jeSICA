@@ -90,7 +90,7 @@
         }
 
         // mengirim chat menggunakan api dari be.
-        await $fetch(`${url}/sendAzure`, {
+        await $fetch(`${url}/api/chat/inazure/v1`, {
           method: 'POST',
           headers : {
             'Authorization':`Bearer ${localStorage.getItem("token")}`

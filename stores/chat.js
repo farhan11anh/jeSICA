@@ -43,7 +43,7 @@ export const useChatStore = defineStore('chat', {
             const config = useRuntimeConfig()
             const url = config.public.apiBase
             try {
-                const history =  await axios.post(`${url}/getHistories`,{
+                const history =  await axios.post(`${url}/api/history/get_all/v1`,{
                     "user_id" : val
                 })
                 this.historyChat = history.data.data
@@ -58,7 +58,7 @@ export const useChatStore = defineStore('chat', {
             const config = useRuntimeConfig()
             const url = config.public.apiBase
             try {
-                const data =  await axios.post(`${url}/getChats`, {
+                const data =  await axios.post(`${url}/api/chat/get_by_history/v1`, {
                     "history_id" : id_history
                 })
                 this.messages = data.data.data
@@ -81,7 +81,7 @@ export const useChatStore = defineStore('chat', {
             const config = useRuntimeConfig()
             const url = config.public.apiBase
             try {
-                return await axios.post(`${url}/renameHistory`, {
+                return await axios.post(`${url}/api/history/rename/v1`, {
                     "history_id" : history_id,
                     "history_title" : history_title
                 })
@@ -97,7 +97,7 @@ export const useChatStore = defineStore('chat', {
             const config = useRuntimeConfig()
             const url = config.public.apiBase
             try {
-                return await axios.post(`${url}/deleteHistory`, {
+                return await axios.post(`${url}/api/history/delete/v1`, {
                     "history_id" : val
                 })
             } catch (error) {

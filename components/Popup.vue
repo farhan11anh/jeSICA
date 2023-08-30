@@ -100,7 +100,7 @@
 
                 try {
                     const url = ''
-                    const resp = await $fetch( `${this.config.public.apiBase}/sendPalm`, {
+                    const resp = await $fetch( `${this.config.public.apiBase}/api/chat/palm/v1`, {
                         method: 'POST',
                         body: text
                     } )

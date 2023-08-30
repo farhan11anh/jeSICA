@@ -14,7 +14,7 @@ export const useAuthStore = defineStore('auth', {
 
             const config = useRuntimeConfig()
             const url = config.public.apiBase
-            return await axios.post(`${url}/login`,{
+            return await axios.post(`${url}/api/login/v1`,{
                     email : nik,  
                     password : password
             })
@@ -28,7 +28,7 @@ export const useAuthStore = defineStore('auth', {
             console.log(otp);
             const config = useRuntimeConfig()
             const url = config.public.apiBase
-            return await $fetch(`${url}/verifOTP`,{
+            return await $fetch(`${url}/api/verification/otp/v1`,{
                 method : "POST",
                 body : {
                     otp : otp,
@@ -57,33 +57,33 @@ export const useAuthStore = defineStore('auth', {
         async verificationToken(token){
             const config = useRuntimeConfig()
             const url = config.public.apiBase
-            return await axios.post(`${url}/verifToken`,{},{
+            return await axios.post(`${url}/api/verification/token/v1`,{},{
                 headers: {
                     Authorization: 'Bearer ' + token
                 }
             })
         },
 
-        async saveDevice(device, browser, ip){
-            const config = useRuntimeConfig()
-            const url = config.public.apiBase
-            try {
-                await axios.post(`${url}/saveDevice`, {
-                    "device_name" : device,
-                    "browser_name" : browser,
-                    "ip_address" : ip
-                })
-            } catch (error) {
-                throw error
-            }
-        },
+        // async saveDevice(device, browser, ip){
+        //     const config = useRuntimeConfig()
+        //     const url = config.public.apiBase
+        //     try {
+        //         await axios.post(`${url}/saveDevice`, {
+        //             "device_name" : device,
+        //             "browser_name" : browser,
+        //             "ip_address" : ip
+        //         })
+        //     } catch (error) {
+        //         throw error
+        //     }
+        // },
 
         async logOut(){
             if(process.client){
                 const config = useRuntimeConfig()
                 const url = config.public.apiBase
                 try {
-                    await axios.post(`${url}/logout`, {
+                    await axios.post(`${url}/api/logout/v1`, {
                         "access_token" : localStorage?.getItem('token')
                     })
                         .then((data)=> {
