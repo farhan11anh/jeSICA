@@ -109,7 +109,7 @@
                           <div
                             class="flex-1 max-h-5 overflow-hidden whitespace-normal relative font-body"
                           >
-                           <p v-if="templatechat.isRename? false : true" >{{ templatechat.history_title }}</p>
+                           <p v-if="templatechat.isRename? false : true" >{{ templatechat.history_title.length > 10 ? templatechat.history_title.substring(0,12) +"..." : templatechat.history_title }}</p>
                            <input v-else @click.stop v-model="titleTemp" class="edit-blank"  type="text">
                           </div>
                           <div class="flex gap-2" 
@@ -288,14 +288,20 @@ const renameHistory = (val:any) => {
   })
   questionTemplates.value[val].isRename = true
 
-  titleTemp.value = q?.history_title
+  console.log(q);
+  
+
+  titleTemp.value = questionTemplates.value[val].history_title
+  
 }
 
 // submit rename 
-const historyRename = (history_id:any, history_title:any) => {
+const historyRename = async (history_id:any, history_title:any) => {
+  const userData = await JSON.parse(localStorage.getItem('user_data') || "")
+  const userID = await userData.data.data.user_id
   chatStore.renameChat(history_id, history_title)
   .then(()=> {
-    getHistoryChat('1');
+    getHistoryChat(userID);
   })
 }
 
@@ -368,7 +374,9 @@ async function getHistoryChat(val:string){
 }
 
 // fungsi hapus history
-const deletHistory = (val:any) => {
+const deletHistory = async (val:any) => {
+  const userData = await JSON.parse(localStorage.getItem('user_data') || "")
+  const userID = await userData.data.data.user_id
   const confDel = confirm("yakin ingin menghapus history ?")
   if(confDel){
     chatStore.deleteChatById(val)
@@ -377,7 +385,7 @@ const deletHistory = (val:any) => {
       
       newChat()
       
-      chatStore.getHistoryByUserId("1")
+      chatStore.getHistoryByUserId(userID)
     })
   } else {
     alert("gagal hapus history")
