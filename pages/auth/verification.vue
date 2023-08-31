@@ -74,8 +74,8 @@
 
 <script>
     import {ref} from 'vue'
-    import { useLoginStore } from './../stores/login'
-    import { useAuthStore } from '../stores/auth'
+    import { useLoginStore } from '@/stores/login'
+    import { useAuthStore } from '@/stores/auth'
 
     const timer = ref(null)
     export default {

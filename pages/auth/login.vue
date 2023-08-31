@@ -76,7 +76,7 @@
         
         <ConfirmationLogin backButton="true" 
             v-show="showConfirm" 
-            @send-to="goTo('verification')" 
+            @send-to="goTo('auth/verification')" 
             @close-confirm="closeConfirm"/>
     </div>
 </template>

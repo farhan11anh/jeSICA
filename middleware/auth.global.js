@@ -8,14 +8,14 @@ export default defineNuxtRouteMiddleware((to, from) => {
     }
     // console.log(login);
     if(login){
-      return navigateTo('/login')
+      return navigateTo('/auth/login')
     }
 
     // const guard = auth.isTokenValid
     // // const guards = auth.token
     // console.log(guard);
     
-  }else if(to.path == '/login'){
+  }else if(to.path == '/auth/login'){
     let login = ""
     if(process.client){
       login = localStorage.getItem('token') ? true : false
@@ -29,3 +29,4 @@ export default defineNuxtRouteMiddleware((to, from) => {
     
   }
 })
+
