@@ -84,6 +84,11 @@ export const useChatStore = defineStore('chat', {
                 return await axios.post(`${url}/api/history/rename/v1`, {
                     "history_id" : history_id,
                     "history_title" : history_title
+                },
+                {
+                    headers : {
+                        'Authorization':`Bearer ${localStorage.getItem("token")}`
+                    }
                 })
                 // .then(()=>{
                 //     alert('berhasil edit')
@@ -99,6 +104,11 @@ export const useChatStore = defineStore('chat', {
             try {
                 return await axios.post(`${url}/api/history/delete/v1`, {
                     "history_id" : val
+                }, 
+                {
+                    headers : {
+                        'Authorization':`Bearer ${localStorage.getItem("token")}`
+                    }
                 })
             } catch (error) {
                 throw error
