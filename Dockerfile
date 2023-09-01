@@ -1,7 +1,7 @@
 # Use the official Node.js image as the base image
 FROM node:18-alpine
 
-WORKDIR /app
+WORKDIR /fe
 
 COPY package.json package-lock.json ./
 RUN npm install
