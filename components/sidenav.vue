@@ -386,6 +386,8 @@ const deletHistory = async (val:any) => {
       newChat()
       
       chatStore.getHistoryByUserId(userID)
+
+
     })
   } else {
     alert("gagal hapus history")
