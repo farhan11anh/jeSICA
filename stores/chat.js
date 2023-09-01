@@ -29,7 +29,6 @@ export const useChatStore = defineStore('chat', {
                 }
             )
 
-            console.log(this.messages.length);
         },
 
         scrollDown(){
@@ -62,7 +61,6 @@ export const useChatStore = defineStore('chat', {
                     "history_id" : id_history
                 })
                 this.messages = data.data.data
-                console.log(this.messages);
             } catch (error) {
                 throw error
             }
@@ -111,6 +109,7 @@ export const useChatStore = defineStore('chat', {
                     }
                 })
             } catch (error) {
+                alert('hapus gagal, server tidak merespon')
                 throw error
             }
         }

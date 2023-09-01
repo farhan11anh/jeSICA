@@ -147,7 +147,7 @@
           </div>
           <footer class="border-t border-gray-50 pt-2">
             <div class="justify-center flex flex-col" :class="isOpen ? 'items-center' : 'items-start'">
-              <NuxtLink to="#" class="btn-tertiary">
+              <!-- <NuxtLink to="#" class="btn-tertiary">
                 <div class="w-5 h-5 relative">
                   <svg
                     width="20"
@@ -177,7 +177,7 @@
                   </svg>
                 </div>
                 <span v-if="!isOpen"> Settings </span>
-              </NuxtLink>
+              </NuxtLink> -->
               <NuxtLink @click="logOut" to="#" class="btn-tertiary">
                 <span class="w-5 h-5 relative">
                   <svg
@@ -287,10 +287,6 @@ const renameHistory = (val:any) => {
     return value
   })
   questionTemplates.value[val].isRename = true
-
-  console.log(q);
-  
-
   titleTemp.value = questionTemplates.value[val].history_title
   
 }
@@ -354,7 +350,7 @@ watch(isOpen, (val) => {
 async function getHistoryChat(val:string){
     const userData = await JSON.parse(localStorage.getItem('user_data') || "")
     const userID = await userData.data.data.user_id
-    console.log(userID);
+    // console.log(userID);
     await chatStore.getHistoryByUserId(userID)
     .then((resp:any)=>{
       // console.log(resp.data.data);
