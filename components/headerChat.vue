@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="w-full flex flex-row items-center justify-center gap-2">
-      <span class="w-fit font-body font-semibold">Jessica’s Introduction</span>
+      <span class="w-fit font-body font-semibold">Jesica’s Introduction</span>
       <!-- <span>
         <div class="relative">
           <button

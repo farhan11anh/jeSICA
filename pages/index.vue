@@ -9,11 +9,11 @@
             <div class="py-8 px-4 mx-auto lg:py-16">
                 <div class="flex flex-wrap">
                     <div class="px-2 md:px-4 lg:px-8 basis-full lg:basis-1/2">
-                        <h1 class="text-5xl lg:text-6xl  font-bold text-left mb-7 font-nunito" >Meet Je<span class="text-background-primary" >SICA</span>, Your</h1>
-                        <h1 class="text-5xl lg:text-6xl  font-bold text-left mb-7 font-nunito" >AI Assistant</h1>
+                        <h1 class="text-5xl lg:text-6xl  font-bold text-left mb-7 font-nunito" >Meet Je<span class="text-background-primary" >SICA</span>,</h1>
+                        <h1 class="text-5xl lg:text-6xl  font-bold text-left mb-7 font-nunito" > Your AI Assistant</h1>
                         <h1 class="text-5xl lg:text-6xl  font-bold text-left mb-7 font-nunito" >Companion</h1>
                         <p class="mt-10 text-left text-xl font-normal text-f-second" >
-                            Are you tired of waiting for answers or need instant assistant? Jessica is here to save the day! As an AI Assistant, she's designed to provide fast and accurate responses to all your inquiries about Telkomsigma's products and services.
+                            Are you tired of waiting for answers or need instant assistant? Jessica is here to save the day! As an AI Assistant, she's designed to provide fast and accurate responses to all your inquiries about Telkomsigma's solutions and services.
                         </p>
 
                         <div class="flex mt-10">
@@ -56,28 +56,54 @@
             </div>
         </section>
 
+        <ChatsGreeting v-show="showGreeting" />
+
         <Avatar class="fixed bottom-5 right-5 shadow-lg shadow-gray-600 cursor-pointer" width="w-12" online="true" @click="showModal = true" />
 
         <Popup v-show="showModal" @close-modal="showModal=false"/>
     </div>
 </template>
 
-<script>
+<script setup> 
+    //import 
+    import {Howl, Howler} from 'howler';
+
+    var sound = new Howl({
+        src: ['ping.mp3']
+    });
+    
     definePageMeta({
         layout : "navbar"
     })
 
-    export default {
-        head() {
-            return{
-                title : "JeSICA - HOME"
-            }
-        },
-        data(){
-            return {
-                showModal : false
-            }
-        }
+    // variable
+    const showModal = ref(false)
+    const showGreeting = ref(false)
+
+    // on mounted 
+    onMounted(()=>{ 
+        // call function will reload on page load
+        show_greet()
+    })
+
+    // function
+    // show greet and hide greet
+    const show_greet = () => {
+        setTimeout(()=>{
+            showGreeting.value = true
+            call_sound()
+            hide_greet()
+        }, 1000)
+    }
+
+    const hide_greet = () => {
+        setTimeout(()=>{
+            showGreeting.value = false
+        }, 7000)
+    }
+
+    const call_sound = () => {
+        sound.play();
     }
 
 </script>

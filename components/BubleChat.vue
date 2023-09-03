@@ -1,7 +1,7 @@
 <template>
     <div class="flex gap-3 mb-5" :class="position">
         <Avatar v-if="jesica === 'true'" online="false" width="w-10 relative" />
-        <div class="rounded-lg p-4 max-w-[16rem] text-base" :class="color">
+        <div class="rounded-lg p-4 max-w-[75%] text-base" :class="color">
       
             <div v-if="waitRes == 'true' " >
                 <div class="text-center">
