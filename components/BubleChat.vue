@@ -15,8 +15,8 @@
                 </div>
             </div>
 
-            <p v-else  >
-                {{ msg }}
+            <p v-else v-html="msg"  >
+                
             </p>
     
         </div>
@@ -33,7 +33,7 @@
         data(){
             return{
                 position : this.jesica === "true" ? "justify-start" : "justify-end",
-                color : this.jesica === "true" ? "bg-[#F2F4F7] text-[#475467]" : "bg-[#E31B54] text-[#FCFCFD]"
+                color : this.jesica === "true" ? "buble-jsc" : "bg-[#E31B54] text-[#FCFCFD]"
         
             }
         }

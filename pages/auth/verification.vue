@@ -5,7 +5,8 @@
                 JeSICA
             </Title>
         </Head>
-        <nav class="bg-bg-login bg-no-repeat bg-center bg-cover md:bg-none md:bg-white border-gray-200 fixed w-full top-0 -left-2 z-20">
+        <nav 
+            class="bg-bg-login bg-no-repeat bg-center bg-cover md:bg-none dark:bg-none md:bg-white border-gray-200  fixed w-full p-0 m-0 top-0 -left-2 z-20 dark:md:bg-gray-900 dark:md:text-background-hover-secondary">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-center md:justify-between mx-auto p-4">
                 <NuxtLink to="/" class="flex items-center">
                     <img src="/assets/img/logo.png" class="h-12 mr-3" alt="Telkomsigma Logo" />
@@ -13,13 +14,13 @@
             </div>
         </nav>
 
-        <div class="flex relative"> 
+        <div class="flex relative section-jsc"> 
             <div class="basis-full md:basis-7/12 relative">
-                <section class="bg-white">
+                <section class="">
                     <div class="py-2 px-4 mx-auto max-w-screen-xl text-center lg:py-3">
                         <div class="content py-16 px-24 text-left">
                             <div class=" font-bold font-nunito text-3xl mb-3">Verify your email</div>
-                            <div class="text-base text-[#475467]" >
+                            <div class="text-base " >
                                 Your NIK is {{ $route.query.nik }}
                                 Please enter the OTP code sent to {{ email }}
                             </div>
@@ -47,7 +48,7 @@
     
                             </div>
     
-                            <div class="text-center text-[#475467] mt-5 mb-5" >
+                            <div class="text-center mt-5 mb-5" >
                                 <countDown />
                             </div>
     
@@ -65,7 +66,7 @@
                     @close-confirm="closeConfirm"/>
     
             </div>
-            <div class="hidden md:block basis-5/12 bg-bg-login h-screen overflow-hidden">
+            <div class="hidden md:block basis-5/12 bg-bg-login dark:bg-none h-screen overflow-hidden">
             </div>
             
         </div>

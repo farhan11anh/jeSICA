@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   ],
   plugins: [
     // '/e:/---- SIGMA ----/jeSICA/plugins/axios.js'
-    // './plugins/axios'
+    // './plugins/howler.js'
   ],
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],

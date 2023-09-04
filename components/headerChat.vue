@@ -1,6 +1,6 @@
 <template>
   <header
-    class="top-0 w-full h-16 p-4 bg-white border-b border-gray-200 backdrop-blur-sm justify-between items-center gap-4 inline-flex"
+    class="top-0 w-full h-16 p-4 section-jsc border-b border-gray-200 dark:border-none backdrop-blur-sm justify-between items-center gap-4 inline-flex"
   >
     <div class="md:hidden">
       <div class="flex flex-col items-center justify-between">

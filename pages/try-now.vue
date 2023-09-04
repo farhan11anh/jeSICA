@@ -1,19 +1,11 @@
 <template>
-  <div>
-    <button @click="play" >play</button>
+  <div class="bg-white dark:bg-black dark:text-warning-25">
+    simple 
   </div>
 </template>
 
 <script setup>
-  import {Howl, Howler} from 'howler';
 
-  var sound = new Howl({
-    src: ['ping.mp3']
-  });
-
-  const play = () => {
-    sound.play();
-  }
 </script>
 
 <style lang="scss" scoped>

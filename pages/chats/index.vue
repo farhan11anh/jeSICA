@@ -4,7 +4,7 @@
     <div v-if="messages.length == 0" class="h-full p-4 md:p-8 flex justify-center items-center flex-col space-y-4">
       <div class="flex">
         <div class="inline-flex space-x-4">
-          <card-recomend class="w-full">
+          <card-recomend class="w-full section-jsc">
             <span>
               <svg
                 width="24"
@@ -26,21 +26,21 @@
               </svg>
             </span>
             <div
-              class="flex flex-col justify-start items-start space-y-4 w-full wrap"
+              class="flex flex-col justify-start items-start space-y-4 w-full wrap text-gray-900 dark:text-gray-300"
             >
               <span
-                class="text-xl font-body text-gray-900 font-semibold max-w-full whitespace-normal"
+                class="text-xl font-body  font-semibold max-w-full whitespace-normal"
                 >Capabilities</span
               >
               <span
-                class="text-base font-body text-gray-900 font-base max-w-full whitespace-normal"
+                class="text-base font-body  font-base max-w-full whitespace-normal"
               >
                 Berisikan penjelasan tentang kapabilitas yang dimiliki JeSICA.
                 Kurang lebih 2-3 Baris.
               </span>
             </div>
           </card-recomend>
-          <card-recomend class="w-full">
+          <card-recomend class="w-full section-jsc">
             <span>
               <svg
                 width="24"
@@ -62,14 +62,14 @@
               </svg>
             </span>
             <div
-              class="flex flex-col justify-start items-start space-y-4 w-full wrap"
+              class="flex flex-col justify-start items-start space-y-4 w-full wrap text-gray-900 dark:text-gray-300"
             >
               <span
-                class="text-xl font-body text-gray-900 font-semibold max-w-full whitespace-normal"
+                class="text-xl font-body font-semibold max-w-full whitespace-normal"
                 >Limitations</span
               >
               <span
-                class="text-base font-body text-gray-900 font-base max-w-full whitespace-normal"
+                class="text-base font-body font-base max-w-full whitespace-normal"
               >
                 Berisikan penjelasan tentang kapabilitas yang dimiliki JeSICA.
                 Kurang lebih 2-3 Baris.
@@ -79,12 +79,12 @@
         </div>
       </div>
       <div>
-        <div class="card" >
-          <div class="flex justify-start flex-col space-y-4">
-            <span class="text-xl font-body font-semibold text-gray-900"
+        <div class="card section-jsc" >
+          <div class="flex justify-start flex-col space-y-4 text-gray-900 dark:text-gray-300">
+            <span class="text-xl font-body font-semibold"
               >Suggestions</span
             >
-            <span class="text-lg font-body font-base text-gray-900"
+            <span class="text-lg font-body font-base"
               >Berisikan pertanyaan-pertanyaan yang mungkin akan ditanyakan
               user.</span
             >
@@ -93,13 +93,13 @@
             >
               <!-- suggestions -->
               <NuxtLink
-                class="flex w-fit justify-center items-center gap-2 px-4 py-2 bg-white rounded-full border hover:bg-gray-50 active:bg-gray-100 cursor-pointer"
+                class="flex w-fit justify-center items-center gap-2 px-4 py-2 bg-white dark:bg-transparent dark:text-background-hover-secondary rounded-full border hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 cursor-pointer"
                 v-for="templatechat in questionTemplates"
                 key="templatechat.id"
                 @click="assignChat(templatechat.title)"
               >
                 <span
-                  class="text-base font-body font-base text-gray-700"
+                  class="text-base font-body font-base"
                   
                 >
                   {{ templatechat.title }}

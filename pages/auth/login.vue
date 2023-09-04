@@ -4,21 +4,22 @@
             JeSICA
         </Title>
     </Head>
-    <nav class="bg-bg-login bg-no-repeat bg-center bg-cover md:bg-none md:bg-white border-gray-200 fixed w-full top-0 -left-2 z-20">
+    <nav 
+        class="bg-bg-login bg-no-repeat bg-center bg-cover md:bg-none dark:bg-none md:bg-white border-gray-200  fixed w-full p-0 m-0 top-0 -left-2 z-20 dark:md:bg-gray-900 dark:md:text-background-hover-secondary">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-center md:justify-between mx-auto p-4">
             <NuxtLink to="/" class="flex items-center">
                 <img src="/assets/img/logo.png" class="h-12 mr-3" alt="Telkomsigma Logo" />
             </NuxtLink>
         </div>
     </nav>
-    <div class="relative"> 
+    <div class="relative section-jsc"> 
         <div class="flex flex-wrap">
             <div class="basis-full md:basis-7/12 relative">        
-                <section class="bg-white">
+                <section class="">
                     <div class="py-4 px-0 md:px-12 mx-auto max-w-screen-xl text-center lg:py-3">
                         <div class="content px-10 py-16 md:px-24 text-left">
                             <div class=" font-bold font-nunito text-3xl mb-3">Welcome Back!</div>
-                            <div class="text-base text-[#475467]" >
+                            <div class="text-base text-[#475467] dark:text-gray-400" >
                                 Login now to access internal data!
                             </div>
     
@@ -69,7 +70,7 @@
                 </section>
     
             </div>
-            <div class="hidden md:block basis-5/12 bg-bg-login h-screen overflow-hidden">
+            <div class="hidden md:block basis-5/12 bg-bg-login dark:bg-none h-screen overflow-hidden">
             </div>
         </div>
 

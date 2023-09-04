@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
@@ -29,10 +30,18 @@ module.exports = {
       },
       fontFamily:{
         nunito : ['Nunito'],
-        inter : ['Inter']
+        inter : ['Inter'],
+        cardo : ['Cardo']
       }
     },
     colors : {
+
+      'dark': {
+        "container" : "#0A2647",
+        "hover" : "#00005C",
+        "border" : "#2D033B",
+        "primary" : "rgba(0, 0, 0, 0.136)"
+      },
 
 
       'primary': {

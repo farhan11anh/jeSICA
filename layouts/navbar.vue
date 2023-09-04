@@ -1,7 +1,6 @@
 <template>
-
-  <div>
-    <nav class="bg-whiteborder-gray-200 bg-white fixed w-screen top-0 left-0 z-20">
+  <div class="section-jsc">
+    <nav class="bg-whiteborder-gray-200 section-jsc fixed w-screen top-0 left-0 z-20">
       <div
         class="max-w-screen-xl flex-col lg:flex-row flex flex-wrap lg:items-center justify-between mx-auto p-2 md:p-3 lg:p-4"
       >
@@ -44,7 +43,7 @@
 
         <div
           class="flex lg:flex-row lg:w-4/5 right-0 lg:right-auto min-[1440px]:w-3/4 lg:justify-between"
-          :class="openMenu ? 'flex-col divide-y lg:divide-y-0 fixed lg:static top-0 bg-white w-2/3 md:w-2/5 z-40 h-screen lg:h-fit self-end' : 'z-auto'"
+          :class="openMenu ? 'flex-col divide-y lg:divide-y-0 fixed lg:static top-0 w-2/3 md:w-2/5 z-40 h-screen lg:h-fit self-end' : 'z-auto'"
         >
           <img
             src="~/assets/icons/close.svg"
@@ -59,12 +58,12 @@
             id="navbar-cta"
           >
             <ul
-              class="flex flex-col w-full lg:gap-6 font-medium lg:p-4 p-0 lg:border lg:border-gray-100 rounded-lg lg:bg-gray-50 lg:flex-row md:space-x-8 md:mt-0 md:bg-white"
+              class="flex flex-col w-full lg:gap-6 font-medium lg:p-4 p-0 rounded-lg lg:flex-row md:space-x-8 md:mt-0 "
             >
               <li class="!ml-0">
                 <NuxtLink
                   to="/"
-                  class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded lg:bg-transparent lg:text-blue-700 lg:p-0"
+                  class="block py-2 pl-3 pr-4 bg-blue-700 dark:text-primary-600 rounded lg:bg-transparent lg:text-blue-700 lg:p-0"
                   aria-current="page"
                   >Home</NuxtLink
                 >
@@ -72,28 +71,28 @@
               <li class="!ml-0">
                 <NuxtLink
                   to="#"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
+                  class="block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:md:hover:text-blue-900 md:p-0"
                   >Solutions & Services</NuxtLink
                 >
               </li>
               <li class="!ml-0">
                 <a
                   href="#"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
+                  class="block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:md:hover:text-blue-900 md:p-0"
                   >About Us</a
                 >
               </li>
               <li class="!ml-0">
                 <a
                   href="#"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
+                  class="block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:md:hover:text-blue-900 md:p-0"
                   >Information</a
                 >
               </li>
               <!-- <li class="!ml-0">
                 <a
                   href="#"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
+                  class="block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:md:hover:text-blue-900 md:p-0"
                   >Career</a
                 >
               </li> -->
@@ -101,7 +100,7 @@
               <li v-if="!isLogin" class="!ml-0">
                 <NuxtLink
                   to="/chats"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
+                  class="block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:md:hover:text-blue-900 md:p-0"
                   >Chats</NuxtLink
                 >
               </li>

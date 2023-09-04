@@ -16,7 +16,7 @@
           <div class="">
             <HeaderChat v-if="lengthMessages > 0" />
           </div>
-          <div ref="chatContainer" class="flex grow h-full overflow-auto p-5 row-span-full">
+          <div ref="chatContainer" class="flex grow h-full overflow-auto p-5 row-span-full section-jsc">
             <slot />
           </div>
           <Chatbar />

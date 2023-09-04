@@ -1,7 +1,7 @@
 <template>
     <transition>
         <div @click="$emit('close-modal')" class="overlay z-30">
-            <div @click.stop class="modal h-[35rem] w-[24rem] bg-white fixed bottom-5 right-5 shadow-lg shadow-gray-600 rounded-md">
+            <div @click.stop class="modal h-[35rem] w-[24rem] section-jsc fixed bottom-5 right-5 shadow-lg shadow-gray-600 rounded-md">
                 <div class="top">
                     <HeaderPopup />
                     <div ref="chatContainer" class="overflow-auto h-[22rem] p-4">
@@ -24,7 +24,7 @@
                     <div class="flex gap-3 justify-between">
                         <div class="message basis-10/12 border border-[#667085] border-solid rounded-md overflow-hidden h-10">
                             <input v-model="message" 
-                            placeholder="Ask me anything" class="w-full border-none" type="text" 
+                            placeholder="Ask me anything" class="w-full border-none bg-transparent" type="text" 
                             @keyup.enter="sendMessage">
                         </div>
                         <div class="basis=2/12">
@@ -34,7 +34,7 @@
                     <div class="flex justify-center">
                         <div class="basis-10/12">
                             <h2 class="text-center text-xs text-[#667085]" >
-                                Jessica is continually improving, and her responses may become more accurate over time. ChatGPT May 24 Version.
+                                Jessica is continually improving, and her responses may become more accurate over time. Powered By Azure AI.
                             </h2>
                         </div>
                     </div>

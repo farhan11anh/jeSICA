@@ -5,21 +5,20 @@
         </Title>
     </Head>
     <div class="relative w-screen" >
-        <section class="bg-white">
+        <section class="section-jsc">
             <div class="py-8 px-4 mx-auto lg:py-16">
                 <div class="flex flex-wrap">
                     <div class="px-2 md:px-4 lg:px-8 basis-full lg:basis-1/2">
-                        <h1 class="text-5xl lg:text-6xl  font-bold text-left mb-7 font-nunito" >Meet Je<span class="text-background-primary" >SICA</span>,</h1>
-                        <h1 class="text-5xl lg:text-6xl  font-bold text-left mb-7 font-nunito" > Your AI Assistant</h1>
-                        <h1 class="text-5xl lg:text-6xl  font-bold text-left mb-7 font-nunito" >Companion</h1>
+                        <h1 class="text-5xl lg:text-6xl  font-bold text-left mb-7 font-nunito" >Meet <span class="text-background-primary font-cardo" >JeSICA</span>,</h1>
+                        <h1 class="text-5xl lg:text-4xl  font-bold text-left mb-7 font-nunito" > Your AI Assistant Companion</h1>
                         <p class="mt-10 text-left text-xl font-normal text-f-second" >
                             Are you tired of waiting for answers or need instant assistant? Jessica is here to save the day! As an AI Assistant, she's designed to provide fast and accurate responses to all your inquiries about Telkomsigma's solutions and services.
                         </p>
 
-                        <div class="flex mt-10">
+                        <!-- <div class="flex mt-10">
                             <Button title="Learn More ->" background="bg-background-secondary text-t-secondary border border-b-secondary" />
                             <Button title="Try Full Version" background="bg-background-primary text-t-primary content-start" />
-                        </div>
+                        </div> -->
 
                     </div>
                     <div class="hidden md:hidden md:mb-5 lg:basis-1/2 lg:block">
@@ -33,7 +32,7 @@
             </div>
         </section>
         <section>
-            <div class="bg-white dark:bg-gray-900">
+            <div class="section-jsc">
                 <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
                     <div class="flex flex-wrap justify-between">
                         <Card
@@ -68,8 +67,8 @@
     //import 
     import {Howl, Howler} from 'howler';
 
-    var sound = new Howl({
-        src: ['ping.mp3']
+    const sound = new Howl({
+        src: ['ping.mp3'],
     });
     
     definePageMeta({
@@ -84,6 +83,7 @@
     onMounted(()=>{ 
         // call function will reload on page load
         show_greet()
+
     })
 
     // function
@@ -91,7 +91,7 @@
     const show_greet = () => {
         setTimeout(()=>{
             showGreeting.value = true
-            call_sound()
+            sound.play()
             hide_greet()
         }, 1000)
     }

@@ -1,6 +1,6 @@
 <template>
  <div
-    class="w-full h-fit p-3 flex-col justify-center items-center gap-2.5 inline-flex"
+    class="w-full h-fit p-3 flex-col justify-center items-center gap-2.5 inline-flex section-jsc"
   >
     <div class="self-stretch justify-start gap-1.5 inline-flex">
       <div
@@ -9,7 +9,7 @@
         <!-- {{ Msg() }} -->
         <input
           type="text"
-          class="self-stretch px-2 py-3 bg-white rounded-lg shadow border border-gray-300 justify-start items-center gap-2 whitespace-normal break-all inline-flex focus:ring-primary-600"
+          class="self-stretch px-2 py-3 bg-transparent rounded-lg shadow border border-gray-300 justify-start items-center gap-2 whitespace-normal break-all inline-flex focus:ring-primary-600"
           placeholder="Ask me Anything"
           v-model="msg"
           @keyup.enter="sendMessage"

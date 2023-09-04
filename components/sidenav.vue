@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex-shrink-0 overflow-x-hidden bg-white border-r h-full"
+    class="flex-shrink-0 overflow-x-hidden section-jsc border-r dark:border-r-0 h-full"
     :class="isOpen ? 'w-fit' : 'w-60'"
   >
     <div class="h-full w-full">
@@ -14,7 +14,7 @@
               class="flex justify-between gap-2"
               :class="isOpen ? 'flex-col' : 'flex-row'"
             >
-              <NuxtLink @click="newChat()" class="btn-secondary cursor-pointer">
+              <NuxtLink @click="newChat()" class="btn-secondary dark:bg-dark-primary dark:text-gray-400 cursor-pointer">
                 <svg
                   width="20"
                   height="20"
@@ -26,7 +26,7 @@
                     <path
                       id="Icon"
                       d="M9.99996 4.16675V15.8334M4.16663 10.0001H15.8333"
-                      stroke="#344054"
+                      stroke="#fff"
                       stroke-width="1.66667"
                       stroke-linecap="round"
                       stroke-linejoin="round"
@@ -35,7 +35,7 @@
                 </svg>
                 <span v-if="!isOpen">New Chat</span>
               </NuxtLink>
-              <button class="btn-secondary" @click="toggleSidebar()">
+              <button class="btn-secondary dark:bg-dark-primary" @click="toggleSidebar()">
                 <span>
                   <svg
                     width="20"
@@ -48,7 +48,7 @@
                       <path
                         id="Icon"
                         d="M7.5 2.5V17.5M6.5 2.5H13.5C14.9001 2.5 15.6002 2.5 16.135 2.77248C16.6054 3.01217 16.9878 3.39462 17.2275 3.86502C17.5 4.3998 17.5 5.09987 17.5 6.5V13.5C17.5 14.9001 17.5 15.6002 17.2275 16.135C16.9878 16.6054 16.6054 16.9878 16.135 17.2275C15.6002 17.5 14.9001 17.5 13.5 17.5H6.5C5.09987 17.5 4.3998 17.5 3.86502 17.2275C3.39462 16.9878 3.01217 16.6054 2.77248 16.135C2.5 15.6002 2.5 14.9001 2.5 13.5V6.5C2.5 5.09987 2.5 4.3998 2.77248 3.86502C3.01217 3.39462 3.39462 3.01217 3.86502 2.77248C4.3998 2.5 5.09987 2.5 6.5 2.5Z"
-                        stroke="#344054"
+                        stroke="#fff"
                         stroke-width="1.66667"
                         stroke-linecap="round"
                         stroke-linejoin="round"
@@ -71,12 +71,12 @@
                       :key="templatechat.history_id"
                       @click="changeToActive(index, templatechat.history_id)"
                       >
-                      <div class="sticky top-2 z-40" v-if="questionTemplates[index].history_category !== questionTemplates[index-1]?.history_category" >
+                      <div class="sticky top-2 z-40 dark:text-background-hover-secondary" v-if="questionTemplates[index].history_category !== questionTemplates[index-1]?.history_category" >
                         <!-- huruf besar di awal kata -->
                         {{ templatechat.history_category.charAt(0).toUpperCase() + templatechat.history_category.slice(1) }}
                       </div>
                         <NuxtLink
-                          class="flex p-4 items-center gap-3 relative rounded-lg border hover:bg-primary-50 cursor-pointer break-all bg-gray-50 focus:border-primary-600"
+                          class="flex p-4 items-center gap-3 relative rounded-lg border hover:bg-primary-50 cursor-pointer break-all component-jsc focus:border-primary-600"
                           :class="templatechat.isEdit ? 'border-red-600' : ''"
                           
                         >
@@ -136,7 +136,7 @@
                       </li>
                       <li v-else class="relative z-20 h-auto my-2" >
                         <div class="text-center">
-                          <p>Server tidak merespon</p>
+                          <p class="dark:text-gray-400" >Server tidak merespon</p>
                         </div>
                       </li>
                     </ol>
@@ -145,7 +145,7 @@
               </div>
             </div>
           </div>
-          <footer class="border-t border-gray-50 pt-2">
+          <footer class="border-t border-gray-50 dark:border-0 pt-2">
             <div class="justify-center flex flex-col" :class="isOpen ? 'items-center' : 'items-start'">
               <!-- <NuxtLink to="#" class="btn-tertiary">
                 <div class="w-5 h-5 relative">
@@ -178,7 +178,7 @@
                 </div>
                 <span v-if="!isOpen"> Settings </span>
               </NuxtLink> -->
-              <NuxtLink @click="logOut" to="#" class="btn-tertiary">
+              <NuxtLink @click="logOut" to="#" class="justify-start items-center gap-3 inline-flex dark:text-gray-400 mb-20">
                 <span class="w-5 h-5 relative">
                   <svg
                     width="20"
@@ -200,7 +200,7 @@
                   </svg>
                 </span>
                 <span
-                  class="text-red-600 text-base font-semibold leading-normal"
+                  class="text-base font-semibold leading-normal"
                   v-if="!isOpen"
                 >
                   Log Out
@@ -428,4 +428,5 @@ function logOut(){
   .edit-blank:focus {
     padding: 0; margin: 0; outline: 0; border: 0;
   }
+
 </style>
