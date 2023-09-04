@@ -27,7 +27,7 @@
     }
 
     .buble-jsc {
-        @apply bg-white dark:bg-[#525252] dark:text-background-hover-secondary
+        @apply bg-[#F2F4F7] dark:bg-[#525252] dark:text-background-hover-secondary
     }
 
 }

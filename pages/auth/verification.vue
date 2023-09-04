@@ -21,27 +21,27 @@
                         <div class="content py-16 px-24 text-left">
                             <div class=" font-bold font-nunito text-3xl mb-3">Verify your email</div>
                             <div class="text-base " >
-                                Your NIK is {{ $route.query.nik }}
+                                <!-- Your NIK is {{ $route.query.nik }} -->
                                 Please enter the OTP code sent to {{ email }}
                             </div>
                             <div class="flex gap-5 justify-between flex-wrap mt-5">
                                 <div class=" grow">
-                                    <div class="w-full h-10 lg:h-[75px] lg:w-[75px] xl:w-28 xl:h-28 border border-gray-300 relative box-border rounded-lg input-group">
+                                    <div class="w-full h-10 lg:h-[75px] lg:w-[75px] xl:w-28 xl:h-28 border border-gray-300 relative box-border rounded-lg input-group buble-jsc">
                                         <input class="otp absolute w-full top-1/2 -translate-y-1/2 text-center text-4xl h-full rounded-lg" type="text" maxlength="1" v-model="input1" @input="moveToNextInput($event, 2)">
                                     </div>
                                 </div>
                                 <div class=" grow">
-                                    <div class="w-full h-10 lg:h-[75px] lg:w-[75px] xl:w-28 xl:h-28 border border-gray-300 relative box-border rounded-lg input-group">
+                                    <div class="w-full h-10 lg:h-[75px] lg:w-[75px] xl:w-28 xl:h-28 border border-gray-300 relative box-border rounded-lg input-group buble-jsc">
                                         <input class="otp absolute w-full top-1/2 -translate-y-1/2 text-center text-4xl h-full rounded-lg" type="text" maxlength="1" v-model="input2" @input="moveToNextInput($event, 3)">
                                     </div>
                                 </div>
                                 <div class=" grow">
-                                    <div class="w-full h-10 lg:h-[75px] lg:w-[75px] xl:w-28 xl:h-28 border border-gray-300 relative box-border rounded-lg input-group">
+                                    <div class="w-full h-10 lg:h-[75px] lg:w-[75px] xl:w-28 xl:h-28 border border-gray-300 relative box-border rounded-lg input-group buble-jsc">
                                         <input class="otp absolute w-full top-1/2 -translate-y-1/2 text-center text-4xl h-full rounded-lg" type="text" maxlength="1" v-model="input3" @input="moveToNextInput($event, 4)">
                                     </div>
                                 </div>
                                 <div class=" grow">
-                                    <div class="w-full h-10 lg:h-[75px] lg:w-[75px] xl:w-28 xl:h-28 border border-gray-300 relative box-border rounded-lg input-group">
+                                    <div class="w-full h-10 lg:h-[75px] lg:w-[75px] xl:w-28 xl:h-28 border border-gray-300 relative box-border rounded-lg input-group buble-jsc">
                                         <input class="otp absolute w-full top-1/2 -translate-y-1/2 text-center text-4xl h-full rounded-lg" type="text" maxlength="1" v-model="input4" @input="moveToNextInput($event, 5)">
                                     </div>
                                 </div>
