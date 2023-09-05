@@ -12,7 +12,7 @@
             </NuxtLink>
         </div>
     </nav>
-    <div class="relative section-jsc"> 
+    <div class="relative section-jsc h-screen"> 
         <div class="flex flex-wrap">
             <div class="basis-full md:basis-7/12 relative">        
                 <section class="">
@@ -75,10 +75,18 @@
         </div>
 
         
-        <ConfirmationLogin backButton="true" 
+        <ConfirmationLogin 
+            backButton="true" 
             v-show="showConfirm" 
             @send-to="goTo('auth/verification')" 
             @close-confirm="closeConfirm"/>
+
+        <ModalsError 
+            title="Email / Password anda salah"
+            description="Silahkan masukan email dan password yang benar"
+            v-show="showError"
+            @close-confirm="showError = false"
+        />
     </div>
 </template>
 
@@ -100,31 +108,13 @@
                     nik : "",
                     password : ""
                 },
-                users : [
-                        {
-                            "id" : 1,
-                            "nik" : "11111111",
-                            "password" : "11111111",
-                            "email" : "Suzume@sigma.co.id"
-                        },
-                        {
-                            "id" : 2,
-                            "nik" : "22222222",
-                            "password" : "22222222",
-                            "email" : "Aqua@sigma.co.id"
-                        },
-                        {
-                            "id" : 3,
-                            "nik" : "33333333",
-                            "password" : "33333333",
-                            "email" : "Rizukey@sigma.co.id"
-                        }
-                ],
 
                 nikVal : false,
                 pwVal : false,
 
-                loadLogin : 'false'
+                loadLogin : 'false',
+
+                showError : false
 
             }
         },
@@ -176,69 +166,34 @@
             },
             async login(){
                 this.loadLogin = 'true'
-                // const data = {
-                //     username : this.nik,
-                //     password : this.password
-                // }
                 const data = {
                     nik : this.nik,
                     password : this.password
                 }
                 try {
-                    // const url = this.config.public.apiBase
-                    // const resp = await $fetch(`${url}/login`, {
-                    //     method : 'POST',
-                    //     body : data
-                    // })
-
                     await this.authStore.login(data)
                     .then((response)=>{
                         this.loadLogin = 'false'
                         this.showConfirm  = true
-                        const cookies = response
-                        console.log(cookies);
-
-                        // cookies.forEach(cookie=>{
-                        //     document.cookie = cookie
-                        // })
                     })
                     .catch((error)=>{
                         throw error
                     })
-                    // if (otp) {
-                    //     // Redirect or perform other actions
-                    //     console.log(otp);
-                    //     this.loadLogin = 'false'
-                    //     this.showConfirm  = true
-                    //     this.loginStore.changeOtp(otp)
-                    // }
-
-                    // console.log(resp);
-
-                    // if(resp.success){
-                    //     this.loadLogin = 'false'
-                    //     this.loginStore.changeOtp(resp.data)
-                    //     this.showConfirm  = true
-                    // } else {
-                    //     this.loadLogin = 'false'
-
-                    //     alert('salah nik / login')
-                    // }
+    
                 } catch (error) {
-                    console.log('fail');
-                    alert('salah nik / login')
+                    // alert('salah nik / login')
+                    if(error.response.data.error == 'Password salah'){
+                        this.showError = true
+                    }
                     this.loadLogin = 'false'
-                    
                 }
             },
             goTo(url){
-
                 this.$router.push({
                     path : `/${url}`,
-                    query : {nik : this.nik},
+                    query : {email : this.nik},
                     hash : "#login"
                 })
-                // this.$router.replace({hash : "#login"})
             }
    
         }

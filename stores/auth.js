@@ -15,8 +15,8 @@ export const useAuthStore = defineStore('auth', {
             const config = useRuntimeConfig()
             const url = config.public.apiBase
             return await axios.post(`${url}/api/login/v1`,{
-                    email : nik,  
-                    password : password
+                email : nik,  
+                password : password
             })
 
         },
@@ -28,12 +28,9 @@ export const useAuthStore = defineStore('auth', {
             console.log(otp);
             const config = useRuntimeConfig()
             const url = config.public.apiBase
-            return await $fetch(`${url}/api/verification/otp/v1`,{
-                method : "POST",
-                body : {
+            return await axios.post(`${url}/api/verification/otp/v1`,{
                     otp : otp,
                     email : email
-                }
             })
         },
         // async refreshTokenn(){
@@ -93,7 +90,12 @@ export const useAuthStore = defineStore('auth', {
                             navigateTo('/')
                         })
                 } catch (error) {
-                    alert('GAGAL LOGOUT')
+                    const { $swal } = useNuxtApp()
+                        $swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!'
+                    })
                 }
             }
             return 'success'

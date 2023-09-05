@@ -42,11 +42,12 @@
         </div>
 
         <div
-          class="flex lg:flex-row lg:w-4/5 right-0 lg:right-auto min-[1440px]:w-3/4 lg:justify-between"
-          :class="openMenu ? 'flex-col divide-y lg:divide-y-0 fixed lg:static top-0 w-2/3 md:w-2/5 z-40 h-screen lg:h-fit self-end' : 'z-auto'"
+          class="flex lg:flex-row lg:w-4/5 right-3 lg:right-auto min-[1440px]:w-3/4 lg:justify-between section-jsc rounded-xl" 
+          :class="openMenu ? 'flex-col divide-y lg:divide-y-0 fixed lg:static top-3 w-2/3 md:w-2/5 z-40 h-[50vh] lg:h-[50vh] self-end' : 'z-auto'"
         >
           <img
             src="~/assets/icons/close.svg"
+            class="cursor-pointer"
             :class="{ 'hidden': !openMenu, 'px-2 py-4 lg:px-0 lg:py-2.5 w-10 self-end lg:hidden': openMenu }"
             alt="close"
             @click="openMenu = false"  

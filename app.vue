@@ -1,5 +1,5 @@
-<template>
-  <div class="font-inter relative" :class="isDark ? 'dark' : ''" >
+<template class="h-screen">
+  <div :class="isDark ? 'dark' : ''" class="font-inter relative">
     <div @click="togle_dark_mode" class="fixed bottom-5 left-5 bg-[#ffffff93] rounded-full z-50 cursor-pointer" >
       <div v-if="isDark">
         <img src="/icons/moon.svg" alt="" srcset=""> 
@@ -21,8 +21,6 @@
   const isDark = ref(false)
 
   onMounted(()=>{
-    console.log('a'); 
-
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       isDark.value = true
     } else {
@@ -33,6 +31,7 @@
 
   const togle_dark_mode = () => {
     isDark.value = !isDark.value
+    localStorage.theme = isDark.value == false ? 'light' : 'dark'
   }
 </script>
 

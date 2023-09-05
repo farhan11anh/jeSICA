@@ -30,6 +30,7 @@
     "howler": "^2.2.3",
     "jsonwebtoken": "^9.0.1",
     "openai": "^3.3.0",
+    "sweetalert2": "^11.7.27",
     "vee-validate": "3"
   },
   "overrides": {

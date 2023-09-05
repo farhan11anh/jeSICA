@@ -26,22 +26,22 @@
                             </div>
                             <div class="flex gap-5 justify-between flex-wrap mt-5">
                                 <div class=" grow">
-                                    <div class="w-full h-10 lg:h-[75px] lg:w-[75px] xl:w-28 xl:h-28 border border-gray-300 relative box-border rounded-lg input-group buble-jsc">
+                                    <div class="w-full h-10 mx-auto lg:h-[75px] lg:w-[75px] xl:w-28 xl:h-28 border border-gray-300 relative box-border rounded-lg input-group buble-jsc">
                                         <input class="otp absolute w-full top-1/2 -translate-y-1/2 text-center text-4xl h-full rounded-lg" type="text" maxlength="1" v-model="input1" @input="moveToNextInput($event, 2)">
                                     </div>
                                 </div>
                                 <div class=" grow">
-                                    <div class="w-full h-10 lg:h-[75px] lg:w-[75px] xl:w-28 xl:h-28 border border-gray-300 relative box-border rounded-lg input-group buble-jsc">
+                                    <div class="w-full h-10 mx-auto lg:h-[75px] lg:w-[75px] xl:w-28 xl:h-28 border border-gray-300 relative box-border rounded-lg input-group buble-jsc">
                                         <input class="otp absolute w-full top-1/2 -translate-y-1/2 text-center text-4xl h-full rounded-lg" type="text" maxlength="1" v-model="input2" @input="moveToNextInput($event, 3)">
                                     </div>
                                 </div>
                                 <div class=" grow">
-                                    <div class="w-full h-10 lg:h-[75px] lg:w-[75px] xl:w-28 xl:h-28 border border-gray-300 relative box-border rounded-lg input-group buble-jsc">
+                                    <div class="w-full h-10 mx-auto lg:h-[75px] lg:w-[75px] xl:w-28 xl:h-28 border border-gray-300 relative box-border rounded-lg input-group buble-jsc">
                                         <input class="otp absolute w-full top-1/2 -translate-y-1/2 text-center text-4xl h-full rounded-lg" type="text" maxlength="1" v-model="input3" @input="moveToNextInput($event, 4)">
                                     </div>
                                 </div>
                                 <div class=" grow">
-                                    <div class="w-full h-10 lg:h-[75px] lg:w-[75px] xl:w-28 xl:h-28 border border-gray-300 relative box-border rounded-lg input-group buble-jsc">
+                                    <div class="w-full h-10 mx-auto lg:h-[75px] lg:w-[75px] xl:w-28 xl:h-28 border border-gray-300 relative box-border rounded-lg input-group buble-jsc">
                                         <input class="otp absolute w-full top-1/2 -translate-y-1/2 text-center text-4xl h-full rounded-lg" type="text" maxlength="1" v-model="input4" @input="moveToNextInput($event, 5)">
                                     </div>
                                 </div>
@@ -61,9 +61,9 @@
                     </div>
                 </section>
     
-                <ConfirmationLogin backButton="false" v-show="showConfirm" 
+                <ConfirmationLogin backButton="true" v-show="showConfirm" 
                     @send-to="goTo('verification')" 
-                    @close-confirm="closeConfirm"/>
+                    @close-confirm="showConfirm=!showConfirm"/>
     
             </div>
             <div class="hidden md:block basis-5/12 bg-bg-login dark:bg-none h-screen overflow-hidden">
@@ -115,7 +115,7 @@
         },
         mounted(){
             // console.log(this.$route.query.nik);
-            this.findEmailWithNIK(this.$route.query.nik)
+            this.findEmailWithNIK(this.$route.query.email)
             this.startTimer(60*5)
             console.log(this.loginStore.otp);
 
@@ -172,46 +172,17 @@
             },
 
             send(){
-                // const otp = this.loginStore.otp
-                // const context = this.input1 + this.input2 + this.input3 + this.input4
-
-                // console.log(context);
-                // if(otp == context) {
-                //     this.showConfirm = true 
-                // } else {
-                //     alert('kode otp yang anda masukan salah')
-                // }
-
                 this.showConfirm = true 
-
             },
-
-
-            //save user data but ...
-            // saveDataFromToken(token){
-            //     console.log(token);
-            //     try {
-            //         this.authStore.verificationToken(token)
-            //             .then((UserData)=> {
-            //                 const data = JSON.stringify(UserData)
-            //                 localStorage.setItem('user_data', data)
-            //             })
-            //     } catch (error) {
-            //         // gagalkan  login bila gagal .........
-            //         // localStorage.removeItem('token')
-            //         throw error
-            //     }
-       
-            // },
 
             async goTo(){
                 const otp = this.input1 + this.input2 + this.input3 + this.input4
-                const email = this.$route.query.nik
+                const email = this.$route.query.email
                 try {
                     await this.authStore.setToken(otp, email)
                     .then((resp)=>{
-                        // console.log(resp.data.access_token);
-                        const token = resp.data.access_token
+                        // console.log(resp);
+                        const token = resp.data.data.access_token
                         try {
                             // saveDataFromToken(token)
                             // save user data
@@ -230,14 +201,27 @@
                         }
                     })
                 } catch (error) {
-                    throw error;
+                    console.log(error);
+                    const { $swal } = useNuxtApp()
+                        if(error.response.data.error == "Kode OTP tidak valid"){
+                            $swal.fire({
+                                icon: 'error',
+                                title: 'Gagal Login',
+                                text: 'OTP salah'
+                            })
+                        } else {
+                            $swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'Server tidak menanggapi'
+                            })
+                        }
                 }
             },
 
         }, 
 
         computed : {
-            
             countDown(){
                 return this.showConfirm
             }

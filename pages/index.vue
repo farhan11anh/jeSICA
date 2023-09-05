@@ -4,7 +4,7 @@
             JeSICA - AI Assistant Companion
         </Title>
     </Head>
-    <div class="relative w-screen" >
+    <div class="relative w-screen h-screen" >
         <section class="section-jsc">
             <div class="py-8 px-4 mx-auto lg:py-16">
                 <div class="flex flex-wrap">

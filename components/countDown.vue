@@ -1,6 +1,6 @@
 <template>
     <div>
-      <p>Send OTP code in: <strong ref="timer" class="text-black" >
+      <p>Send OTP code in: <strong ref="timer" class="text-black dark:text-t-hover-primary" >
         {{ minutes }}:{{ seconds }}
       </strong></p>
     </div>

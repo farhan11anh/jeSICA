@@ -26,7 +26,7 @@
                     <path
                       id="Icon"
                       d="M9.99996 4.16675V15.8334M4.16663 10.0001H15.8333"
-                      stroke="#fff"
+                      stroke="#999999"
                       stroke-width="1.66667"
                       stroke-linecap="round"
                       stroke-linejoin="round"
@@ -48,7 +48,7 @@
                       <path
                         id="Icon"
                         d="M7.5 2.5V17.5M6.5 2.5H13.5C14.9001 2.5 15.6002 2.5 16.135 2.77248C16.6054 3.01217 16.9878 3.39462 17.2275 3.86502C17.5 4.3998 17.5 5.09987 17.5 6.5V13.5C17.5 14.9001 17.5 15.6002 17.2275 16.135C16.9878 16.6054 16.6054 16.9878 16.135 17.2275C15.6002 17.5 14.9001 17.5 13.5 17.5H6.5C5.09987 17.5 4.3998 17.5 3.86502 17.2275C3.39462 16.9878 3.01217 16.6054 2.77248 16.135C2.5 15.6002 2.5 14.9001 2.5 13.5V6.5C2.5 5.09987 2.5 4.3998 2.77248 3.86502C3.01217 3.39462 3.39462 3.01217 3.86502 2.77248C4.3998 2.5 5.09987 2.5 6.5 2.5Z"
-                        stroke="#fff"
+                        stroke="#999999"
                         stroke-width="1.66667"
                         stroke-linecap="round"
                         stroke-linejoin="round"
@@ -191,7 +191,7 @@
                       <path
                         id="Icon"
                         d="M13.3333 14.1667L17.5 10M17.5 10L13.3333 5.83333M17.5 10H7.5M10 14.1667C10 14.9416 10 15.3291 9.91482 15.647C9.68365 16.5098 9.00978 17.1836 8.14705 17.4148C7.82913 17.5 7.44164 17.5 6.66667 17.5H6.25C5.08515 17.5 4.50272 17.5 4.04329 17.3097C3.43072 17.056 2.94404 16.5693 2.6903 15.9567C2.5 15.4973 2.5 14.9149 2.5 13.75V6.25C2.5 5.08515 2.5 4.50272 2.6903 4.04329C2.94404 3.43072 3.43072 2.94404 4.04329 2.6903C4.50272 2.5 5.08515 2.5 6.25 2.5H6.66667C7.44164 2.5 7.82913 2.5 8.14705 2.58519C9.00978 2.81635 9.68365 3.49022 9.91482 4.35295C10 4.67087 10 5.05836 10 5.83333"
-                        stroke="#D92D20"
+                        stroke="#999999"
                         stroke-width="1.66667"
                         stroke-linecap="round"
                         stroke-linejoin="round"
@@ -218,8 +218,11 @@
 import { ref, onMounted, onUnmounted, watch, reactive} from "vue";
 import { useChatStore } from '~/stores/chat'
 import { useAuthStore } from "~/stores/auth";
+import { log } from "console";
 const chatStore = useChatStore();
 const authStore = useAuthStore();
+
+const { $swal } = useNuxtApp()
 
 // loading waiting content from BE
 const loadList = ref('loading');
@@ -405,14 +408,34 @@ const newChat = () => {
   changeHistory("false")
 }
 
+// const show_modal_logout = () => {
+
+// }
+
 function logOut(){
-  const logOut = confirm('mau logout ?')
-  if(logOut){
-    if(process.client){
-        // localStorage.removeItem('token')
-        authStore.logOut()
+  $swal.fire({
+    title: 'Are you sure?',
+    text: "You will logout",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, i will!'
+  }).then((result:any) => {
+    if (result.isConfirmed) {
+      if(process.client){
+          authStore.logOut()
+      }
     }
-  }
+  })
+
+  // const logOut = confirm('mau logout ?')
+  // if(logOut){
+  //   if(process.client){
+  //       // localStorage.removeItem('token')
+  //       authStore.logOut()
+  //   }
+  // }
 }
 </script>
 
@@ -428,5 +451,6 @@ function logOut(){
   .edit-blank:focus {
     padding: 0; margin: 0; outline: 0; border: 0;
   }
+
 
 </style>
