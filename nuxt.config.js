@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
     // '~/plugins/axios',
   ],
+
   plugins: [
     // '/e:/---- SIGMA ----/jeSICA/plugins/axios.js'
     // './plugins/howler.js'

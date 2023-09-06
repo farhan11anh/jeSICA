@@ -63,7 +63,12 @@
                                     </div>
                                 </div>
 
-                                <Button @click="login" title="Login" :loadLogin="loadLogin" background="bg-background-primary text-t-primary w-full h-16" class="hover:bg-background-hover-primary hover:text-t-hover-primary" :class="this.loadLogin == 'true' ? 'disabled not-allowed' : ''" />
+                                <Button @click="login"
+                                 title="Login"
+                                :loadLogin="loadLogin" 
+                                 background="bg-background-primary text-t-primary w-full h-16" 
+                                 class="hover:bg-background-hover-primary hover:text-t-hover-primary" 
+                                 :class="this.loadLogin == 'true' ? 'disabled not-allowed' : ''" />
                             </form>
                         </div>
                     </div>
@@ -182,6 +187,7 @@
     
                 } catch (error) {
                     // alert('salah nik / login')
+                    console.log(error);
                     if(error.response.data.error == 'Password salah'){
                         this.showError = true
                     }

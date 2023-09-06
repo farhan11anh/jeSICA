@@ -1,12 +1,14 @@
 <template class="h-screen">
   <div :class="isDark ? 'dark' : ''" class="font-inter relative">
     <div @click="togle_dark_mode" class="fixed bottom-5 left-5 bg-[#ffffff93] rounded-full z-50 cursor-pointer" >
-      <div v-if="isDark">
-        <img src="/icons/moon.svg" alt="" srcset=""> 
-      </div>
-      <div v-else >
-        <img src="/icons/sun.svg" alt="" srcset=""> 
-      </div>
+      <transition mode="out-in" >
+        <div v-if="isDark">
+          <img src="/icons/moon.svg" alt="" srcset=""> 
+        </div>
+        <div v-else >
+          <img src="/icons/sun.svg" alt="" srcset=""> 
+        </div>
+      </transition>
     </div>
     <NuxtLayout >
       <NuxtPage />

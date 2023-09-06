@@ -14,7 +14,7 @@
             </div>
         </nav>
 
-        <div class="flex relative section-jsc"> 
+        <div class="flex relative h-screen section-jsc"> 
             <div class="basis-full md:basis-7/12 relative">
                 <section class="">
                     <div class="py-2 px-4 mx-auto max-w-screen-xl text-center lg:py-3">
@@ -53,9 +53,13 @@
                             </div>
     
                             <Button
-                            @click="send()"
-                             title="Verify Code"
-                              background="bg-background-primary text-t-primary w-full" />
+                                @click="send()"
+                                :loadLogin="loadLogin"
+                                title="Verify Code"
+                                background="bg-background-primary text-t-primary w-full"
+                                class="hover:bg-background-hover-primary hover:text-t-hover-primary" 
+                                :class="this.loadLogin == 'true' ? 'disabled not-allowed' : ''"
+                              />
     
                         </div>
                     </div>
@@ -64,6 +68,7 @@
                 <ConfirmationLogin backButton="true" v-show="showConfirm" 
                     @send-to="goTo('verification')" 
                     @close-confirm="showConfirm=!showConfirm"/>
+                
     
             </div>
             <div class="hidden md:block basis-5/12 bg-bg-login dark:bg-none h-screen overflow-hidden">
@@ -108,7 +113,9 @@
                     }
                 ],
                 loginStore : useLoginStore(),
-                authStore : useAuthStore()
+                authStore : useAuthStore(),
+
+                loadLogin : 'false'
 
                
             }
@@ -171,13 +178,16 @@
                 }, 1000);
             },
 
-            send(){
-                this.showConfirm = true 
+            goTo(){
+                this.$router.push({
+                    path : "/chats"
+                })
             },
 
-            async goTo(){
-                const otp = this.input1 + this.input2 + this.input3 + this.input4
-                const email = this.$route.query.email
+            async send(){
+                this.loadLogin = 'true'
+                const otp = this.input1 + this.input2 + this.input3 + this.input4;
+                const email = this.$route.query.email;
                 try {
                     await this.authStore.setToken(otp, email)
                     .then((resp)=>{
@@ -193,14 +203,16 @@
                                 })
                             // clearTimeout(timeoutId);
                             localStorage.setItem('token', token)
-                            this.$router.push({
-                                path : "/chats"
-                            })
+                            this.showConfirm = true 
+
+
                         } catch (error) {
+                            this.loadLogin = 'false'
                             alert('gagal login')
                         }
                     })
                 } catch (error) {
+                    this.isLoading = false
                     console.log(error);
                     const { $swal } = useNuxtApp()
                         if(error.response.data.error == "Kode OTP tidak valid"){
