@@ -19,10 +19,10 @@
                 <section class="">
                     <div class="py-2 px-4 mx-auto max-w-screen-xl text-center lg:py-3">
                         <div class="content py-16 px-24 text-left">
-                            <div class=" font-bold font-nunito text-3xl mb-3">Verify your email</div>
+                            <div class=" font-bold font-nunito text-3xl mb-3">{{ $t('verification_page__title') }}</div>
                             <div class="text-base " >
                                 <!-- Your NIK is {{ $route.query.nik }} -->
-                                Please enter the OTP code sent to {{ email }}
+                                {{ $t('verification_page__decription') }} {{ email }}
                             </div>
                             <div class="flex gap-5 justify-between flex-wrap mt-5">
                                 <div class=" grow">
@@ -55,7 +55,7 @@
                             <Button
                                 @click="send()"
                                 :loadLogin="loadLogin"
-                                title="Verify Code"
+                                :title="$t('verification_page__button')"
                                 background="bg-background-primary text-t-primary w-full"
                                 class="hover:bg-background-hover-primary hover:text-t-hover-primary" 
                                 :class="this.loadLogin == 'true' ? 'disabled not-allowed' : ''"
@@ -198,6 +198,7 @@
                             // save user data
                             this.authStore.verificationToken(token)
                                 .then((UserData)=> {
+                                    this.loadLogin='false'
                                     const data = JSON.stringify(UserData)
                                     localStorage.setItem('user_data', data)
                                 })
@@ -207,12 +208,11 @@
 
 
                         } catch (error) {
-                            this.loadLogin = 'false'
                             alert('gagal login')
                         }
                     })
                 } catch (error) {
-                    this.isLoading = false
+                    this.loadLogin = 'false'
                     console.log(error);
                     const { $swal } = useNuxtApp()
                         if(error.response.data.error == "Kode OTP tidak valid"){

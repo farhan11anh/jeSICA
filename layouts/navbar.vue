@@ -66,28 +66,28 @@
                   to="/"
                   class="block py-2 pl-3 pr-4 bg-blue-700 dark:text-primary-600 rounded lg:bg-transparent lg:text-blue-700 lg:p-0"
                   aria-current="page"
-                  >Home</NuxtLink
+                  >{{ $t('navbar__home') }}</NuxtLink
                 >
               </li>
               <li class="!ml-0">
                 <NuxtLink
                   to="#"
                   class="block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:md:hover:text-blue-900 md:p-0"
-                  >Solutions & Services</NuxtLink
+                  >{{ $t('navbar__solution_services') }}</NuxtLink
                 >
               </li>
               <li class="!ml-0">
                 <a
                   href="#"
                   class="block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:md:hover:text-blue-900 md:p-0"
-                  >About Us</a
+                  >{{ $t('navbar__about_us') }}</a
                 >
               </li>
               <li class="!ml-0">
                 <a
                   href="#"
                   class="block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:md:hover:text-blue-900 md:p-0"
-                  >Information</a
+                  >{{ $t('navbar__information') }}</a
                 >
               </li>
               <!-- <li class="!ml-0">
@@ -102,7 +102,7 @@
                 <NuxtLink
                   to="/chats"
                   class="block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:md:hover:text-blue-900 md:p-0"
-                  >Chats</NuxtLink
+                  >{{ $t('navbar__chats') }}</NuxtLink
                 >
               </li>
             </ul>

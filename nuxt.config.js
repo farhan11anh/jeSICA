@@ -8,16 +8,19 @@ export default defineNuxtConfig({
     middleware: 'auth'
   },
   modules: [
-    // ...
     '@pinia/nuxt',
     '@nuxtjs/device',
-    // '~/plugins/axios',
+    '@intlify/nuxt3'
   ],
 
-  plugins: [
-    // '/e:/---- SIGMA ----/jeSICA/plugins/axios.js'
-    // './plugins/howler.js'
-  ],
+  intlify: {
+    localeDir: 'public/lang',
+    vueI18n: {
+      locale: 'id',
+      fallbackLocale: 'en'
+    }
+  },
+
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
 

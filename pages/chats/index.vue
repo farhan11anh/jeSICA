@@ -30,13 +30,12 @@
             >
               <span
                 class="text-xl font-body  font-semibold max-w-full whitespace-normal"
-                >Capabilities</span
+                >{{ $t('chats_page__capabilities') }}</span
               >
               <span
                 class="text-base font-body  font-base max-w-full whitespace-normal"
               >
-                Berisikan penjelasan tentang kapabilitas yang dimiliki JeSICA.
-                Kurang lebih 2-3 Baris.
+                {{ $t('chats_page__capabilities_description') }}
               </span>
             </div>
           </card-recomend>
@@ -66,13 +65,12 @@
             >
               <span
                 class="text-xl font-body font-semibold max-w-full whitespace-normal"
-                >Limitations</span
+                >{{ $t('chats_page__limitations') }}</span
               >
               <span
                 class="text-base font-body font-base max-w-full whitespace-normal"
               >
-                Berisikan penjelasan tentang kapabilitas yang dimiliki JeSICA.
-                Kurang lebih 2-3 Baris.
+               {{ $t('chats_page__limitations_description') }}
               </span>
             </div>
           </card-recomend>
@@ -82,11 +80,12 @@
         <div class="card section-jsc" >
           <div class="flex justify-start flex-col space-y-4 text-gray-900 dark:text-gray-300">
             <span class="text-xl font-body font-semibold"
-              >Suggestions</span
+              >{{ $t('chats_page__suggestions') }}</span
             >
             <span class="text-lg font-body font-base"
-              >Berisikan pertanyaan-pertanyaan yang mungkin akan ditanyakan
-              user.</span
+              >
+              {{ $t('chats_page__suggestions_description') }}
+              </span
             >
             <div
               class="flex flex-stretch flex-wrap justify-start items-start gap-2"
@@ -102,7 +101,7 @@
                   class="text-base font-body font-base"
                   
                 >
-                  {{ templatechat.title }}
+                  {{ $t(`${templatechat.title}`) }}
                 </span>
                 <span>
                   <svg

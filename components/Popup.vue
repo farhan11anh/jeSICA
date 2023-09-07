@@ -24,7 +24,9 @@
                     <div class="flex gap-3 justify-between">
                         <div class="message basis-10/12 border border-[#667085] border-solid rounded-md overflow-hidden h-10">
                             <input v-model="message" 
-                            placeholder="Ask me anything" class="w-full border-none bg-transparent" type="text" 
+                            :placeholder="$t('chats_page__ask_me_anything')"
+                            class="w-full border-none bg-transparent" 
+                            type="text" 
                             @keyup.enter="sendMessage">
                         </div>
                         <div class="basis=2/12">
@@ -34,7 +36,7 @@
                     <div class="flex justify-center">
                         <div class="basis-10/12">
                             <h2 class="text-center text-xs text-[#667085]" >
-                                Jessica is continually improving, and her responses may become more accurate over time. Powered By Azure AI.
+                                {{ $t('chats_page__footer') }}
                             </h2>
                         </div>
                     </div>

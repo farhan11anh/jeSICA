@@ -9,10 +9,10 @@
             <div class="py-8 px-4 mx-auto lg:py-16">
                 <div class="flex flex-wrap">
                     <div class="px-2 md:px-4 lg:px-8 basis-full lg:basis-1/2">
-                        <h1 class="text-5xl lg:text-6xl  font-bold text-left mb-7 font-nunito" >Meet <span class="text-background-primary font-cardo" >JeSICA</span>,</h1>
-                        <h1 class="text-5xl lg:text-4xl  font-bold text-left mb-7 font-nunito" > Your AI Assistant Companion</h1>
+                        <h1 class="text-5xl lg:text-6xl  font-bold text-left mb-7 font-nunito" >{{ $t('landing__meet') }} <span class="text-background-primary font-cardo" >JeSICA</span>,</h1>
+                        <h1 class="text-5xl lg:text-4xl  font-bold text-left mb-7 font-nunito" >{{ $t('landing__your_ai_assistant') }}</h1>
                         <p class="mt-10 text-left text-xl font-normal text-f-second" >
-                            Are you tired of waiting for answers or need instant assistant? Jessica is here to save the day! As an AI Assistant, she's designed to provide fast and accurate responses to all your inquiries about Telkomsigma's solutions and services.
+                            {{ $t('landing__content') }}
                         </p>
 
                         <!-- <div class="flex mt-10">
@@ -36,20 +36,23 @@
                 <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
                     <div class="flex flex-wrap justify-between">
                         <Card
-                            title="Ask Away"
-                            content="Type your questions or concerns in the chatbox, and Jessica will swiftly analyze and generate the best possible answers." 
+                            :title="$t('landing__card_1')"
+                            :content="$t('landing__desc_1')" 
                             stylee="basis-full  md:basis-2/7 md:mb-0 mb-28"
                             styleeChild="sm:w-1/2 md:w-full" />
-                        <Card
-                            title="Discover Solutions"
-                            content="Whether it's technical support, product information, or general inquiries, Jessica has you covered with reliable answers." 
+
+                            <Card
+                            :title="$t('landing__card_2')"
+                            :content="$t('landing__desc_2')" 
                             stylee="basis-full  md:basis-2/7 md:mb-0 mb-28"
                             styleeChild="sm:w-1/2 md:w-full" />
-                        <Card 
-                            title="Discover Solutions" 
-                            content="Whether it's technical support, product information, or general inquiries, Jessica has you covered with reliable answers." 
+
+                            <Card
+                            :title="$t('landing__card_3')"
+                            :content="$t('landing__desc_3')" 
                             stylee="basis-full  md:basis-2/7 md:mb-0 mb-28"
                             styleeChild="sm:w-1/2 md:w-full" />
+                
                     </div>
                 </div>
             </div>

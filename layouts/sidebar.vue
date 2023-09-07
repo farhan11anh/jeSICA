@@ -16,7 +16,7 @@
           <div class="">
             <HeaderChat v-if="lengthMessages > 0" />
           </div>
-          <div ref="chatContainer" class="flex grow h-full overflow-auto p-5 row-span-full section-jsc">
+          <div ref="chatContainer" class="flex grow h-full overflow-auto p-5 row-span-full section-jsc hidden-scrollbar">
             <slot />
           </div>
           <Chatbar />
@@ -63,4 +63,13 @@ const scrollToBottom = () => {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+  .hidden-scrollbar{
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .hidden-scrollbar::-webkit-scrollbar{
+    display: none;  /* Safari and Chrome */
+  }
+
+</style>

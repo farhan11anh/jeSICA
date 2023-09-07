@@ -10,7 +10,7 @@
         <input
           type="text"
           class="self-stretch px-2 py-3 bg-transparent rounded-lg shadow border border-gray-300 justify-start items-center gap-2 whitespace-normal break-all inline-flex focus:ring-primary-600"
-          placeholder="Ask me Anything"
+          :placeholder="$t('chats_page__ask_me_anything')"
           v-model="msg"
           @keyup.enter="sendMessage"
         />
@@ -47,8 +47,7 @@
     <div
       class="w-fit text-center text-gray-500 text-sm font-normal leading-tight"
     >
-      Jessica is continually improving, and her responses may become more
-      accurate over time. ChatGPT May 24 Version.
+      {{ $t('chats_page__footer') }}
     </div>
   </div>
   </template>

@@ -3,13 +3,13 @@
         <div class="overlay z-30" >
             <div class="absolute w-72 h-72 border section-jsc border-gray-800 rounded-xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-10" >
                 <h2 class="font-nunito font-bold font-3xl" >
-                    Now, let's verify your account
+                    {{ $t('login_page__modal_verify') }}
                 </h2>
                 <p class="text-xs text-[#475467] dark:text-gray-400 mt-5 mb-5" >
-                    Please enter the OTP code below to verify your email address to make sure that you are the rightful user
+                    {{ $t('verification_page__decription') }}
                 </p>
-                <Button @click="$emit('send-to')" title="Continue for Verification" background="bg-background-primary text-t-primary w-full" />
-                <Button v-if="backButton === 'true'"  @click="$emit('close-confirm')" background="bg-background-secondary text-t-secondary border border-b-secondary w-full" title="Back" />
+                <Button @click="$emit('send-to')" :title="$t('login_page__modal_button_yes')" background="bg-background-primary text-t-primary w-full" />
+                <Button v-if="backButton === 'true'"  @click="$emit('close-confirm')" background="bg-background-secondary text-t-secondary border border-b-secondary w-full" :title="$t('login_page__modal_button_no')" />
     
             </div>
         </div>

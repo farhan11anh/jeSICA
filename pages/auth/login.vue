@@ -18,9 +18,9 @@
                 <section class="">
                     <div class="py-4 px-0 md:px-12 mx-auto max-w-screen-xl text-center lg:py-3">
                         <div class="content px-10 py-16 md:px-24 text-left">
-                            <div class=" font-bold font-nunito text-3xl mb-3">Welcome Back!</div>
+                            <div class=" font-bold font-nunito text-3xl mb-3">{{ $t('login_page__welcome_back') }}</div>
                             <div class="text-base text-[#475467] dark:text-gray-400" >
-                                Login now to access internal data!
+                                {{ $t('login_page__login_now') }}
                             </div>
     
                             <form class="mt-7" action="">
@@ -28,7 +28,7 @@
                                     name="email"
                                     title="Email*"   
                                     type="text"
-                                    placeholder="Enter your email"
+                                    :placeholder="$t('login_page__placeholder_email')"
                                     icon="user"
                                     password="false"
                                     @log-in="login"
@@ -39,7 +39,7 @@
                                 />
                                 <div class="h-5 mb-3" >
                                     <div class="-mt-5" >
-                                        <span v-if="nikVal" class="text-red-600" >email tidak boleh kosong!!!</span>
+                                        <span v-if="nikVal" class="text-red-600" >{{ $('login_page__validator_email') }}</span>
                                     </div>
                                 </div>
     
@@ -47,7 +47,7 @@
                                     name="password"
                                     title="Password*"   
                                     type="password"  
-                                    placeholder="Enter your Password"
+                                    :placeholder="$t('login_page__placeholder_password')"
                                     icon="password"
                                     password="true"
                                     @log-in="login"
@@ -59,7 +59,7 @@
 
                                 <div class="h-5 mb-3" >
                                     <div class="-mt-5" >
-                                        <span v-if="pwVal" class="text-red-600" >Password tidak boleh kosong!!!</span>
+                                        <span v-if="pwVal" class="text-red-600" >{{ $('login_page__validator_password') }}</span>
                                     </div>
                                 </div>
 
@@ -87,8 +87,8 @@
             @close-confirm="closeConfirm"/>
 
         <ModalsError 
-            title="Email / Password anda salah"
-            description="Silahkan masukan email dan password yang benar"
+            :title="$t('login_page__modal_error_title')"
+            :description="$t('login_page__modal_error_description')"
             v-show="showError"
             @close-confirm="showError = false"
         />

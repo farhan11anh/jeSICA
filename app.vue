@@ -14,11 +14,20 @@
       <NuxtPage />
     </NuxtLayout>
 
+    <div class="locale-changer fixed bottom-5 left-16">
+      <select v-model="$i18n.locale">
+        <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">
+          {{ lang }}
+        </option>
+      </select>
+    </div>
+
 
   </div>
 </template>
 
 <script setup >
+  const langs = ref(['id', 'en'])
   
   const isDark = ref(false)
 

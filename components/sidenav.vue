@@ -33,7 +33,7 @@
                     />
                   </g>
                 </svg>
-                <span v-if="!isOpen">New Chat</span>
+                <span v-if="!isOpen">{{ $t('chats_page__new_chat') }}</span>
               </NuxtLink>
               <button class="btn-secondary dark:bg-dark-primary" @click="toggleSidebar()">
                 <span>
@@ -73,7 +73,8 @@
                       >
                       <div class="sticky top-2 z-40 dark:text-background-hover-secondary" v-if="questionTemplates[index].history_category !== questionTemplates[index-1]?.history_category" >
                         <!-- huruf besar di awal kata -->
-                        {{ templatechat.history_category.charAt(0).toUpperCase() + templatechat.history_category.slice(1) }}
+                        {{ $t(`${templatechat.history_category.charAt(0).toUpperCase() + templatechat.history_category.slice(1)}`) }}
+                        <!-- {{ templatechat.history_category.charAt(0).toUpperCase() + templatechat.history_category.slice(1) }} -->
                       </div>
                         <NuxtLink
                           class="flex p-4 items-center gap-3 relative rounded-lg border hover:bg-primary-50 cursor-pointer break-all component-jsc focus:border-primary-600"
@@ -136,7 +137,7 @@
                       </li>
                       <li v-else class="relative z-20 h-auto my-2" >
                         <div class="text-center">
-                          <p class="dark:text-gray-400" >Server tidak merespon</p>
+                          <p class="dark:text-gray-400" >{{ $t('chats_page__server') }}</p>
                         </div>
                       </li>
                     </ol>
@@ -203,7 +204,7 @@
                   class="text-base font-semibold leading-normal"
                   v-if="!isOpen"
                 >
-                  Log Out
+                {{ $t('chats_page__log_out') }}
                 </span>
               </NuxtLink>
             </div>

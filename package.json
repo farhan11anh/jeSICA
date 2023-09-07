@@ -9,6 +9,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@intlify/nuxt3": "^0.2.4",
     "@nuxt/devtools": "latest",
     "@nuxtjs/device": "^3.1.0",
     "@nuxtjs/dotenv": "^1.4.1",

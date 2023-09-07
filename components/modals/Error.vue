@@ -8,7 +8,7 @@
                 <p class="text-xs text-[#475467] dark:text-gray-400 mt-5 mb-5" >
                     {{ description }}
                 </p>
-                <Button @click="$emit('close-confirm')" background="bg-background-secondary text-t-secondary border border-b-secondary w-full" title="Back" />
+                <Button @click="$emit('close-confirm')" background="bg-background-secondary text-t-secondary border border-b-secondary w-full" :title="$t('login_page__modal_button_no')" />
             </div>
         </div>
     </transition>
