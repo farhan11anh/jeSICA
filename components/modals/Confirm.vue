@@ -16,13 +16,18 @@
     </transition>
 </template>
 
-<script>
-    export default {
-        emits : ['send-to', 'close-confirm'],
-        props : {
-            "title", "description"
+<script setup>
+    defineProps({
+        "title" : {
+            type:String,
+            default:""
+        }, 
+        "description" : {
+            type:String,
+            default:""
         }
-    }
+    })
+    const emit = defineEmits(['send-to', 'close-confirm'])
 </script>
 
 <style>

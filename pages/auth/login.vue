@@ -83,7 +83,7 @@
         <ConfirmationLogin 
             backButton="true" 
             v-show="showConfirm" 
-            @send-to="goTo('auth/verification')" 
+            @send-to="goTo('chats')" 
             @close-confirm="closeConfirm"/>
 
         <ModalsError 
@@ -180,13 +180,28 @@
                     .then((response)=>{
                         this.loadLogin = 'false'
                         this.showConfirm  = true
+                        
+                        // login without otp
+                        try {
+                            this.authStore.verificationToken(token)
+                                .then((UserData)=> {
+                                    this.loadLogin='false'
+                                    const data = JSON.stringify(UserData)
+                                    localStorage.setItem('user_data', data)
+                                })
+                            // clearTimeout(timeoutId);
+                            localStorage.setItem('token', token)
+                            this.showConfirm = true 
+                        } catch (error) {
+                            throw error
+                        }
+                        //
                     })
                     .catch((error)=>{
                         throw error
                     })
-    
                 } catch (error) {
-                    // alert('salah nik / login')
+                    // alert('salah nik / login') 
                     console.log(error);
                     if(error.response.data.error == 'Password salah'){
                         this.showError = true
@@ -196,9 +211,11 @@
             },
             goTo(url){
                 this.$router.push({
-                    path : `/${url}`,
-                    query : {email : this.nik},
-                    hash : "#login"
+                    // w/ otp 
+                    // path : `/${url}`,
+                    // query : {email : this.nik},
+                    // hash : "#login"
+                    path : `/${url}`
                 })
             }
    

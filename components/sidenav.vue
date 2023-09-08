@@ -4,17 +4,17 @@
     :class="isOpen ? 'w-fit' : 'w-60'"
   >
     <div class="h-full w-full">
-      <div class="flex h-full min-h-0 flex-col">
+      <div class="flex h-full min-h-0 flex-col w-full">
         <nav
           class="flex flex-col h-screen w-full p-2 gap justify-between"
           aria-label="Chat History"
         >
-          <div class="justify-center flex">
+          <div class="justify-between flex w-full">
             <div
-              class="flex justify-between gap-2"
+              class="flex justify-between gap-2 w-full"
               :class="isOpen ? 'flex-col' : 'flex-row'"
             >
-              <NuxtLink @click="newChat()" class="btn-secondary dark:bg-dark-primary dark:text-gray-400 cursor-pointer">
+              <NuxtLink @click="newChat()" class="btn-secondary dark:bg-dark-primary dark:text-gray-400 cursor-pointer w-96">
                 <svg
                   width="20"
                   height="20"
