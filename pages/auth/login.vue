@@ -87,8 +87,8 @@
             @close-confirm="closeConfirm"/>
 
         <ModalsError 
-            :title="$t('login_page__modal_error_title')"
-            :description="$t('login_page__modal_error_description')"
+            :title="errorTitle"
+            :description="errorDescription"
             v-show="showError"
             @close-confirm="showError = false"
         />
@@ -119,7 +119,9 @@
 
                 loadLogin : 'false',
 
-                showError : false
+                showError : false,
+                errorTitle : null,
+                errorDescription : null
 
             }
         },
@@ -198,9 +200,15 @@
                 } catch (error) {
                     // alert('salah nik / login') 
                     console.log(error);
-                    // if(error.response.data.error == 'Password salah'){
-                    //     this.showError = true
-                    // }
+                    if(error.response.data.error == 'Email atau password salah'){
+                        this.errorTitle = "Email / Password salah";
+                        this.errorDescription = "Silahkan masukkan password / email dengan benar";
+                        this.showError = true
+                    } else {
+                        this.errorTitle = "Error";
+                        this.errorDescription = "Server tidak meresponse";
+                        this.showError = true
+                    }
                     this.loadLogin = 'false'
                 }
             },

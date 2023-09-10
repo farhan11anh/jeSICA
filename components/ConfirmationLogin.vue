@@ -6,7 +6,7 @@
                     {{ $t('login_page__modal_verify') }}
                 </h2>
                 <p class="text-xs text-[#475467] dark:text-gray-400 mt-5 mb-5" >
-                    {{ $t('verification_page__decription') }}
+                    {{ $t('login_page__modal_verify_description') }}
                 </p>
                 <Button @click="$emit('send-to')" :title="$t('login_page__modal_button_yes')" background="bg-background-primary text-t-primary w-full" />
                 <Button v-if="backButton === 'true'"  @click="$emit('close-confirm')" background="bg-background-secondary text-t-secondary border border-b-secondary w-full" :title="$t('login_page__modal_button_no')" />
