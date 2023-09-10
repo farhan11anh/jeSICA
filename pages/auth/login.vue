@@ -6,7 +6,7 @@
     </Head>
     <nav 
         class="bg-bg-login bg-no-repeat bg-center bg-cover md:bg-none dark:bg-none md:bg-white border-gray-200  fixed w-full p-0 m-0 top-0 -left-2 z-20 dark:md:bg-gray-900 dark:md:text-background-hover-secondary">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-center md:justify-between mx-auto p-4">
+        <div class="w-3/4 flex flex-wrap items-center justify-center md:justify-between mx-auto p-4">
             <NuxtLink to="/" class="flex items-center">
                 <img src="/assets/img/logo.png" class="h-12 mr-3" alt="Telkomsigma Logo" />
             </NuxtLink>
@@ -15,9 +15,9 @@
     <div class="relative section-jsc h-screen"> 
         <div class="flex flex-wrap">
             <div class="basis-full md:basis-7/12 relative">        
-                <section class="">
-                    <div class="py-4 px-0 md:px-12 mx-auto max-w-screen-xl text-center lg:py-3">
-                        <div class="content px-10 py-16 md:px-24 text-left">
+                <section class=" w-3/4 mx-auto">
+                    <div class="py-4 mx-auto text-center lg:py-3">
+                        <div class="content py-16 text-left">
                             <div class=" font-bold font-nunito text-3xl mb-3">{{ $t('login_page__welcome_back') }}</div>
                             <div class="text-base text-[#475467] dark:text-gray-400" >
                                 {{ $t('login_page__login_now') }}
@@ -98,6 +98,8 @@
 <script>
     import { useLoginStore } from '@/stores/login'
     import { useAuthStore } from '@/stores/auth';
+    import { useI18n } from 'vue-i18n'
+    // const { t } = useI18n()
 
     export default {
         data(){
@@ -121,13 +123,13 @@
 
                 showError : false,
                 errorTitle : null,
-                errorDescription : null
+                errorDescription : null,
+                t : useI18n()
 
             }
         },
         mounted() {
             this.getpath()
-            // this.getUsers()
         },
         computed : {
             loadLogin(){
@@ -201,8 +203,8 @@
                     // alert('salah nik / login') 
                     console.log(error);
                     if(error.response.data.error == 'Email atau password salah'){
-                        this.errorTitle = "Email / Password salah";
-                        this.errorDescription = "Silahkan masukkan password / email dengan benar";
+                        this.errorTitle = this.t.t("login_page__modal_error_title");
+                        this.errorDescription = this.t.t("login_page__modal_error_description");
                         this.showError = true
                     } else {
                         this.errorTitle = "Error";

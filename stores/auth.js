@@ -83,19 +83,9 @@ export const useAuthStore = defineStore('auth', {
                     await axios.post(`${url}/api/logout/v1`, {
                         "access_token" : localStorage?.getItem('token')
                     })
-                        .then((data)=> {
-                            localStorage.removeItem('token')
-                            localStorage.removeItem('user_data')
-
-                            navigateTo('/')
-                        })
+                 
                 } catch (error) {
-                    const { $swal } = useNuxtApp()
-                        $swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!'
-                    })
+                    throw error
                 }
             }
             return 'success'

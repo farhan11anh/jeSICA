@@ -2,6 +2,7 @@
     "hello_from_localazy": "Hello from Localazy rawe",
     "description": "Nuxt 3 + Tailwind + Eslint + i18n + Sentry Starter",
 
+    "app__setting" : "Pengaturan (bahasa dan darkmode)",
     "popup__greeting" : "Halo, saya JeSICA, ada yang bisa saya bantu?",
 
     "navbar__home" : "Dashboard",
@@ -51,8 +52,8 @@
     "login_page__modal_verify_description" : "Lanjutkan ke halaman Chat",
     "login_page__modal_button_yes" : "Lanjut",
     "login_page__modal_button_no" : "Kembali",
-    "login_page__modal_error_title" : "Your email/password is incorrect",
-    "login_page__modal_error_description" : "Please enter the correct email and password",
+    "login_page__modal_error_title" : "Email/password Salah",
+    "login_page__modal_error_description" : "Masukan email / password yang benar",
 
     "verification_page__title" : "Verify your email",
     "verification_page__decription" : "Please enter the OTP code send to ",
@@ -62,8 +63,8 @@
     "verification_page__modal_description" : "You can start interacting with Jessica to discuss Telkom Sigma's internal data",
     "verificatoon_page__button" : "Start Now",
 
-    "logout__modal_title" : "Are you sure want to logout?",
-    "logout__modal_description" : "Logging out will end your current session, and you will need to log in again to access your account.",
-    "logout__modal_button_yes" : "Logout",
-    "logout__modal_button_no" : "cancel"
+    "logout__modal_title" : "Apakah kamu yakin ingin keluar?",
+    "logout__modal_description" : "Keluar akan mengakhiri sesi Anda saat ini, dan Anda harus masuk lagi untuk mengakses akun Anda.",
+    "logout__modal_button_yes" : "Ya",
+    "logout__modal_button_no" : "Batal"
 }

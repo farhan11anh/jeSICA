@@ -14,10 +14,10 @@ export default defineNuxtConfig({
   ],
 
   intlify: {
-    localeDir: 'public/lang',
+    localeDir: 'src/lang',
     vueI18n: {
-      locale: 'id',
-      fallbackLocale: 'en'
+      // locale: 'id',
+      // fallbackLocale: 'en'
     }
   },
 

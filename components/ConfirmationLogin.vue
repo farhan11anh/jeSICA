@@ -1,7 +1,7 @@
 <template>
     <transition>
         <div class="overlay z-30" >
-            <div class="absolute w-72 h-72 border section-jsc border-gray-800 rounded-xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-10" >
+            <div class="absolute w-72 border section-jsc border-gray-800 rounded-xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-10" >
                 <h2 class="font-nunito font-bold font-3xl" >
                     {{ $t('login_page__modal_verify') }}
                 </h2>

@@ -4,11 +4,11 @@
             JeSICA - AI Assistant Companion
         </Title>
     </Head>
-    <div class="relative w-screen h-screen" >
+    <div class="relative min-h-screen w-3/4 mx-auto" >
         <section class="section-jsc">
-            <div class="py-8 px-4 mx-auto lg:py-16">
+            <div class="py-8 mx-auto lg:py-16">
                 <div class="flex flex-wrap">
-                    <div class="px-2 md:px-4 lg:px-8 basis-full lg:basis-1/2">
+                    <div class="basis-full lg:basis-1/2">
                         <h1 class="text-5xl lg:text-6xl  font-bold text-left mb-7 font-nunito" >{{ $t('landing__meet') }} <span class="text-background-primary font-cardo" >JeSICA</span>,</h1>
                         <h1 class="text-5xl lg:text-4xl  font-bold text-left mb-7 font-nunito" >{{ $t('landing__your_ai_assistant') }}</h1>
                         <p class="mt-10 text-left text-xl font-normal text-f-second" >
@@ -38,20 +38,20 @@
                         <Card
                             :title="$t('landing__card_1')"
                             :content="$t('landing__desc_1')" 
-                            stylee="basis-full  md:basis-2/7 md:mb-0 mb-28"
-                            styleeChild="sm:w-1/2 md:w-full" />
+                            stylee="basis-full  lg:basis-2/7 lg:mb-0 mb-28"
+                            styleeChild="" />
 
                             <Card
                             :title="$t('landing__card_2')"
                             :content="$t('landing__desc_2')" 
-                            stylee="basis-full  md:basis-2/7 md:mb-0 mb-28"
-                            styleeChild="sm:w-1/2 md:w-full" />
+                            stylee="basis-full  lg:basis-2/7 lg:mb-0 mb-28"
+                            styleeChild="" />
 
                             <Card
                             :title="$t('landing__card_3')"
                             :content="$t('landing__desc_3')" 
-                            stylee="basis-full  md:basis-2/7 md:mb-0 mb-28"
-                            styleeChild="sm:w-1/2 md:w-full" />
+                            stylee="basis-full  lg:basis-2/7 lg:mb-0 mb-28"
+                            styleeChild="" />
                 
                     </div>
                 </div>

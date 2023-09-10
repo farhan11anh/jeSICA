@@ -8,8 +8,15 @@
                 <p class="text-xs text-[#475467] dark:text-gray-400 mt-5 mb-5" >
                     {{ description }}
                 </p>
-                <Button @click="$emit('send-to')" title="Continue for Verification" background="bg-background-primary text-t-primary w-full" />
-                <Button @click="$emit('close-confirm')" background="bg-background-secondary text-t-secondary border border-b-secondary w-full" title="Back" />
+                <Button 
+                @click="send_to"
+                :loadLogin="loadLogin"
+                :title="button_yes" 
+                background="bg-background-primary text-t-primary w-full"
+                :class="loadLogin == 'true' ? 'disabled not-allowed' : ''" />
+                <Button @click="close_confirm" 
+                    background="bg-background-secondary text-t-secondary border border-b-secondary w-full" 
+                    :title="button_no" />
     
             </div>
         </div>
@@ -25,9 +32,28 @@
         "description" : {
             type:String,
             default:""
+        },
+        "button_yes" : {
+            type:String,
+            default:""
+        },
+        "button_no" : {
+            type:String,
+            default:""
         }
     })
+    const loadLogin = ref("false")
     const emit = defineEmits(['send-to', 'close-confirm'])
+
+    const send_to = () => {
+        emit('send-to')
+        loadLogin.value = "true"
+    }
+
+    const close_confirm = () => {
+        emit('close-confirm')
+        loadLogin.value = "false"
+    }
 </script>
 
 <style>

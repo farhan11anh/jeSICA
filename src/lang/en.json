@@ -2,6 +2,7 @@
     "hello_from_localazy": "Hello from Localazy rawe",
     "description": "Nuxt 3 + Tailwind + Eslint + i18n + Sentry Starter",
 
+    "app__setting" : "Settings (language and darkmode)",
     "popup__greeting" : "Hello, I'm JeSICA, how can I help you?",
 
     "navbar__home" : "Home",
@@ -62,7 +63,7 @@
     "verification_page__modal_description" : "You can start interacting with Jessica to discuss Telkom Sigma's internal data",
     "verificatoon_page__button" : "Start Now",
 
-    "logout__modal_title" : "Are you sure want to logout?",
+    "logout__modal_title" : "Are you sure to logout?",
     "logout__modal_description" : "Logging out will end your current session, and you will need to log in again to access your account.",
     "logout__modal_button_yes" : "Logout",
     "logout__modal_button_no" : "cancel"

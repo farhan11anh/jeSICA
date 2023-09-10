@@ -2,7 +2,7 @@
   <div class="section-jsc">
     <nav class="bg-whiteborder-gray-200 section-jsc fixed w-screen top-0 left-0 z-20">
       <div
-        class="max-w-screen-xl flex-col lg:flex-row flex flex-wrap lg:items-center justify-between mx-auto p-2 md:p-3 lg:p-4"
+        class=" w-3/4 mx-auto flex-col lg:flex-row flex flex-wrap lg:items-center justify-between py-2 md:py-3 lg:py-4"
       >
 
         <div class="flex flex-row justify-between w-full lg:w-auto">
