@@ -179,33 +179,28 @@
                     await this.authStore.login(data)
                     .then((response)=>{
                         this.loadLogin = 'false'
-                        this.showConfirm  = true
-                        
-                        // login without otp
-                        try {
-                            this.authStore.verificationToken(token)
-                                .then((UserData)=> {
-                                    this.loadLogin='false'
-                                    const data = JSON.stringify(UserData)
-                                    localStorage.setItem('user_data', data)
-                                })
-                            // clearTimeout(timeoutId);
-                            localStorage.setItem('token', token)
-                            this.showConfirm = true 
-                        } catch (error) {
-                            throw error
-                        }
-                        //
-                    })
-                    .catch((error)=>{
-                        throw error
+                        console.log(response.data.data.access_token);
+                        const token = response.data.data.access_token
+                        this.authStore.verificationToken(token)
+                            .then((response)=>{
+                                console.log(response);
+                                const data = JSON.stringify(response)
+                                localStorage.setItem('user_data', data)
+                                localStorage.setItem('token', token)
+
+                                this.showConfirm  = true
+                            })
+                            .catch((err)=>{
+                                console.log(err);
+                                throw err
+                            })
                     })
                 } catch (error) {
                     // alert('salah nik / login') 
                     console.log(error);
-                    if(error.response.data.error == 'Password salah'){
-                        this.showError = true
-                    }
+                    // if(error.response.data.error == 'Password salah'){
+                    //     this.showError = true
+                    // }
                     this.loadLogin = 'false'
                 }
             },
