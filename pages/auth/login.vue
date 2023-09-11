@@ -183,11 +183,11 @@
                     await this.authStore.login(data)
                     .then((response)=>{
                         this.loadLogin = 'false'
-                        console.log(response.data.data.access_token);
+                        // console.log(response.data.data.access_token);
                         const token = response.data.data.access_token
                         this.authStore.verificationToken(token)
                             .then((response)=>{
-                                console.log(response);
+                                // console.log(response);
                                 const data = JSON.stringify(response)
                                 localStorage.setItem('user_data', data)
                                 localStorage.setItem('token', token)
@@ -195,13 +195,13 @@
                                 this.showConfirm  = true
                             })
                             .catch((err)=>{
-                                console.log(err);
+                                // console.log(err);
                                 throw err
                             })
                     })
                 } catch (error) {
                     // alert('salah nik / login') 
-                    console.log(error);
+                    // console.log(error);
                     if(error.response.data.error == 'Email atau password salah'){
                         this.errorTitle = this.t.t("login_page__modal_error_title");
                         this.errorDescription = this.t.t("login_page__modal_error_description");

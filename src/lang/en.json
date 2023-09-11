@@ -19,17 +19,17 @@
     "landing__card_1" : "Ask Away",
     "landing__card_2" : "Discover Solutions",
     "landing__card_3" : "Explore Seamlessly",
-    "landing__desc_1" : "Silakan tuliskan pertanyaan atau masalah anda pada kotak obrolan, dan JeSICA akan dengan cepat memberikan jawaban terbaik untuk anda.",
-    "landing__desc_2" : "JeSICA menyediakan informasi mengenai dukungan teknis, product, atau pelayanan umum dengan jawaban yang andal untuk anda.",
-    "landing__desc_3" : "Temukan pengalaman berbicara yang menyenangkan dan mudah dipahami, memudahkan Anda menjelajahi layanan kami dengan lancar dan tanpa kesulitan.",
+    "landing__desc_1" : "Please write your question or problem in the chat box, and JeSICA will quickly provide the best answer for you.",
+    "landing__desc_2" : "JeSICA provides information about technical support, products, or general services with reliable answers for you.",
+    "landing__desc_3" : "Discover a pleasant and easy-to-understand speaking experience, making it easy for you to navigate our services smoothly and without difficulty.",
 
     "chats_page__new_chat" : "New Chat",
     "chats_page__log_out" : "Log Out",
     "chats_page__server" : "the server is not responding",
     "Today" : "Today",
     "Yesterday" : "Yesterday",
-    "Week" : "Week",
-    "Month" : "Month",
+    "Week" : "last 7 days",
+    "Month" : "last 30 days",
     "chats_page__capabilities" : "Capabilities",
     "chats_page__limitations" : "Limitations",
     "chats_page__suggestions" : "Suggestions",
@@ -67,5 +67,5 @@
     "logout__modal_title" : "Are you sure to logout?",
     "logout__modal_description" : "Logging out will end your current session, and you will need to log in again to access your account.",
     "logout__modal_button_yes" : "Logout",
-    "logout__modal_button_no" : "cancel"
+    "logout__modal_button_no" : "Cancel"
 }

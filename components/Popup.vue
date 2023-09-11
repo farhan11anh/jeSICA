@@ -30,7 +30,11 @@
                             @keyup.enter="sendMessage">
                         </div>
                         <div class="basis=2/12">
-                            <Button :disabled="isNullMessage" @click="sendMessage" title=">" background="bg-background-primary text-t-primary" class="hover:bg-background-hover-primary hover:text-t-hover-primary" :class="isNullMessage ? 'cursor-not-allowed' : ''" />
+                            <Button :disabled="isNullMessage" 
+                            @click="sendMessage" 
+                            title=">" 
+                            background="bg-background-primary text-t-primary h-full" class="hover:bg-background-hover-primary hover:text-t-hover-primary" 
+                            :class="isNullMessage ? 'cursor-not-allowed' : ''" />
                         </div>
                     </div>
                     <div class="flex justify-center">
