@@ -34,21 +34,29 @@
         <div class="bg-[#D0D5DD] dark:bg-[#5a5c60] p-5 border border-gray-400 w-full h-full box-border rounded-2xl">
           <!-- lang changer -->
           <div class="locale-changer absolute bottom-5 left-5">
-            <select v-model="$i18n.locale">
+            <!-- <select v-model="$i18n.locale">
               <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">
                 {{ lang }}
               </option>
-            </select>
+            </select> -->
+            <transition name="lang">
+              <div v-if="$i18n.locale == 'en'" @click="$i18n.locale = 'id'" class="w-12">
+                <img class="w-full" src="img/en-flag.svg" alt="">
+              </div>
+              <div v-else @click="$i18n.locale = 'en'" class="w-12">
+                <img class="w-full" src="img/id-flag.svg" alt="">
+              </div>
+            </transition>
           </div>
 
           <!-- theme changer -->
-          <div @click="togle_dark_mode" class="absolute bottom-7 left-28 bg-[#ffffff93] rounded-full z-50 cursor-pointer" >
-            <transition mode="out-in" >
+          <div @click="togle_dark_mode" class="absolute bottom-5 right-5 bg-[#ffffff93] rounded-full z-50 cursor-pointer" >
+            <transition name="lang" mode="out-in" >
               <div v-if="isDark">
-                <img src="/icons/moon.svg" alt="" srcset=""> 
+                <img class="w-12" src="/icons/moon.svg" alt="" srcset=""> 
               </div>
               <div v-else >
-                <img src="/icons/sun.svg" alt="" srcset=""> 
+                <img class="w-12" src="/icons/sun.svg" alt="" srcset=""> 
               </div>
             </transition>
           </div>
@@ -64,7 +72,7 @@
   import { useI18n } from 'vue-i18n'
   const {locale} = useI18n()
 
-  const langs = ref(['id', 'en'])
+  const langs = ref()
   const isDark = ref(false)
   // settings corner
   const appear_settings = ref(false)
@@ -121,6 +129,21 @@
   }
   .fade-enter-from {
     transform: translateY(100%);
+  }
+
+
+  .lang-leave-active {
+    transition: all 0.3s ease-out;
+  }
+  .lang-leave-to {
+    transform: translateY(100%);
+  }
+
+  .lang-enter-active {
+    transition: all 0.5s ease-in;
+  }
+  .lang-enter-from {
+    transform: translateY(-100%);
   }
 
 </style>
