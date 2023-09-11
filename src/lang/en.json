@@ -27,6 +27,7 @@
     "chats_page__log_out" : "Log Out",
     "chats_page__server" : "the server is not responding",
     "Today" : "Today",
+    "Yesterday" : "Yesterday",
     "Week" : "Week",
     "Month" : "Month",
     "chats_page__capabilities" : "Capabilities",
