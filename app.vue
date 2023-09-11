@@ -40,7 +40,7 @@
               </option>
             </select> -->
             <transition name="lang">
-              <div v-if="$i18n.locale == 'en'" @click="$i18n.locale = 'id'" class="w-12">
+              <div v-if="$i18n.locale == 'en'" @click="$i18n.locale = 'id'" class="w-12 cursor-pointer">
                 <img class="w-full" src="img/en-flag.svg" alt="">
               </div>
               <div v-else @click="$i18n.locale = 'en'" class="w-12">
