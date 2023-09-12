@@ -67,5 +67,17 @@
     "logout__modal_title" : "Are you sure to logout?",
     "logout__modal_description" : "Logging out will end your current session, and you will need to log in again to access your account.",
     "logout__modal_button_yes" : "Logout",
-    "logout__modal_button_no" : "Cancel"
+    "logout__modal_button_no" : "Cancel",
+
+    "forgot_password__send" : "Send",
+    "forgot_password_change_password" : "Change Password",
+    "forgot_password_change_password_description" : "Send to email for change password",
+
+    "change_password__placeholder_password" : "Enter new password",
+    "change_password__placeholder_old_password" : "Enter old password",
+    "change_password__placeholder_confirmation_password" : "Enter confirmation passowrd",
+    "change_password__button" : "Change Password",
+    "change_password__new_password"  : "New Password*",
+    "change_password__confirmation_password"  : "Password Confirmation*",
+    "change_password__old_password"  : "Old Password*"
 }

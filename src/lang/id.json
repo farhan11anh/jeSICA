@@ -67,5 +67,18 @@
     "logout__modal_title" : "Apakah kamu yakin ingin keluar?",
     "logout__modal_description" : "Keluar akan mengakhiri sesi Anda saat ini, dan Anda harus masuk lagi untuk mengakses akun Anda.",
     "logout__modal_button_yes" : "Ya",
-    "logout__modal_button_no" : "Batal"
+    "logout__modal_button_no" : "Batal",
+
+    "forgot_password__send" : "Kirim",
+    "forgot_password_change_password" : "Ganti Password",
+    "forgot_password_change_password_description" : "Kirim ke email untuk mengganti password",
+
+    "change_password__placeholder_password" : "Masukan password baru",
+    "change_password__placeholder_old_password" : "Masukan password lama",
+    "change_password__placeholder_confirmation_password" : "Masukan Konfirmasi password",
+    "change_password__button" : "Ganti Password",
+    "change_password__new_password"  : "Password Baru*",
+    "change_password__confirmation_password"  : "Password Konfirmasi*",
+    "change_password__old_password"  : "Password Lama*"
+
 }

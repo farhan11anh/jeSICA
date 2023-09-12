@@ -4,14 +4,6 @@
             JeSICA
         </Title>
     </Head>
-    <nav 
-        class="bg-bg-login bg-no-repeat bg-center bg-cover md:bg-none dark:bg-none md:bg-white border-gray-200  fixed w-full p-0 m-0 top-0 -left-2 z-20 dark:md:bg-gray-900 dark:md:text-background-hover-secondary">
-        <div class="w-3/4 flex flex-wrap items-center justify-center md:justify-between mx-auto p-4">
-            <NuxtLink to="/" class="flex items-center">
-                <img src="/assets/img/logo.png" class="h-12 mr-3" alt="Telkomsigma Logo" />
-            </NuxtLink>
-        </div>
-    </nav>
     <div class="relative section-jsc h-screen"> 
         <div class="flex flex-wrap">
             <div class="basis-full md:basis-7/12 relative">        
@@ -39,7 +31,7 @@
                                 />
                                 <div class="h-5 mb-3" >
                                     <div class="-mt-5" >
-                                        <span v-if="nikVal" class="text-red-600" >{{ $('login_page__validator_email') }}</span>
+                                        <span v-if="nikVal" class="text-red-600" >{{ $t('login_page__validator_email') }}</span>
                                     </div>
                                 </div>
     
@@ -59,7 +51,7 @@
 
                                 <div class="h-5 mb-3" >
                                     <div class="-mt-5" >
-                                        <span v-if="pwVal" class="text-red-600" >{{ $('login_page__validator_password') }}</span>
+                                        <span v-if="pwVal" class="text-red-600" >{{ $t('login_page__validator_password') }}</span>
                                     </div>
                                 </div>
 
@@ -96,6 +88,9 @@
 </template>
 
 <script>
+    definePageMeta({
+        layout : 'auth'
+    })
     import { useLoginStore } from '@/stores/login'
     import { useAuthStore } from '@/stores/auth';
     import { useI18n } from 'vue-i18n'
