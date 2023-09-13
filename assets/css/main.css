@@ -68,6 +68,24 @@
     @apply w-fit text-gray-700 text-sm font-inter font-semibold leading-normal px-5 py-3 rounded-lg justify-start items-center gap-3 inline-flex hover:bg-white lg:text-base
 }
 
+* {
+    scroll-behavior : smooth;
+}
+
+/* WebKit (Chrome, Safari) */
+*::-webkit-scrollbar {
+    width: 5px; /* Lebar scrollbar */
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #888; /* Warna thumb scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Warna track scrollbar */
+}
+
+
 @layer{
     .card{
         @apply p-6 flex-col space-y-8 bg-gray-25 rounded-lg justify-start items-start

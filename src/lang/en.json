@@ -79,5 +79,8 @@
     "change_password__button" : "Change Password",
     "change_password__new_password"  : "New Password*",
     "change_password__confirmation_password"  : "Password Confirmation*",
-    "change_password__old_password"  : "Old Password*"
+    "change_password__old_password"  : "Old Password*",
+
+    "change_password__modal_err_wrong_password" : "Old password wrong",
+    "change_password__modal_err_server_not_response" : "Server not response"
 }

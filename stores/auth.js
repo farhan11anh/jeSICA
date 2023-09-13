@@ -61,6 +61,19 @@ export const useAuthStore = defineStore('auth', {
             })
         },
 
+        async change_password(data, token){
+            const config = useRuntimeConfig()
+            const url = config.public.apiBase
+            return await axios.post(`${url}/api/password/change/v1`, {
+                "old_password" : data.password_old,
+                "new_password" : data.password
+            }, {
+                headers : {
+                    Authorization: 'Bearer ' + token
+                }
+            })
+        },
+
         // async saveDevice(device, browser, ip){
         //     const config = useRuntimeConfig()
         //     const url = config.public.apiBase

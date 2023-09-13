@@ -80,7 +80,7 @@
     
                                     
                                 <Button 
-                                @click="submit"
+                                @click="show_confirmation=true"
                                  :title="`${$t('change_password__button')}`"
                                 :loadLogin="loadLogin" 
                                  background="bg-background-primary text-t-primary w-full h-16" 
@@ -97,27 +97,37 @@
             </div>
         </div>
 
-        
-        <!-- <ConfirmationLogin 
-            backButton="true" 
-            v-show="showConfirm" 
-            @send-to="goTo('chats')" 
-            @close-confirm="closeConfirm"/>
+
+        <ModalsConfirm
+            v-show="show_confirmation"
+            title="Ubah Password"
+            description="Apakah kamu yakin untuk mengubah password ?"
+            button_yes="Lanjutkan"
+            button_no="Batal"
+            @send-to="submit"
+            @close-confirm="show_confirmation = false"
+        />
 
         <ModalsError 
-            :title="errorTitle"
-            :description="errorDescription"
-            v-show="showError"
-            @close-confirm="showError = false"
-        /> -->
+            title="Error"
+            :description="error_message"
+            v-show="show_error"
+            @close-confirm="show_error = false"
+        />
     </div>
 </template>
 
 <script setup>
+    import { useAuthStore } from "~/stores/auth";
+    import { useOtherStore } from "~/stores/other";
+    import { useI18n } from 'vue-i18n'
+    const { t } = useI18n()
     definePageMeta({
         layout:'auth'
     })
     const route = useRoute();
+    const authStore = useAuthStore()
+    const $data = useOtherStore()
 
     // variable
     const password = ref('')
@@ -126,6 +136,9 @@
     const password_validate = ref(false)
     const password_old_validate = ref(false)
     const password_confirmation_validate = ref(false)
+    const show_confirmation = ref(false)
+    const show_error = ref(false)
+    const error_message = ref("")
 
     const password_error_message = ref('')
     const password_old_error_message = ref('')
@@ -138,8 +151,38 @@
     // function
 
     const submit = () => {
+        const data = {
+            password_old : password_old.value,
+            password : password.value
+        }
+        const token = localStorage.getItem('token')
+        authStore.change_password(data, token)
+        .then((resp)=>{
+            console.log('Berhasil');
+            show_confirmation.value = false
+            authStore.logOut()
+                .then((val)=>{
+                    localStorage.removeItem('token')
+                    localStorage.removeItem('user_data')
+                    navigateTo('/auth/login')
+                })
+                .catch((err)=>{
+                    throw err
+                })
+        })
+        .catch((err)=> {
+            show_confirmation.value = false
+            $data.change_load_login("false")
+            show_error.value = true
+            if(err.response.data.error == "Password salah") {
+                error_message.value = t('change_password__modal_err_wrong_password')
+            }else {
+                error_message.value = t('change_password__modal_err_server_not_response')
 
+            }
+        })
     }
+
     const on_password = (val) => {
         password.value = val
     }
@@ -219,6 +262,8 @@
                 break;
         }
     })
+
+
 
 </script>
 

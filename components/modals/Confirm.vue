@@ -24,6 +24,11 @@
 </template>
 
 <script setup>
+
+    import {useOtherStore} from '~/stores/other'; 
+    const $data = useOtherStore()
+
+
     defineProps({
         "title" : {
             type:String,
@@ -47,13 +52,20 @@
 
     const send_to = () => {
         emit('send-to')
-        loadLogin.value = "true"
+        // loadLogin.value = "true"
+        $data.change_load_login("true")
     }
 
     const close_confirm = () => {
         emit('close-confirm')
-        loadLogin.value = "false"
+        // loadLogin.value = "false"
+        $data.change_load_login("false")
     }
+
+    watch(()=>$data.load_button, (val)=>{
+        loadLogin.value = val
+        console.log(val);
+    })
 </script>
 
 <style>

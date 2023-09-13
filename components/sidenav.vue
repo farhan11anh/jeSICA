@@ -149,7 +149,7 @@
           <footer class="border-t border-gray-50 dark:border-0 pt-2">
             <div class="justify-center flex flex-col" :class="isOpen ? 'items-center' : 'items-start'">
 
-              <NuxtLink to="#" class="justify-start items-center gap-3 inline-flex dark:text-gray-400 mb-3">
+              <NuxtLink to="/auth/change-password/direct" class="justify-start items-center gap-3 inline-flex dark:text-gray-400 mb-3">
                 <div class="w-5 h-5 relative">
                     <svg
                       width="20"
@@ -244,6 +244,8 @@
 import { ref, onMounted, onUnmounted, watch, reactive} from "vue";
 import { useChatStore } from '~/stores/chat'
 import { useAuthStore } from "~/stores/auth";
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 const chatStore = useChatStore();
 const authStore = useAuthStore();
