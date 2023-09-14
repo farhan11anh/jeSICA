@@ -64,7 +64,6 @@
 
     watch(()=>$data.load_button, (val)=>{
         loadLogin.value = val
-        console.log(val);
     })
 </script>
 

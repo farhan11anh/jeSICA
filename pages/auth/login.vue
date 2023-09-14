@@ -60,7 +60,9 @@
                                 :loadLogin="loadLogin" 
                                  background="bg-background-primary text-t-primary w-full h-16" 
                                  class="hover:bg-background-hover-primary hover:text-t-hover-primary" 
-                                 :class="this.loadLogin == 'true' ? 'disabled not-allowed' : ''" />
+                                 :class="loadLogin == 'true' ? 'disabled not-allowed' : ''" />
+
+                                 <NuxtLink to="/auth/forgot-password" class="text-gray-700 dark:text-gray-600">Lupa Password ?</NuxtLink>
                             </form>
                         </div>
                     </div>

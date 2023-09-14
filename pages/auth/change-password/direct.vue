@@ -86,7 +86,6 @@
                                  background="bg-background-primary text-t-primary w-full h-16" 
                                  class="hover:bg-background-hover-primary hover:text-t-hover-primary" 
                                  :class="loadLogin == 'true' ? 'disabled not-allowed' : ''" />
-
                             </form>
                         </div>
                     </div>
@@ -118,6 +117,8 @@
 </template>
 
 <script setup>
+    import { useField, useForm } from 'vee-validate';
+    import * as yup from 'yup';
     import { useAuthStore } from "~/stores/auth";
     import { useOtherStore } from "~/stores/other";
     import { useI18n } from 'vue-i18n'
@@ -252,12 +253,9 @@
             case password:
                 password_error_message.value = 'password tidak boleh kosong'
                 password_validate.value = true
-                break;
             case password_confirmation:
-                password_confirmation_error_message.value = 'passowrd konfirmasi tidak boleh kossong'
+                password_confirmation_error_message.value = 'password konfirmasi tidak boleh kossong'
                 password_confirmation_validate.value = true
-                break;
-            
             default:
                 break;
         }
