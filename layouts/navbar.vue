@@ -144,10 +144,10 @@ export default {
     },
     getPath() {
       this.url = this.$route.name;
-      console.log(this.url);
+      // console.log(this.url);
     },
     getData(e) {
-      console.log(e);
+      // console.log(e);
     },
   },
   computed : {

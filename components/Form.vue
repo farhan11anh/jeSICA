@@ -1,5 +1,6 @@
 <template>
-    <label class="text-[#475467]" :for="name">{{ title }}</label>
+    <br>
+    <label class="text-[#475467] label" :for="name">{{ title }}</label>
     <div id="input" class="relative border border-[#D0D5DD] section-jsc rounded-xl w-full h-16 overflow-hidden mt-3 mb-5 flex" >
         <div class="basis-1/12 relative" >
             <div class=" w-20 h-fit">
@@ -34,7 +35,6 @@
         data(){
             return{
                 valueInput : "",
-
                 svg : `/img/${this.icon}.svg`,
                 hide : true,
                 typeP : this.type
@@ -50,8 +50,6 @@
                 } else {
                     this.typeP = "password"
                 }
-
-                // console.log(this.typeP);
             },
 
             emitVal(){

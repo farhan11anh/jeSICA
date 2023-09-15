@@ -80,12 +80,13 @@
     
                                     
                                 <Button 
-                                @click="show_confirmation=true"
+                                @click="openModal"
                                  :title="`${$t('change_password__button')}`"
                                 :loadLogin="loadLogin" 
                                  background="bg-background-primary text-t-primary w-full h-16" 
                                  class="hover:bg-background-hover-primary hover:text-t-hover-primary" 
                                  :class="loadLogin == 'true' ? 'disabled not-allowed' : ''" />
+
                             </form>
                         </div>
                     </div>
@@ -117,8 +118,6 @@
 </template>
 
 <script setup>
-    import { useField, useForm } from 'vee-validate';
-    import * as yup from 'yup';
     import { useAuthStore } from "~/stores/auth";
     import { useOtherStore } from "~/stores/other";
     import { useI18n } from 'vue-i18n'
@@ -133,7 +132,7 @@
     // variable
     const password = ref('')
     const password_old = ref('')
-    const password_confirmation = ref('')
+    const password_confirmation = ref("")
     const password_validate = ref(false)
     const password_old_validate = ref(false)
     const password_confirmation_validate = ref(false)
@@ -151,6 +150,19 @@
 
     // function
 
+    const openModal = () => {
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+        const test1 = regex.test(password.value)
+
+
+        if(password.value == "" || password_confirmation.value == "" || password_old.value == "" || password.value !== password_confirmation.value || !test1 ) {
+            error_message.value = "Silahkan periksa kembali data anda"
+            show_error.value = true
+        } else {
+            show_confirmation.value = true
+        }
+    }
+
     const submit = () => {
         const data = {
             password_old : password_old.value,
@@ -159,7 +171,6 @@
         const token = localStorage.getItem('token')
         authStore.change_password(data, token)
         .then((resp)=>{
-            console.log('Berhasil');
             show_confirmation.value = false
             authStore.logOut()
                 .then((val)=>{
@@ -208,21 +219,30 @@
 
     const blur = (val) => {
         if(val == 'pw') {
-            if(password.value != password_confirmation.value) {
-                password_error_message.value = 'password baru dan konfirmasi password harus sama'
+            if(password.value == '') {
+                password_error_message.value = 'password tidak boleh kosong'
                 password_validate.value = true
-            } else if(password.value == '') {
-                password_confirmation_error_message.value = 'password tidak boleh kosong'
-                password_confirmation.value = true
-
+            } else {
+                const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+                const test = regex.test(password.value)
+                if(!test){
+                    password_validate.value = true
+                    password_error_message.value = 'pastikan password sudah berisi huruf besar huruf kecil karakter spesial dan juga minimal 8 karakter'
+                } else {
+                    password_validate.value = false
+                }
             }
         }else if(val == 'pwc') {
-            if(password_confirmation.value != password.value) {
-                password_confirmation_error_message.value = 'password baru dan konfirmasi password harus sama'
-                password_confirmation_validate.value = true
-            } else if(password_confirmation.value == '') {
+            if(password_confirmation.value == '') {
                 password_confirmation_error_message.value = 'password tidak boleh kosong'
                 password_confirmation_validate.value = true
+            } else {
+                if(password_confirmation.value != password.value) {
+                    password_confirmation_error_message.value = 'password baru dan konfirmasi password harus sama'
+                    password_confirmation_validate.value = true
+                } else {
+                    password_confirmation_validate.value = false
+                }
             }
         }else if(val == 'pwo') {
             if(password_old.value == ""){
@@ -231,38 +251,6 @@
             }
         }
     }
-
-    watch([password, password_confirmation], (val) => {
-        var password = val[0]
-        var password_confirmation = val[1]
-
-        switch (password !== password_confirmation) {
-            case true:
-                password_error_message.value = "password dan konfirmasi password harus sama"
-                password_confirmation_error_message.value = password_error_message.value
-                password_validate.value = true
-                password_confirmation_validate.value = true
-                break;
-            case false:
-                password_validate.value = false
-                password_confirmation_validate.value = false
-                break;
-        }
-
-        switch ("") {
-            case password:
-                password_error_message.value = 'password tidak boleh kosong'
-                password_validate.value = true
-            case password_confirmation:
-                password_confirmation_error_message.value = 'password konfirmasi tidak boleh kossong'
-                password_confirmation_validate.value = true
-            default:
-                break;
-        }
-    })
-
-
-
 </script>
 
 <style scoped>

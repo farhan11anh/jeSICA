@@ -33,8 +33,6 @@
                                         </span>
                                     </div>
                                 </div>
-
-        
                                 <Form
                                     name="passwordC"
                                     :title="$t('change_password__confirmation_password')"     
@@ -55,10 +53,8 @@
                                         </span>
                                     </div>
                                 </div>
-    
-                                    
                                 <Button 
-                                @click="submit"
+                                @click="open_modal"
                                  :title="`${$t('change_password__button')}`"
                                 :loadLogin="loadLogin" 
                                  background="bg-background-primary text-t-primary w-full h-16" 
@@ -76,18 +72,23 @@
         </div>
 
         
-        <!-- <ConfirmationLogin 
-            backButton="true" 
-            v-show="showConfirm" 
-            @send-to="goTo('chats')" 
-            @close-confirm="closeConfirm"/>
+        <ModalsConfirm
+            v-show="show_confirmation"
+            title="Ubah Password"
+            description="Apakah kamu yakin untuk mengubah password ?"
+            button_yes="Lanjutkan"
+            button_no="Batal"
+            @send-to="submit"
+            @close-confirm="show_confirmation=false"
+
+        />
 
         <ModalsError 
-            :title="errorTitle"
-            :description="errorDescription"
-            v-show="showError"
-            @close-confirm="showError = false"
-        /> -->
+            title="Error"
+            :description="error_description"
+            v-show="show_error"
+            @close-confirm="show_error = false"
+        />
     </div>
 </template>
 
@@ -106,11 +107,29 @@
     const password_error_message = ref('')
     const password_confirmation_error_message = ref('')
 
+    // / error modal
+    const show_error = ref(false)
+    const error_description = ref("") 
+
+    // / confirm modal
+    const show_confirmation = ref(false)
+
     onMounted(() => {
         // console.log(route.params.generate);
     })
 
     // function
+
+    const open_modal = () => {
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+        const test = regex.test(password.value)
+        if(password.value == "" || !test || password_confirmation == "" || password.value !== password_confirmation.value ) {
+            error_description.value = "Pastikan data yang anda masukan benar"
+            show_error.value = true
+        } else {
+            show_confirmation.value = true
+        }
+    }
 
     const submit = () => {
 
@@ -133,56 +152,33 @@
 
     const blur = (val) => {
         if(val == 'pw') {
-            if(password.value != password_confirmation.value) {
-                password_error_message.value = 'password baru dan konfirmasi password harus sama'
+            if(password.value == '') {
+                password_error_message.value = 'password tidak boleh kosong'
                 password_validate.value = true
-            } else if(password.value == '') {
-                password_confirmation_error_message.value = 'password tidak boleh kosong'
-                password_confirmation.value = true
-
+            } else {
+                const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+                const test = regex.test(password.value)
+                if(!test){
+                    password_validate.value = true
+                    password_error_message.value = "pastikan password sudah berisi huruf besar huruf kecil karakter spesial dan juga minimal 8 karakter"
+                } else {
+                    password_validate.value = false
+                }
             }
         } else if(val == 'pwc') {
-            if(password_confirmation.value != password.value) {
-                password_confirmation_error_message.value = 'password baru dan konfirmasi password harus sama'
-                password_confirmation_validate.value = true
-            } else if(password_confirmation.value == '') {
+            if(password_confirmation.value == '') {
                 password_confirmation_error_message.value = 'password tidak boleh kosong'
                 password_confirmation_validate.value = true
+            } else {
+                if(password.value !== password_confirmation.value){
+                    password_confirmation_error_message.value = 'password baru dan konfirmasi password harus sama'
+                    password_confirmation_validate.value = true
+                } else {
+                    password_confirmation_validate.value = false
+                }
             }
         }
     }
-
-    watch([password, password_confirmation], (val) => {
-        var password = val[0]
-        var password_confirmation = val[1]
-
-        switch (password !== password_confirmation) {
-            case true:
-                password_error_message.value = "password dan konfirmasi password harus sama"
-                password_confirmation_error_message.value = password_error_message.value
-                password_validate.value = true
-                password_confirmation_validate.value = true
-                break;
-            case false:
-                password_validate.value = false
-                password_confirmation_validate.value = false
-                break;
-        }
-
-        switch ("") {
-            case password:
-                password_error_message.value = 'password tidak boleh kosong'
-                password_validate.value = true
-                break;
-            case password_confirmation:
-                password_confirmation_error_message.value = 'passowrd konfirmasi tidak boleh kossong'
-                password_confirmation_validate.value = true
-                break;
-            
-            default:
-                break;
-        }
-    })
 
 </script>
 

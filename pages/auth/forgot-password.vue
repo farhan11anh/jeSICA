@@ -30,13 +30,13 @@
                                 />
                                 <div class="h-5 mb-3" >
                                     <div class="-mt-5" >
-                                        <span v-if="email_validate" class="text-red-600" >{{ $t('login_page__validator_email') }}</span>
+                                        <span v-if="email_validate" class="text-red-600" >{{ email_error_message }}</span>
                                     </div>
                                 </div>
     
 
                                 <Button 
-                                @click="send_email"
+                                @click="openModal"
                                  :title="`${$t('forgot_password__send')}`"
                                 :loadLogin="loadLogin" 
                                  background="bg-background-primary text-t-primary w-full h-16" 
@@ -52,35 +52,68 @@
             </div>
         </div>
 
-        
-        <!-- <ConfirmationLogin 
-            backButton="true" 
-            v-show="showConfirm" 
-            @send-to="goTo('chats')" 
-            @close-confirm="closeConfirm"/>
+        <ModalsConfirm
+            v-show="show_confirmation"
+            title="Kirim Email"
+            description="Apakah kamu yakin untuk mengirim ke email?"
+            button_yes="Kirim"
+            button_no="Batal"
+            @send-to="send_email"
+            @close-confirm="show_confirmation = false"
+        />
 
         <ModalsError 
-            :title="errorTitle"
-            :description="errorDescription"
-            v-show="showError"
-            @close-confirm="showError = false"
-        /> -->
+            title="error"
+            :description="error_description"
+            v-show="show_error"
+            @close-confirm="show_error = false"
+        />
     </div>
 </template>
 
 <script setup>
+    import { useOtherStore } from "~/stores/other";
+    import { useAuthStore } from "~/stores/auth";
     definePageMeta({
         layout:'auth'
     })
 
     //variable
+    const $data = useOtherStore()
+    const $auth = useAuthStore()
+
     const loadLogin = ref("false")
     const email = ref("")
     const email_validate = ref(false)
+    const email_error_message = ref("")
+    const show_confirmation = ref(false)
+    const error_description = ref("")
+    const show_error = ref(false)
 
     // function
     const send_email = () => {
-        loadLogin.value = "true"
+        new Promise((resolve, reject)=>{
+            $auth.send_email_forgot_password()
+            .then((data)=>{
+                console.log(data);
+                if(data !== true){
+                    throw new Error(`http error status : 404`)
+                }
+                return data
+            })
+            .then((data)=>{
+                resolve(console.log(data))
+            })
+            .catch(err=>{
+                reject(console.log(err))
+            })
+        })
+        // simulation error send email
+        setTimeout(()=>{
+            show_confirmation.value = false
+            show_error.value = true
+            $data.change_load_login("false")
+        }, 1000)
     }
     // / validation
     const focus = () => {
@@ -88,9 +121,27 @@
     }
     const blur = () => {
         if(email.value == "") {
+            email_error_message.value = "Email tidak boleh kosong"
             email_validate.value = true
         }else {
-            email_validate.value = false
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if(!(emailRegex.test(email.value))){
+                email_error_message.value = "Masukan dengan format email"
+                email_validate.value = true
+            } else {
+                email_validate.value = false
+            }
+        }
+    }
+
+    // function
+    const openModal = () => {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if(email == "" || !(emailRegex.test(email.value)) ){
+            error_description.value = "Periksa kembali email yang anda masukan"
+            show_error.value = true
+        }else {
+            show_confirmation.value = true
         }
     }
 
@@ -98,6 +149,7 @@
         email.value = val
         console.log(val);
     }
+
 </script>
 
 <style scoped>

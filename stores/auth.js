@@ -3,8 +3,6 @@ import axios from 'axios';
 
 export const useAuthStore = defineStore('auth', {
     state : () => ({
-        // token : localStorage.setItem('token'),
-        // token : null,
         token : process.server ? '' : localStorage.getItem('token'),
         refreshToken : null
     }),
@@ -33,23 +31,6 @@ export const useAuthStore = defineStore('auth', {
                     email : email
             })
         },
-        // async refreshTokenn(){
-        //     try {
-        //         const response = await axios.post('https://api.escuelajs.co/api/v1/auth/refresh-token', {
-        //             refreshToken: this.refreshToken
-        //         })
-
-        //         // console.log(response);
-        //         const token = response.data.access_token
-        //         this.token = token
-        //         const refreshToken = response.data.refresh_token
-        //         this.refreshToken = refreshToken
-        //         return token
-        //         // return 'success'
-        //     } catch (error) {
-        //         throw error
-        //     }
-        // },
 
         async verificationToken(token){
             const config = useRuntimeConfig()
@@ -74,19 +55,20 @@ export const useAuthStore = defineStore('auth', {
             })
         },
 
-        // async saveDevice(device, browser, ip){
-        //     const config = useRuntimeConfig()
-        //     const url = config.public.apiBase
-        //     try {
-        //         await axios.post(`${url}/saveDevice`, {
-        //             "device_name" : device,
-        //             "browser_name" : browser,
-        //             "ip_address" : ip
-        //         })
-        //     } catch (error) {
-        //         throw error
-        //     }
-        // },
+        async send_email_forgot_password(){
+            // ...
+            const config = useRuntimeConfig()
+            const url = config.public.apiBase
+
+            let data = "" 
+            setTimeout(()=>{
+                data = {"data":"local"}
+            }, 2000)
+
+            console.log(typeof(data));
+
+            return data
+        },
 
         async logOut(){
             if(process.client){
@@ -105,16 +87,7 @@ export const useAuthStore = defineStore('auth', {
         }
     },
     getters: {
-        isTokenValid() {
-            // localStorage.getItem(token)
-            if(!this.token) {
-                return false
-            }
 
-            // const decoded = jwtDecode(state.token)
-            // const currentTime = Math.floor(Date.now() / 1000)
-            // return decoded.exp >= currentTime
-        }
     },
     mutations: {
         setToken(state, token) {
