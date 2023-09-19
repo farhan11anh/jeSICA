@@ -1,7 +1,10 @@
 <template>
-  <div  class="container mx-auto w-full h-auto relative">
+  <div class="container mx-auto w-full h-auto relative">
     <!-- <HeaderChat class="" v-if="messages.length !== 0" /> -->
-    <div v-if="messages.length == 0" class="h-full p-4 md:p-8 flex justify-center items-center flex-col space-y-4">
+    <div
+      v-if="messages.length == 0"
+      class="h-full p-4 md:p-8 flex justify-center items-center flex-col space-y-4"
+    >
       <div class="flex">
         <div class="inline-flex space-x-4">
           <card-recomend class="w-full section-jsc">
@@ -29,11 +32,11 @@
               class="flex flex-col justify-start items-start space-y-4 w-full wrap text-gray-900 dark:text-gray-300"
             >
               <span
-                class="text-xl font-body  font-semibold max-w-full whitespace-normal"
+                class="text-xl font-body font-semibold max-w-full whitespace-normal"
                 >{{ $t('chats_page__capabilities') }}</span
               >
               <span
-                class="text-base font-body  font-base max-w-full whitespace-normal"
+                class="text-base font-body font-base max-w-full whitespace-normal"
               >
                 {{ $t('chats_page__capabilities_description') }}
               </span>
@@ -70,23 +73,23 @@
               <span
                 class="text-base font-body font-base max-w-full whitespace-normal"
               >
-               {{ $t('chats_page__limitations_description') }}
+                {{ $t('chats_page__limitations_description') }}
               </span>
             </div>
           </card-recomend>
         </div>
       </div>
       <div>
-        <div class="card section-jsc" >
-          <div class="flex justify-start flex-col space-y-4 text-gray-900 dark:text-gray-300">
-            <span class="text-xl font-body font-semibold"
-              >{{ $t('chats_page__suggestions') }}</span
-            >
-            <span class="text-lg font-body font-base"
-              >
+        <div class="card section-jsc">
+          <div
+            class="flex justify-start flex-col space-y-4 text-gray-900 dark:text-gray-300"
+          >
+            <span class="text-xl font-body font-semibold">{{
+              $t('chats_page__suggestions')
+            }}</span>
+            <span class="text-lg font-body font-base">
               {{ $t('chats_page__suggestions_description') }}
-              </span
-            >
+            </span>
             <div
               class="flex flex-stretch flex-wrap justify-start items-start gap-2"
             >
@@ -97,10 +100,7 @@
                 key="templatechat.id"
                 @click="assignChat(templatechat.title)"
               >
-                <span
-                  class="text-base font-body font-base"
-                  
-                >
+                <span class="text-base font-body font-base">
                   {{ $t(`${templatechat.title}`) }}
                 </span>
                 <span>
@@ -129,39 +129,28 @@
         </div>
       </div>
     </div>
-    <div v-else >
-      <BubleChat 
-        v-for="i of messages"
-        :jesica="i.isJesica"
-        :msg="i.msg" 
-      />
+    <div v-else>
+      <BubleChat v-for="i of messages" :jesica="i.isJesica" :msg="i.msg" />
 
-      <BubleChat 
-        v-if="waitingResp"
-        jesica="true"
-        msg=".."
-        wait-res="true"
-      />
+      <BubleChat v-if="waitingResp" jesica="true" msg=".." wait-res="true" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from "vue";
-import {useChatStore} from '../../stores/chat'
+import { ref, onMounted, nextTick } from 'vue';
+import { useChatStore } from '../../stores/chat';
 definePageMeta({
-  middleware: [
-    'auth'
-  ],
+  middleware: ['auth'],
 });
 
 // Define the data properties
 const questionTemplates = ref([]);
 // define chat store pinia
-const chatStore = useChatStore()
+const chatStore = useChatStore();
 
-function assignChat(msg){
-  chatStore.setMessage(msg)
+function assignChat(msg) {
+  chatStore.setMessage(msg);
 }
 
 // Listen for the 'chatbar-clicked' event on the event bus
@@ -170,40 +159,46 @@ onMounted(() => {
   questionTemplates.value = [
     {
       id: 1,
-      title: "Hari Senin pakai seragam apa ya?",
+      title: 'Hari Senin pakai seragam apa ya?',
     },
     {
       id: 2,
-      title: "Bagaimana peraturan berpakaian?",
+      title: 'Bagaimana peraturan berpakaian?',
     },
     {
       id: 3,
-      title: "Bagaimana caranya mengklaim asuransi?",
+      title: 'Bagaimana caranya mengklaim asuransi?',
     },
     {
       id: 4,
-      title: "Bagaimana cara mengajukan cuti?",
+      title: 'Bagaimana cara mengajukan cuti?',
     },
   ];
 });
 
-const messages = ref(chatStore.messages)
+const messages = ref(chatStore.messages);
 
 // sinkronisasi dengan data baru pada pinia
-watch(()=>chatStore.messages, (newMessages)=> {
-  messages.value = newMessages
-})
+watch(
+  () => chatStore.messages,
+  (newMessages) => {
+    messages.value = newMessages;
+  },
+);
 
-const waitingResp = ref(false)
+const waitingResp = ref(false);
 
-watch(()=>chatStore.waitResp, (newVal)=>{
-  waitingResp.value = newVal
-  // console.log(waitingResp);
-})
+watch(
+  () => chatStore.waitResp,
+  (newVal) => {
+    waitingResp.value = newVal;
+    // console.log(waitingResp);
+  },
+);
 
 definePageMeta({
-  layout: 'sidebar'
-})
+  layout: 'sidebar',
+});
 </script>
 
 <style lang="scss" scoped></style>

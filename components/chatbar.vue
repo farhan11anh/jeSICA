@@ -1,5 +1,5 @@
 <template>
- <div
+  <div
     class="w-full h-fit p-3 flex-col justify-center items-center gap-2.5 inline-flex section-jsc"
   >
     <div class="self-stretch justify-start gap-1.5 inline-flex">
@@ -15,12 +15,12 @@
           @keyup.enter="sendMessage"
         />
       </div>
-      <button type="submit" 
-              class="btn-primary"
-              @click="sendMessage()"
-              :disabled="isNullMessage"
-              :class="isNullMessage ? 'cursor-not-allowed' : ''"
-      
+      <button
+        type="submit"
+        class="btn-primary"
+        @click="sendMessage()"
+        :disabled="isNullMessage"
+        :class="isNullMessage ? 'cursor-not-allowed' : ''"
       >
         <div class="w-5 h-5 relative">
           <svg
@@ -50,108 +50,113 @@
       {{ $t('chats_page__footer') }}
     </div>
   </div>
-  </template>
-  
-  <script setup>
-    import {useChatStore} from '../stores/chat'
-    import { useAuthStore } from '../stores/auth';
-    const chatStore = useChatStore()
-    const $auth = useAuthStore()
+</template>
 
-    const msg = ref('')
+<script setup>
+import { useChatStore } from '../stores/chat';
+import { useAuthStore } from '../stores/auth';
+const chatStore = useChatStore();
+const $auth = useAuthStore();
 
-    const id_history = ref("")
+const msg = ref('');
 
-    watch(()=> chatStore.message, (newChat) => {
-      msg.value = newChat
+const id_history = ref('');
+
+watch(
+  () => chatStore.message,
+  (newChat) => {
+    msg.value = newChat;
+  },
+);
+
+const sendMessage = async () => {
+  const data = {
+    isJesica: 'false',
+    msg: msg.value,
+  };
+  const chat = msg.value;
+  addChat(data, true);
+
+  try {
+    const config = useRuntimeConfig();
+    const url = config.public.apiBase;
+    const userData = JSON.parse(localStorage.getItem('user_data'));
+    const userID = userData.data.data.user_id;
+
+    // id yang akan dipanggil (menentukan akan membuat chat baru ataupun melanjutkan chat.)
+    let id = chatStore.id_history;
+
+    // melakukan set history
+    if (chatStore.messages.length >= 2) {
+      id = chatStore.historyChat[0].history_id;
+    }
+
+    // mengirim chat menggunakan api dari be.
+    await $fetch(`${url}/api/chat/inazure/v1`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      body: {
+        text: chat,
+        user_id: userID,
+        history_id: id,
+      },
     })
-
-    const sendMessage = async () => {
-      const data = {
-        isJesica : "false",
-        msg : msg.value
-      }
-      const chat = msg.value
-      addChat(data, true)
-
-      try {
-        const config = useRuntimeConfig()
-        const url = config.public.apiBase
-        const userData = JSON.parse(localStorage.getItem('user_data'))
-        const userID = userData.data.data.user_id
-
-        // id yang akan dipanggil (menentukan akan membuat chat baru ataupun melanjutkan chat.)
-        let id = chatStore.id_history
-
-        // melakukan set history
-        if(chatStore.messages.length >= 2) {
-          id = chatStore.historyChat[0].history_id
-        }
-
-        // mengirim chat menggunakan api dari be.
-        await $fetch(`${url}/api/chat/inazure/v1`, {
-          method: 'POST',
-          headers : {
-            'Authorization':`Bearer ${localStorage.getItem("token")}`
-          },
-          body: {
-            text : chat,
-            user_id : userID,
-            history_id : id
-          }
-        })
-        // console.log(resp.headers);
-        .then((resp)=> {
-          const d = {
-            isJesica : "true",
-            msg : resp.data.text_response
-          }
-          addChat(d, false)
-
-          if(chatStore.messages.length <= 3){
-            chatStore.getHistoryByUserId(userID)
-          }
-        })
-      } catch (error) {
+      // console.log(resp.headers);
+      .then((resp) => {
         const d = {
-          isJesica : "true",
-          msg : "server tidak merespon ..."
+          isJesica: 'true',
+          msg: resp.data.text_response,
+        };
+        addChat(d, false);
+
+        if (chatStore.messages.length <= 3) {
+          chatStore.getHistoryByUserId(userID);
         }
-        addChat(d, false)
-      }
-    }
+      });
+  } catch (error) {
+    const d = {
+      isJesica: 'true',
+      msg: 'server tidak merespon ...',
+    };
+    addChat(d, false);
+  }
+};
 
-    // template send chat 
-    const addChat = (data, wait) => {
-      chatStore.addMessages(data)
-      msg.value = ""
-      chatStore.changeWait(wait)
-      // ubah nilai agar bisa trigger scroll
-      chatStore.scrollDown()
-    }
+// template send chat
+const addChat = (data, wait) => {
+  chatStore.addMessages(data);
+  msg.value = '';
+  chatStore.changeWait(wait);
+  // ubah nilai agar bisa trigger scroll
+  chatStore.scrollDown();
+};
 
-    onMounted(() => {
-      setIdHistory()
-    });
+onMounted(() => {
+  setIdHistory();
+});
 
-    const setIdHistory = () => {
-      id_history.value = chatStore.id_history
-    }
+const setIdHistory = () => {
+  id_history.value = chatStore.id_history;
+};
 
-    const waitingResp = ref(false)
-    watch(()=>chatStore.waitResp, (newVal)=>{
-      waitingResp.value = newVal
-      // console.log(waitingResp);
-    })
+const waitingResp = ref(false);
+watch(
+  () => chatStore.waitResp,
+  (newVal) => {
+    waitingResp.value = newVal;
+    // console.log(waitingResp);
+  },
+);
 
-    const isNullMessage = computed(()=> {
-      if(msg.value == "" || waitingResp.value == true) {
-        return true
-      } else {
-        return false
-      }
-    })
+const isNullMessage = computed(() => {
+  if (msg.value == '' || waitingResp.value == true) {
+    return true;
+  } else {
+    return false;
+  }
+});
+</script>
 
-  </script>
-  
-  <style lang="scss" scoped></style>
+<style lang="scss" scoped></style>

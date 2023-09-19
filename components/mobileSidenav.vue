@@ -1,7 +1,7 @@
 <template>
   <div
     class="flex-shrink-0 overflow-x-hidden bg-white border-r h-full"
-   style="width: 240px;"
+    style="width: 240px"
   >
     <div class="h-full w-full">
       <div class="flex h-full min-h-0 flex-col">

@@ -80,7 +80,7 @@
         </svg>
         <span class="sr-only">Close menu</span>
       </button>
-     <mobileSidenav/>
+      <mobileSidenav />
     </div>
 
     <div class="hidden">

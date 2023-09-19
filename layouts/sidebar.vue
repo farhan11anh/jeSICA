@@ -1,12 +1,10 @@
 <template>
   <Head>
-      <Title>
-          JeSICA
-      </Title>
+    <Title> JeSICA </Title>
   </Head>
   <div class="overflow-hidden w-full h-full relative flex z-0">
     <div class="hidden sm:block">
-      <Sidenav/>
+      <Sidenav />
     </div>
     <div
       class="relative flex h-screen max-w-full max-h-screen flex-1 overflow-hidden justify-between"
@@ -16,7 +14,10 @@
           <div class="">
             <HeaderChat v-if="lengthMessages > 0" />
           </div>
-          <div ref="chatContainer" class="flex grow h-full overflow-auto p-5 row-span-full section-jsc hidden-scrollbar">
+          <div
+            ref="chatContainer"
+            class="flex grow h-full overflow-auto p-5 row-span-full section-jsc hidden-scrollbar"
+          >
             <slot />
           </div>
           <Chatbar />
@@ -29,47 +30,48 @@
 <script setup>
 import HeaderChatIndex from '../components/headerChatIndex.vue';
 import Sidenav from '../components/sidenav.vue';
-import { ref, onMounted, nextTick } from "vue";
-import {useChatStore} from '../stores/chat'
+import { ref, onMounted, nextTick } from 'vue';
+import { useChatStore } from '../stores/chat';
 // define chat store pinia
-const chatStore = useChatStore()
+const chatStore = useChatStore();
 
-const lengthMessage = ref(0)
+const lengthMessage = ref(0);
 
 const lengthMessages = computed({
-  get(){
-    return lengthMessage.value
-  }
-})
+  get() {
+    return lengthMessage.value;
+  },
+});
 
-
-watch(()=>chatStore.scroll, (scroll)=>{
-  //scroll down ketika data messages pada pinia berubah
-  nextTick(() => {
-    scrollToBottom();
-  });
-})
+watch(
+  () => chatStore.scroll,
+  (scroll) => {
+    //scroll down ketika data messages pada pinia berubah
+    nextTick(() => {
+      scrollToBottom();
+    });
+  },
+);
 
 // melihat perubahan data pada state messages pinia
 chatStore.$subscribe((mutation, state) => {
-  const msg = state.messages.length
-  lengthMessage.value = msg
-})
+  const msg = state.messages.length;
+  lengthMessage.value = msg;
+});
 
-const chatContainer = ref(null)
+const chatContainer = ref(null);
 const scrollToBottom = () => {
   // console.log(chatContainer.value);
   chatContainer.value.scrollTop = chatContainer.value.scrollHeight;
-}
+};
 </script>
 
 <style scoped>
-  .hidden-scrollbar{
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
-  }
-  .hidden-scrollbar::-webkit-scrollbar{
-    display: none;  /* Safari and Chrome */
-  }
-
+.hidden-scrollbar {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.hidden-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
 </style>

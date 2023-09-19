@@ -5,90 +5,103 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply overflow-x-hidden overflow-y-auto
+  }
+}
+
 @layer components {
-    .btn-primary {
-        @apply w-fit text-white font-inter font-semibold leading-7 px-4 py-1 bg-primary-600 rounded-lg shadow border border-primary-600 justify-center items-center gap-3 inline-flex hover:bg-primary-700 focus:border-[#F4EBFF]
-    }
+  .btn-primary {
+    @apply w-fit text-white font-inter font-semibold leading-7 px-4 py-1 bg-primary-600 rounded-lg shadow border border-primary-600 justify-center items-center gap-3 inline-flex hover:bg-primary-700 focus:border-[#F4EBFF];
+  }
 
-    .btn-secondary {
-        @apply w-fit text-gray-700 font-inter font-semibold leading-7 px-4 py-1 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-3 inline-flex hover:bg-gray-50 focus:border-[#F2F4F7]
-    }
+  .btn-secondary {
+    @apply w-fit text-gray-700 font-inter font-semibold leading-7 px-4 py-1 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-3 inline-flex hover:bg-gray-50 focus:border-[#F2F4F7];
+  }
 
-    .btn-tertiary {
-        @apply w-full text-gray-700 font-inter font-semibold leading-7 px-4 py-1 rounded-lg justify-start items-center gap-3 inline-flex hover:bg-white
-    }
+  .btn-tertiary {
+    @apply w-full text-gray-700 font-inter font-semibold leading-7 px-4 py-1 rounded-lg justify-start items-center gap-3 inline-flex hover:bg-white;
+  }
 
-    .section-jsc {
-        @apply bg-white dark:bg-gray-900 dark:text-background-hover-secondary
-    }
+  .section-jsc {
+    @apply bg-white dark:bg-gray-900 dark:text-background-hover-secondary;
+  }
 
-    .component-jsc {
-        @apply bg-white dark:bg-[#505050] dark:text-background-hover-secondary dark:border-dark-border dark:hover:bg-dark-hover
-    }
+  .component-jsc {
+    @apply bg-white dark:bg-[#505050] dark:text-background-hover-secondary dark:border-dark-border dark:hover:bg-dark-hover;
+  }
 
-    .buble-jsc {
-        @apply bg-[#F2F4F7] dark:bg-[#525252] dark:text-background-hover-secondary
-    }
+  .buble-jsc {
+    @apply bg-[#F2F4F7] dark:bg-[#525252] dark:text-background-hover-secondary;
+  }
 
+  .banner-page {
+    @apply h-[545px] bg-banner
+  }
+  .banner-page-base {
+    @apply h-[545px]
+  }
 }
 
 @font-face {
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 600;
-    src: local(''),
-        url('/assets/font/Nunito-Italic-VariableFont_wght.ttf') format('ttf'),
-        url('/assets/font/Nunito-VariableFont_wght.ttf') format('ttf')
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  src:
+    local(''),
+    url('/assets/font/Nunito-Italic-VariableFont_wght.ttf') format('ttf'),
+    url('/assets/font/Nunito-VariableFont_wght.ttf') format('ttf');
 }
 
 @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    src: local(''),
-        url('/assets/font/Inter-VariableFont_slnt,wght.ttf') format('ttf')   
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  src:
+    local(''),
+    url('/assets/font/Inter-VariableFont_slnt,wght.ttf') format('ttf');
 }
 
 @font-face {
-    font-family: 'Cardo';
-    font-style: normal;
-    font-weight: 600;
-    src: local(''),
-        url('/assets/font/Cardo-Regular.ttf') format('ttf')   
+  font-family: 'Cardo';
+  font-style: normal;
+  font-weight: 600;
+  src:
+    local(''),
+    url('/assets/font/Cardo-Regular.ttf') format('ttf');
 }
 
-
-.btn-primary{
-    @apply w-fit text-white text-sm font-inter font-semibold leading-normal px-5 py-3 bg-primary-600 rounded-lg shadow border-4 border-primary-600 justify-center items-center gap-3 inline-flex hover:bg-primary-700 hover:border-primary-700 active:border-primary-400 lg:text-base
+.btn-primary {
+  @apply w-fit text-white text-sm font-inter font-semibold leading-normal px-5 py-3 bg-primary-600 rounded-lg shadow border-4 border-primary-600 justify-center items-center gap-3 inline-flex hover:bg-primary-700 hover:border-primary-700 active:border-primary-400 lg:text-base;
 }
-.btn-secondary{
-    @apply w-fit text-gray-700 text-sm font-inter font-semibold leading-normal px-5 py-3 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-3 inline-flex hover:bg-gray-50 focus:border-gray-300 lg:text-base
+.btn-secondary {
+  @apply w-fit text-gray-700 text-sm font-inter font-semibold leading-normal px-5 py-3 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-3 inline-flex hover:bg-gray-50 focus:border-gray-300 lg:text-base;
 }
-.btn-tertiary{
-    @apply w-fit text-gray-700 text-sm font-inter font-semibold leading-normal px-5 py-3 rounded-lg justify-start items-center gap-3 inline-flex hover:bg-white lg:text-base
+.btn-tertiary {
+  @apply w-fit text-gray-700 text-sm font-inter font-semibold leading-normal px-5 py-3 rounded-lg justify-start items-center gap-3 inline-flex hover:bg-white lg:text-base;
 }
 
 * {
-    scroll-behavior : smooth;
+  scroll-behavior: smooth;
 }
 
 /* WebKit (Chrome, Safari) */
 *::-webkit-scrollbar {
-    width: 5px; /* Lebar scrollbar */
+  width: 5px; /* Lebar scrollbar */
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: #888; /* Warna thumb scrollbar */
+  background-color: #888; /* Warna thumb scrollbar */
 }
 
 *::-webkit-scrollbar-track {
-    background-color: #f1f1f1; /* Warna track scrollbar */
+  background-color: #f1f1f1; /* Warna track scrollbar */
 }
 
-
-@layer{
-    .card{
-        @apply p-6 flex-col space-y-8 bg-gray-25 rounded-lg justify-start items-start
-    }
-        /* url('/assets/font/Inter-VariableFont_slnt,wght.ttf') format('ttf') */
+@layer {
+  .card {
+    @apply p-6 flex-col space-y-8 bg-gray-25 rounded-lg justify-start items-start;
+  }
+  /* url('/assets/font/Inter-VariableFont_slnt,wght.ttf') format('ttf') */
 }

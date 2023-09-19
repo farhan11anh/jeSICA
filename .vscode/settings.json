@@ -1,4 +1,4 @@
 {
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "nuxt.isNuxtApp": true
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "nuxt.isNuxtApp": true
 }

@@ -20,8 +20,8 @@
 </template>
 
 <script setup>
-import HeaderChat from "../components/headerChat.vue";
-import Sidenav from "../components/sidenav.vue";
+import HeaderChat from '../components/headerChat.vue';
+import Sidenav from '../components/sidenav.vue';
 </script>
 
 <style scoped></style>
