@@ -35,7 +35,7 @@
               ></div>
               <img
                 class="object-cover w-full h-full"
-                src="/assets/img/chat-ss.svg"
+                src="@/img/chat-ss.svg"
                 alt=""
               />
             </div>

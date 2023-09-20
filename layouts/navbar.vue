@@ -9,7 +9,7 @@
         <div class="flex flex-row justify-between w-full lg:w-auto">
           <NuxtLink to="/" class="flex items-center">
             <img
-              src="/assets/img/logo.png"
+              src="@/img/logo.png"
               class="h-12 mr-3"
               alt="Telkomsigma Logo"
             />
