@@ -1,5 +1,5 @@
 <template class="h-screen">
-  <div :class="isDark ? 'dark' : ''" class="font-inter relative">
+  <div :class="theme == 'dark' ? 'dark' : ''" class="font-inter relative">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
@@ -108,29 +108,22 @@
 </template>
 
 <script setup>
+import { useLayoutStore } from '@/stores/layout';
 import { initFlowbite } from 'flowbite';
 import { useI18n } from 'vue-i18n';
 const { locale } = useI18n();
 
+const $layout = useLayoutStore()
 const langs = ref();
-const isDark = ref(false);
 // settings corner
 const appear_settings = ref(false);
 
 const animation = ref(false);
-
+const theme = computed(()=> $layout.theme)
 onMounted(() => {
   // console.log(window.matchMedia('(prefers-color-scheme: dark)'));
   // darkmode matches the device theme
-  if (
-    localStorage.theme === 'dark' ||
-    (!('theme' in localStorage) &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches)
-  ) {
-    isDark.value = true;
-  } else {
-    isDark.value = false;
-  }
+
   initFlowbite();
 
   // set lang
@@ -144,8 +137,7 @@ onMounted(() => {
 });
 
 const togle_dark_mode = () => {
-  isDark.value = !isDark.value;
-  localStorage.theme = isDark.value == false ? 'light' : 'dark';
+  $layout.changeTheme()
 };
 
 const hide_and_show = () => {

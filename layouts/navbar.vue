@@ -7,8 +7,13 @@
         class="w-3/4 mx-auto flex-col lg:flex-row flex flex-wrap lg:items-center justify-between py-2 md:py-3 lg:py-4"
       >
         <div class="flex flex-row justify-between w-full lg:w-auto">
-          <NuxtLink to="/" class="flex items-center">
-            <img
+          <NuxtLink to="/" class="flex items-center"> 
+            <img v-if="theme == 'dark'"
+              src="@/img/logo-inverted.png"
+              class="h-12 mr-3"
+              alt="Telkomsigma Logo"
+            />
+            <img v-else
               src="@/img/logo.png"
               class="h-12 mr-3"
               alt="Telkomsigma Logo"
@@ -73,24 +78,40 @@
               class="flex flex-col w-full lg:gap-6 font-medium lg:p-4 p-0 rounded-lg lg:flex-row md:space-x-8 md:mt-0"
             >
               <li class="!ml-0" 
-                  :class="url=='index' ? 'border-b-[3.1px] border-red-800 shadow-2xl shadow-[#ff00002c] lg:text-blue-700' : ''">
+                  :class="url=='index' ? 'border-b-[3.1px] border-red-800 shadow-2xl shadow-[#ff00002c] lg:text-red-700' : ''">
                 <NuxtLink
                   to="/"
-                  class="block py-2 pl-3 pr-4 dark:text-primary-600 rounded lg:bg-transparent lg:p-0"
+                  class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:md:hover:text-blue-900 md:p-0"
                   aria-current="page"
                   >{{ $t('navbar__home') }}</NuxtLink
                 >
               </li>
-              <li class="!ml-0"
-              :class="url=='products-it-services'  ? 'border-b-[3.1px] border-red-800 shadow-2xl shadow-[#ff00002c] lg:text-blue-700' : ''">
-                <NuxtLink
+              <li class="!ml-0"  data-dropdown-toggle="dropdown"
+              :class="url=='products-it-services'  ? 'border-b-[3.1px] border-red-800 shadow-2xl shadow-[#ff00002c] lg:text-red-700' : ''">
+                <div class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:md:hover:text-blue-900 md:p-0 cursor-pointer"  >
+                  {{ $t('navbar__solution_services') }}
+                </div>
+                <!-- <NuxtLink
                   to="/products/it-services"
                   class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:md:hover:text-blue-900 md:p-0"
                   >{{ $t('navbar__solution_services') }}</NuxtLink
-                >
+                > -->
               </li>
+
+              <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 pl-5">
+                  <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                    <li>
+                        <NuxtLink
+                          to="/products/it-services"
+                          class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:md:hover:text-blue-900 md:p-0"
+                          >{{ $t('navbar__solution_services') }}</NuxtLink
+                        >
+                    </li>
+                  </ul>
+              </div>
+
               <li class="!ml-0"
-              :class="url=='about'  ? 'border-b-[3.1px] border-red-800 shadow-2xl shadow-[#ff00002c] lg:text-blue-700' : ''">
+              :class="url=='about'  ? 'border-b-[3.1px] border-red-800 shadow-2xl shadow-[#ff00002c] lg:text-red-700' : ''">
                 <NuxtLink
                   to="/about"
                   class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:md:hover:text-blue-900 md:p-0"
@@ -98,7 +119,7 @@
                 >
               </li>
               <li class="!ml-0"
-              :class="url.includes('information')  ? 'border-b-[3.1px] border-red-800 shadow-2xl shadow-[#ff00002c] lg:text-blue-700' : ''">
+              :class="url.includes('information')  ? 'border-b-[3.1px] border-red-800 shadow-2xl shadow-[#ff00002c] lg:text-red-700' : ''">
                 <NuxtLink
                   to="/information"
                   class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:md:hover:text-blue-900 md:p-0"
@@ -154,8 +175,8 @@
 
     <!-- footer -->
     <footer class="w-full bg-[#000000] py-20 mt-16">
-      <div class="w-3/4 mx-auto text-warning-25 flex">
-          <div class="basis-1/4">
+      <div class="w-3/4 mx-auto text-warning-25 flex flex-wrap">
+          <div class="basis-1/2 md:basis-1/3 lg:basis-1/4">
               <div class="mb-5" >
                   <img class="w-52" src="@/img/logo-inverted.png" alt="">
               </div>
@@ -170,7 +191,7 @@
               </div>
 
           </div>
-          <div class="basis-1/4">
+          <div class="basis-1/2 md:basis-1/3 lg:basis-1/4">
               <div class="mx-auto w-fit">
                   <h2 class="text-white font-bold text-lg mb-3" >
                       Navigation
@@ -191,7 +212,7 @@
                   </ul>
               </div>
           </div>
-          <div class="basis-1/4">
+          <div class="basis-1/2 mt-10 md:mt-0 md:basis-1/3 lg:basis-1/4">
               <h2 class="text-white font-bold text-lg mb-3" >
                   Product & Services
               </h2>
@@ -207,7 +228,7 @@
                   </li>
               </ul>
           </div>
-          <div class="basis-1/4">
+          <div class="basis-1/2 mt-10 md:basis-1/3 lg:basis-1/4">
               <div class="flex mx-auto w-4/5" >
                   <div class="basis-1/4">
                       <div class=" rounded-full h-10 w-10 bg-[#dbdbdb] relative" >
@@ -237,14 +258,18 @@
 </template>
 
 <script>
-
+import { useLayoutStore } from '@/stores/layout';
+const $layout = useLayoutStore()
 export default {
+
   data() {
     return {
       url: '',
       openMenu: false,
       newWidth: 1,
       oldWidth: 1,
+
+      $layout: useLayoutStore()
 
     };
   },
@@ -259,11 +284,10 @@ export default {
     },
     getPath() {
       this.url = this.$route.name;
-      console.log(this.url);
     },
     getData(e) {
       // console.log(e);
-    },
+    }
   },
   computed: {
     isLogin() {
@@ -273,12 +297,47 @@ export default {
       }
       return login;
     }
-  
   },
   watch : {
     '$route'(val){
       this.url = val.matched[0].name
     }
   }
+
 };
+
+// const url = ref(null)
+// const openMenu = ref(false)
+// const newWidth = ref(1)
+// const oldWidth = ref(1)
+
+// const $layout = useLayoutStore()
+
+// const route = useRoute()
+
+// onMounted(() => {
+//   getPath()
+// })
+
+// const goTo = (url) => {
+//   navigateTo({
+//     path: `${url}`
+//   })
+// }
+
+// const getPath = () => {
+//   url.value = route.name
+// }
+
+// const isLogin = computed(()=>{
+//     let login = '';
+//     if (process.client) {
+//       login = localStorage.getItem('token') ? false : true;
+//     }
+//     return login;
+// })
+
+
+
+
 </script>

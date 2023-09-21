@@ -10,13 +10,13 @@
             <h1
               class="text-5xl lg:text-6xl font-bold text-left mb-7 font-nunito"
             >
-              {{ $t('landing__meet') }}
-              <span class="text-background-primary font-cardo">JeSiCa</span>,
+              <span class="text-background-primary font-cardo">JeSiCa</span>, di Sini! Asisten AI Siap Sedia Membantumu
             </h1>
             <h1
-              class="text-5xl lg:text-4xl font-bold text-left mb-7 font-nunito"
+              class="text-5xl lg:text-6xl font-bold text-left mb-7 font-nunito"
             >
-              {{ $t('landing__your_ai_assistant') }}
+              <!-- {{ $t('landing__your_ai_assistant') }} -->
+              <!-- Asisten AI Siap Sedia Membantumu -->
             </h1>
             <p class="mt-10 text-left text-xl font-normal text-f-second">
               {{ $t('landing__content') }}
@@ -88,23 +88,26 @@
 <script setup>
 //import
 import { Howl, Howler } from 'howler';
-
-const sound = new Howl({
-  src: ['ping.mp3'],
-});
-
+import { useMenuStore } from '~/stores/menus';
 definePageMeta({
   layout: 'navbar',
 });
 
 // variable
+const sound = new Howl({
+  src: ['ping.mp3'],
+});
+const $menu = useMenuStore();
 const showModal = ref(false);
 const showGreeting = ref(false);
+
+const data_product = ref(null)
 
 // on mounted
 onMounted(() => {
   // call function will reload on page load
   show_greet();
+  get_data();
 });
 
 // function
@@ -123,9 +126,15 @@ const hide_greet = () => {
   }, 7000);
 };
 
-const call_sound = () => {
-  sound.play();
-};
+const get_data = () => {
+  $menu.getDashboard()
+    .then((response)=>{
+      data_product.value = response.data.data.category
+      console.log(data_product.value);
+    })
+}
+
+
 </script>
 
 <style></style>

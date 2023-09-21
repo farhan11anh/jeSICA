@@ -26,7 +26,7 @@
         </div>
       </div>
 
-      <p v-else v-html="msg"></p>
+      <p v-else class="whitespace-pre" v-html="msg"></p>
     </div>
   </div>
 </template>

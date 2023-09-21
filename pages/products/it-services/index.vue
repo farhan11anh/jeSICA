@@ -50,8 +50,8 @@
         </div>
     </section>
 
-    <section v-else >
-
+    <section class="w-3/4 mx-auto" v-else >
+        
     </section>
 
     <section class="bg-blur w-full py-16" v-if="load_data">
@@ -152,16 +152,19 @@ onMounted(() => {
 const get_products = () => {
     $menu.getProducts()
         .then((response)=> {
-            console.log(response.data.data);
-
             sub_category.value = response.data.data.sub_category.map((data)=>{
                 data.isOpen = false
                 return data
             })
 
             table.value = response.data.data.product
-            console.log(table.value);
             load_data.value = true
+        })
+        .catch((err)=>{
+            console.log(err);
+            load_data.value = "error"
+            console.log(load_data.value);
+
         })
 }
 

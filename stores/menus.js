@@ -7,13 +7,24 @@ export const useMenuStore = defineStore('menu', {
   }),
 
   actions: {
+
+    async getDashboard(){
+      const config = useRuntimeConfig();
+      const url = config.public.apiBase;
+      try {
+        return await axios.get(`${url}/api/menu/get-home-menu/v1`)
+      } catch (error) {
+        throw error;
+      }
+    },
+
     async getAbout(){
       const config = useRuntimeConfig();
       const url = config.public.apiBase;
       try {
         return await axios.get(`${url}/api/menu/get-aboutus-menu/v1`)
       } catch (error) {
-        
+        throw error;
       }
     },
 
@@ -23,7 +34,7 @@ export const useMenuStore = defineStore('menu', {
       try {
         return await axios.get(`${url}/api/menu/get-information-menu/v1`)
       } catch (error) {
-        
+        throw error;
       }
     },
 
@@ -36,7 +47,7 @@ export const useMenuStore = defineStore('menu', {
         }
       )
       } catch (error) {
-        
+        throw error;
       }
     },
 
@@ -49,7 +60,7 @@ export const useMenuStore = defineStore('menu', {
       }
       )
       } catch (error) {
-        
+        throw error;
       }
     }
 
