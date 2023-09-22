@@ -10,7 +10,7 @@
         <div
           class="font-semibold text-[#344054] dark:text-background-hover-secondary"
         >
-          JeSICA
+          JeSiCa
         </div>
       </div>
 
@@ -21,7 +21,7 @@
               href="#"
               class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded"
               aria-current="page"
-              >JeSICA</a
+              >JeSiCa</a
             >
           </li>
         </ul>

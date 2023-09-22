@@ -3,7 +3,7 @@
   "description": "Nuxt 3 + Tailwind + Eslint + i18n + Sentry Starter",
 
   "app__setting": "Pengaturan (bahasa dan darkmode)",
-  "popup__greeting": "Halo, saya JeSICA, ada yang bisa saya bantu?",
+  "popup__greeting": "Halo, saya JeSiCa, ada yang bisa saya bantu?",
 
   "navbar__home": "Beranda",
   "navbar__solution_services": "Solusi & Servis",
@@ -12,15 +12,15 @@
   "navbar__chats": "Pesan",
 
   "landing__meet": "Bertemu",
-  "landing__jesica": "JeSICA",
+  "landing__jesica": "JeSiCa",
   "landing__your_ai_assistant": "Rekan Asisten AI Anda",
   "landing__content": "Apakah Anda lelah menunggu jawaban atau membutuhkan asisten instan? Jessica ada di sini untuk menyelamatkan hari ini! Sebagai Asisten AI, dia dirancang untuk memberikan respons yang cepat dan akurat terhadap semua pertanyaan Anda tentang solusi dan layanan Telkomsigma.",
 
   "landing__card_1": "Tanyakan",
   "landing__card_2": "Temukan Solusi",
   "landing__card_3": "Jelajahi dengan Mulus",
-  "landing__desc_1": "Silakan tuliskan pertanyaan atau masalah Anda pada kotak dialog, dan JeSICA akan dengan cepat memberikan jawaban terbaik untuk Anda.",
-  "landing__desc_2": "JeSICA menyediakan informasi mengenai dukungan teknis, produk, atau pelayanan umum dengan jawaban yang andal untuk Anda.",
+  "landing__desc_1": "Silakan tuliskan pertanyaan atau masalah Anda pada kotak dialog, dan JeSiCa akan dengan cepat memberikan jawaban terbaik untuk Anda.",
+  "landing__desc_2": "JeSiCa menyediakan informasi mengenai dukungan teknis, produk, atau pelayanan umum dengan jawaban yang andal untuk Anda.",
   "landing__desc_3": "Temukan pengalaman berbicara yang menyenangkan dan mudah dipahami, memudahkan Anda menjelajahi layanan kami dengan lancar dan tanpa kesulitan.",
 
   "chats_page__new_chat": "Pesan",
@@ -33,8 +33,8 @@
   "chats_page__capabilities": "Kapabilitas",
   "chats_page__limitations": "Batasan",
   "chats_page__suggestions": "Saran",
-  "chats_page__capabilities_description": "Berisikan penjelasan mengenai kemampuan yang dimiliki oleh JeSICA. Kurang lebih 2-3 baris.",
-  "chats_page__limitations_description": "JeSICA menyediakan informasi mengenai dukungan teknis, product, atau pelayanan umum dengan jawaban yang andal untuk anda.",
+  "chats_page__capabilities_description": "Berisikan penjelasan mengenai kemampuan yang dimiliki oleh JeSiCa. Kurang lebih 2-3 baris.",
+  "chats_page__limitations_description": "JeSiCa menyediakan informasi mengenai dukungan teknis, product, atau pelayanan umum dengan jawaban yang andal untuk anda.",
   "chats_page__suggestions_description": "Berisi pertanyaan yang mungkin ditanyakan pengguna.",
   "chats_page__suggestions_1": "Seragam apa yang kamu pakai di hari Senin?",
   "chats_page__suggestions_2": "Apa aturan berpakaiannya?",
