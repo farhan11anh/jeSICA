@@ -16,5 +16,6 @@
 <script>
 export default {
   props: ['title', 'content', 'stylee', 'styleeChild'],
+  
 };
 </script>

@@ -149,6 +149,8 @@ const hide_and_show = () => {
 watch(locale, (val) => {
   localStorage.lang = val;
 });
+
+
 </script>
 
 <style>
