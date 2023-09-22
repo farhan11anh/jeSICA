@@ -257,87 +257,90 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { useLayoutStore } from '@/stores/layout';
+import { useRoute } from 'vue-router';
 const $layout = useLayoutStore()
-export default {
+// export default {
 
-  data() {
-    return {
-      url: '',
-      openMenu: false,
-      newWidth: 1,
-      oldWidth: 1,
+//   data() {
+//     return {
+//       url: '',
+//       openMenu: false,
+//       newWidth: 1,
+//       oldWidth: 1,
 
-      $layout: useLayoutStore()
+//       $layout: useLayoutStore()
 
-    };
-  },
-  mounted() {
-    this.getPath();
-  },
-  methods: {
-    goTo(url) {
-      navigateTo({
-        path: `/${url}`,
-      });
-    },
-    getPath() {
-      this.url = this.$route.name;
-    },
-    getData(e) {
-      // console.log(e);
-    }
-  },
-  computed: {
-    isLogin() {
-      let login = '';
-      if (process.client) {
-        login = localStorage.getItem('token') ? false : true;
-      }
-      return login;
-    }
-  },
-  watch : {
-    '$route'(val){
-      this.url = val.matched[0].name
-    }
-  }
-
-};
-
-// const url = ref(null)
-// const openMenu = ref(false)
-// const newWidth = ref(1)
-// const oldWidth = ref(1)
-
-// const $layout = useLayoutStore()
-
-// const route = useRoute()
-
-// onMounted(() => {
-//   getPath()
-// })
-
-// const goTo = (url) => {
-//   navigateTo({
-//     path: `${url}`
-//   })
-// }
-
-// const getPath = () => {
-//   url.value = route.name
-// }
-
-// const isLogin = computed(()=>{
-//     let login = '';
-//     if (process.client) {
-//       login = localStorage.getItem('token') ? false : true;
+//     };
+//   },
+//   mounted() {
+//     this.getPath();
+//   },
+//   methods: {
+//     goTo(url) {
+//       navigateTo({
+//         path: `/${url}`,
+//       });
+//     },
+//     getPath() {
+//       this.url = this.$route.name;
 //     }
-//     return login;
-// })
+//   },
+//   computed: {
+//     isLogin() {
+//       let login = '';
+//       if (process.client) {
+//         login = localStorage.getItem('token') ? false : true;
+//       }
+//       return login;
+//     }
+//   },
+//   watch : {
+//     '$route'(val){
+//       this.url = val.matched[0].name
+//     }
+//   }
 
+// };
 
+const url = ref('')
+const openMenu = ref(false)
+const newWidth = ref(1)
+const oldWidth = ref(1)
+const theme = ref(localStorage.theme)
+
+const route = useRoute()
+
+onMounted(() => {
+  getPath()
+})
+
+const goTo = (url) => {
+  navigateTo({
+    path: `/${url}`
+  })
+}
+
+const getPath = () => {
+  url.value = route.name
+}
+
+const isLogin = computed(()=>{
+    let login = '';
+    if (process.client) {
+      login = localStorage.getItem('token') ? false : true;
+    }
+    return login;
+})
+
+watch(route, (val) => {
+  url.value = val.matched[0].name
+})
+
+watch(()=>$layout.theme, (val)=>{
+  theme.value = val;
+})
 
 
 </script>

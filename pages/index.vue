@@ -107,7 +107,7 @@ const data_product = ref(null)
 onMounted(() => {
   // call function will reload on page load
   show_greet();
-  get_data();
+  // get_data();
 });
 
 // function
