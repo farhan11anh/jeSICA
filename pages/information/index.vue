@@ -1,4 +1,7 @@
 <template>
+    <Head>
+        <Title> JeSiCa </Title>
+      </Head>
     <div class="w-screen mb-16" >  
         <div class="banner-page-base banner-bg relative">
             <div class="absolute left-40 bottom-24 w-full" >

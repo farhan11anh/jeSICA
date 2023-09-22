@@ -1,4 +1,7 @@
 <template>
+  <Head>
+    <Title> JeSiCa </Title>
+  </Head>
   <div class="container mx-auto w-full h-auto relative">
     <!-- <HeaderChat class="" v-if="messages.length !== 0" /> -->
     <div
