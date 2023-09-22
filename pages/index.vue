@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title> JeSICA - AI Assistant Companion </Title>
+    <Title> JeSiCa - AI Assistant Companion </Title>
   </Head>
   <div class="relative min-h-screen w-3/4 mx-auto">
     <section class="section-jsc">

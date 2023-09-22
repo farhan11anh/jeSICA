@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title> JeSICA - Change Password </Title>
+    <Title> JeSiCa - Change Password </Title>
   </Head>
   <div class="relative section-jsc h-screen">
     <div class="flex flex-wrap">

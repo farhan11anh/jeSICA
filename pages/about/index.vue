@@ -8,7 +8,7 @@
                     </div>
                     <div class=" text-warning-25 font-semibold text-4xl" >
                         <p class="mb-3">Get to Know More About</p>
-                        <p>JeSICA</p>
+                        <p>JeSiCa</p>
                     </div>
                 </div>
             </div>

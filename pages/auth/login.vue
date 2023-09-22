@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title> JeSICA </Title>
+    <Title> JeSiCa </Title>
   </Head>
   <div class="relative section-jsc h-screen">
     <div class="flex flex-wrap">
