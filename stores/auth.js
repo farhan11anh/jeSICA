@@ -71,7 +71,7 @@ export const useAuthStore = defineStore('auth', {
           "email" : val
         })
       } catch (error) {
-        
+        throw error
       }
     },
 
