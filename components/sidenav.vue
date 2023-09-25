@@ -1,7 +1,7 @@
 <template>
   <div
     class="flex-shrink-0 overflow-x-hidden section-jsc border-r dark:border-r h-full"
-    :class="isOpen ? 'w-fit' : 'w-60'"
+    :class="isOpen ? 'w-fit' : 'sm:w-60 w-screen'"
   >
     <div class="h-full w-full">
       <div class="flex h-full min-h-0 flex-col w-full">
@@ -264,7 +264,7 @@
                 </div>
 
                 <span class="text-base font-semibold leading-normal"
-                v-if="!isOpen">
+                  v-if="!isOpen">
                   Settings
                 </span>
               </NuxtLink>

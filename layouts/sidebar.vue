@@ -2,7 +2,7 @@
   <Head>
     <Title> JeSICA </Title>
   </Head>
-  <div class="overflow-hidden w-full h-full relative flex z-0">
+  <div class="overflow-hidden w-full h-screen fixed flex z-0">
     <div class=" sm:block">
       <Sidenav />
     </div>

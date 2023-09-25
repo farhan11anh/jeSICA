@@ -6,10 +6,10 @@
     <!-- <HeaderChat class="" v-if="messages.length !== 0" /> -->
     <div
       v-if="messages.length == 0"
-      class="h-full p-4 md:p-8 flex justify-center items-center flex-col space-y-4"
+      class="h-full p-4 md:p-8 justify-center items-center flex-col space-y-4 flex "
     >
       <div class="flex">
-        <div class="inline-flex space-x-4">
+        <div class=" hidden md:inline-flex space-x-4">
           <card-recomend class="w-full section-jsc">
             <span>
               <svg

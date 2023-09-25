@@ -9,7 +9,7 @@
         <!-- {{ Msg() }} -->
         <input
           type="text"
-          class="self-stretch px-2 py-3 bg-transparent rounded-lg shadow border border-gray-300 justify-start items-center gap-2 whitespace-normal break-all inline-flex focus:ring-primary-600"
+          class="w-11/12 sm:w-full self-stretch px-2 py-3 bg-transparent rounded-lg shadow border border-gray-300 justify-start items-center gap-2 whitespace-normal break-all inline-flex focus:ring-primary-600"
           :placeholder="$t('chats_page__ask_me_anything')"
           v-model="msg"
           @keyup.enter="sendMessage"
