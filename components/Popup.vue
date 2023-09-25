@@ -51,7 +51,7 @@
         <div class="footer p-4 border-t-[1px] border-gray-300">
           <div class="flex gap-3 justify-between">
             <div
-              class="message basis-10/12 border border-[#667085] border-solid rounded-md overflow-hidden h-10"
+              class="message grow border border-[#667085] border-solid rounded-md overflow-hidden h-10"
             >
               <input
                 v-model="message"
