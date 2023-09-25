@@ -3,7 +3,7 @@
     <Title> JeSICA </Title>
   </Head>
   <div class="overflow-hidden w-full h-full relative flex z-0">
-    <div class="hidden sm:block">
+    <div class=" sm:block">
       <Sidenav />
     </div>
     <div

@@ -7,7 +7,7 @@
     <div
       @click="hide_and_show"
       class="rounded-full bg-gray-400 hover:bg-gray-500 w-6 h-6 fixed bottom-3 left-20 z-50"
-      data-tooltip-target="tooltip-settings"
+      
     >
       <span class="-mb-10">
         <svg
@@ -104,6 +104,7 @@
         </div>
       </div>
     </transition>
+
   </div>
 </template>
 

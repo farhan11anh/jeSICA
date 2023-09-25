@@ -3,13 +3,13 @@
         <Title> JeSiCa </Title>
       </Head>
     <div class="w-screen mb-16" >  
-        <div class="banner-page-base banner-bg relative">
+        <div class="banner-page-base banner-bg overflow-hidden relative">
             <div class="absolute left-40 bottom-24 w-full" >
                 <div class="border-l-2 border-l-red-800 w-1/2 box-border px-6" >
-                    <div class=" box-border text-[#e72f29] font-bold text-3xl mb-5" >
+                    <div class=" box-border text-[#e72f29] font-bold text-base lg:text-3xl mb-5" >
                         Information
                     </div>
-                    <div class=" text-black font-semibold text-4xl" >
+                    <div class=" text-black font-semibold text-base lg:text-4xl" >
                         <p class="mb-3">
                             Stay up to date with the latest corporate strategic initiatives and achievement of Telkomsigma 
                         </p>
@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <section class="w-3/4 mx-auto" v-if="load_data">
+    <section class="w-3/4 mx-auto" v-if="load_data == 'true'">
         <div class="image overflow-hidden w-full rounded-lg mb-10 relative">
             <img class="w-full" src="@/img/first-news.jpg" alt="">
             <div class="absolute w-full top-0 bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-[#0000008a]" >
@@ -68,9 +68,12 @@
 
     </section>
 
-    <section v-else >
-
+    <section class="w-3/4 mx-auto" v-else-if="load_data == 'error'" >
+        <UtilsFailedLoad />
     </section>
+
+    <ModalsPageLoading v-show="load_data == 'false'" />
+
 
 </template>
 
@@ -85,7 +88,7 @@ const router = useRouter()
 
 const firstContent = ref(null)
 const content = ref([])
-const load_data = ref(false)
+const load_data = ref('false')
 
 const get_information = () => {
     $menu.getInformation()
@@ -96,8 +99,11 @@ const get_information = () => {
                     content.value.push(item)
                 }
             });
-            load_data.value = true
+            load_data.value = 'true'
             console.log(content.value);
+        })
+        .catch((err) => { 
+            load_data.value = 'error'
         })
 }
 

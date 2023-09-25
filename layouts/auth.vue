@@ -5,18 +5,32 @@
     <div
       class="w-3/4 flex flex-wrap items-center justify-center md:justify-between mx-auto p-4"
     >
-      <NuxtLink to="/" class="flex items-center">
-        <img
-          src="@/img/logo.png"
-          class="h-12 mr-3"
-          alt="Telkomsigma Logo"
-        />
-      </NuxtLink>
+    <NuxtLink to="/" class="flex items-center"> 
+      <img v-if="theme == 'dark'"
+        src="@/img/logo-inverted.png"
+        class="h-12 mr-3"
+        alt="Telkomsigma Logo"
+      />
+      <img v-else
+        src="@/img/logo.png"
+        class="h-12 mr-3"
+        alt="Telkomsigma Logo"
+      />
+    </NuxtLink>
     </div>
   </nav>
   <slot />
 </template>
 
-<script setup></script>
+<script setup>
+import { useLayoutStore } from '@/stores/layout';
+const $layout = useLayoutStore()
+
+const theme = ref(localStorage.theme)
+
+watch(()=>$layout.theme, (val)=>{
+  theme.value = val;
+})
+</script>
 
 <style scoped></style>

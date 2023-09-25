@@ -74,14 +74,14 @@
 
     <ChatsGreeting v-show="showGreeting" />
 
-    <Avatar
+    <!-- <Avatar
       class="fixed bottom-5 right-5 shadow-lg shadow-gray-600 cursor-pointer"
       width="w-12"
       online="true"
       @click="showModal = true"
     />
 
-    <Popup v-show="showModal" @close-modal="showModal = false" />
+    <Popup v-show="showModal" @close-modal="showModal = false" /> -->
   </div>
 </template>
 
@@ -98,7 +98,7 @@ const sound = new Howl({
   src: ['ping.mp3'],
 });
 const $menu = useMenuStore();
-const showModal = ref(false);
+// const showModal = ref(false);
 const showGreeting = ref(false);
 
 const data_product = ref(null)

@@ -74,9 +74,12 @@
 
     </section>
 
-    <section v-else >
-
+    <section class="w-3/4 mx-auto" v-else-if="load_data == 'error'" >
+        <UtilsFailedLoad />
     </section>
+
+    <ModalsPageLoading v-show="load_data == 'false'" />
+
 
 </template>
 
@@ -91,7 +94,7 @@ const route = useRoute();
 
 const detail = ref(null)
 const content = ref([])
-const load_data = ref(false)
+const load_data = ref('false')
 
 const get_information = () => {
     const id = route.params.id
@@ -101,7 +104,10 @@ const get_information = () => {
             detail.value = response.data.data.detail_information
             content.value = response.data.data.other_information
 
-            load_data.value = true
+            load_data.value = 'true'
+        })
+        .catch((err)=>{
+            load_data.value = 'error'
         })
 }
 

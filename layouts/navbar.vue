@@ -48,10 +48,10 @@
         </div>
 
         <div
-          class="flex lg:flex-row lg:w-4/5 right-3 lg:right-auto min-[1440px]:w-3/4 lg:justify-between section-jsc rounded-xl"
+          class="flex lg:flex-row lg:w-4/5 right-3 lg:right-auto min-[1540px]:w-3/4 lg:justify-between section-jsc rounded-xl"
           :class="
             openMenu
-              ? 'flex-col divide-y lg:divide-y-0 fixed lg:static top-3 w-2/3 md:w-2/5 z-40 h-[50vh] lg:h-[50vh] self-end'
+              ? 'flex-col divide-y lg:divide-y-0 fixed lg:static top-3 w-2/3 md:w-2/5 z-40 h-[90vh] lg:h-[90vh] self-end'
               : 'z-auto'
           "
         >
@@ -173,6 +173,15 @@
 
     <slot />
 
+    <Avatar
+      class="fixed bottom-5 right-5 shadow-lg shadow-gray-600 cursor-pointer"
+      width="w-12"
+      online="true"
+      @click="showModal = true"
+    />
+
+    <Popup v-show="showModal" @close-modal="showModal = false" />
+
     <!-- footer -->
     <footer class="w-full bg-[#000000] py-20 mt-16">
       <div class="w-3/4 mx-auto text-warning-25 flex flex-wrap">
@@ -231,24 +240,36 @@
           <div class="basis-1/2 mt-10 md:basis-1/3 lg:basis-1/4">
               <div class="flex mx-auto w-4/5" >
                   <div class="basis-1/4">
-                      <div class=" rounded-full h-10 w-10 bg-[#dbdbdb] relative" >
-                          <img class="w-1/2 mx-auto absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2" src="@/icons/facebook.svg" alt="">
-                      </div>
+                      <NuxtLink to="#">
+                          <div class=" rounded-full h-10 w-10 bg-[#dbdbdb] relative" >
+                              <img class="w-1/2 mx-auto absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2" src="@/icons/facebook.svg" alt="">
+                          </div>
+                      </NuxtLink>
+                      
                   </div>
                   <div class="basis-1/4">
-                      <div class=" rounded-full h-10 w-10 bg-[#dbdbdb] relative" >
-                          <img class="w-1/2 mx-auto absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2" src="@/icons/youtube.svg" alt="">
-                      </div>
+                      <NuxtLink to="#">
+                          <div class=" rounded-full h-10 w-10 bg-[#dbdbdb] relative" >
+                              <img class="w-1/2 mx-auto absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2" src="@/icons/youtube.svg" alt="">
+                          </div>
+                      </NuxtLink>
+                      
                   </div>
                   <div class="basis-1/4">
-                      <div class=" rounded-full h-10 w-10 bg-[#dbdbdb] relative" >
-                          <img class="w-1/2 mx-auto absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2" src="@/icons/instagram.svg" alt="">
-                      </div>
+                      <NuxtLink to="#">
+                          <div class=" rounded-full h-10 w-10 bg-[#dbdbdb] relative" >
+                              <img class="w-1/2 mx-auto absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2" src="@/icons/instagram.svg" alt="">
+                          </div>
+                      </NuxtLink>
+                      
                   </div>
                   <div class="basis-1/4">
-                      <div class=" rounded-full h-10 w-10 bg-[#dbdbdb] relative" >
-                          <img class="w-1/2 mx-auto absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2" src="@/icons/linkedin.svg" alt="">
-                      </div>
+                      <NuxtLink to="#">
+                          <div class=" rounded-full h-10 w-10 bg-[#dbdbdb] relative" >
+                              <img class="w-1/2 mx-auto absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2" src="@/icons/linkedin.svg" alt="">
+                          </div>
+                      </NuxtLink>
+                      
                   </div>
               </div>
           </div>
@@ -261,54 +282,15 @@
 import { useLayoutStore } from '@/stores/layout';
 import { useRoute } from 'vue-router';
 const $layout = useLayoutStore()
-// export default {
-
-//   data() {
-//     return {
-//       url: '',
-//       openMenu: false,
-//       newWidth: 1,
-//       oldWidth: 1,
-
-//       $layout: useLayoutStore()
-
-//     };
-//   },
-//   mounted() {
-//     this.getPath();
-//   },
-//   methods: {
-//     goTo(url) {
-//       navigateTo({
-//         path: `/${url}`,
-//       });
-//     },
-//     getPath() {
-//       this.url = this.$route.name;
-//     }
-//   },
-//   computed: {
-//     isLogin() {
-//       let login = '';
-//       if (process.client) {
-//         login = localStorage.getItem('token') ? false : true;
-//       }
-//       return login;
-//     }
-//   },
-//   watch : {
-//     '$route'(val){
-//       this.url = val.matched[0].name
-//     }
-//   }
-
-// };
 
 const url = ref('')
 const openMenu = ref(false)
 const newWidth = ref(1)
 const oldWidth = ref(1)
 const theme = ref(localStorage.theme)
+
+const showModal = ref(false);
+
 
 const route = useRoute()
 
@@ -341,6 +323,5 @@ watch(route, (val) => {
 watch(()=>$layout.theme, (val)=>{
   theme.value = val;
 })
-
 
 </script>

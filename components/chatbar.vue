@@ -2,7 +2,7 @@
   <div
     class="w-full h-fit p-3 flex-col justify-center items-center gap-2.5 inline-flex section-jsc"
   >
-    <div class="self-stretch justify-start gap-1.5 inline-flex">
+    <div class="self-stretch justify-start gap-1.5 inline-flex w-full">
       <div
         class="grow shrink basis-0 flex-col justify-start gap-1.5 inline-flex focus-within:ring-primary-600"
       >

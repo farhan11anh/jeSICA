@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-screen w-screen overflow-hidden bg-[#0000004e] text-warning-25 absolute z-50 top-0"
+    class="h-screen w-screen overflow-hidden bg-[#0000004e] text-warning-25 fixed z-50 top-0"
   >
     <div
       class="text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"

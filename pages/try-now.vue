@@ -1,5 +1,6 @@
 <template>
   <div>Hello</div>
+  <!-- <ModalsPageLoading /> -->
 </template>
 
 <script setup>

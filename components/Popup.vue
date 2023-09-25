@@ -3,10 +3,41 @@
     <div @click="$emit('close-modal')" class="overlay z-30">
       <div
         @click.stop
-        class="modal h-[35rem] w-[24rem] section-jsc fixed bottom-5 right-5 shadow-lg shadow-gray-600 rounded-md"
+        class="modal h-[35rem]  section-jsc fixed bottom-5 right-5 shadow-lg shadow-gray-600 rounded-md"
+        :class="isMaximized ? ' w-10/12' : 'w-[24rem]'"
       >
         <div class="top">
-          <HeaderPopup />
+          <nav
+          class="bg-gray-50 border section-jsc border-gray-300 dark:border-gray-900 rounded-t-md"
+            >
+            <div
+              class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+            >
+              <div class="flex gap-3 place-items-center">
+                <Avatar online="true" width="w-12 relative" />
+                <div
+                  class="font-semibold text-[#344054] dark:text-background-hover-secondary"
+                >
+                  JeSiCa
+                </div>
+              </div>
+              <div @click="isMaximized = !isMaximized" >
+                <svg v-if="!isMaximized" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-maximize-2 cursor-pointer">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+                <svg v-else xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minimize-2 cursor-pointer">
+                  <polyline points="4 14 10 14 10 20"></polyline>
+                  <polyline points="20 10 14 10 14 4"></polyline>
+                  <line x1="14" y1="10" x2="21" y2="3"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+              </div>
+
+            </div>
+          </nav>
           <div ref="chatContainer" class="overflow-auto h-[22rem] p-4">
             <BubleChat
               v-for="i in messages"
@@ -55,9 +86,6 @@
 </template>
 
 <script>
-// import Bard from "bard-ai";
-// import { Configuration, OpenAIApi } from "openai";
-
 export default {
   data() {
     return {
@@ -69,6 +97,8 @@ export default {
       waitResp: false,
       config: useRuntimeConfig(),
       isFirstSendMessage: 'true',
+
+      isMaximized: false
     };
   },
   mounted() {
@@ -131,7 +161,6 @@ export default {
           });
         }
       } catch (error) {
-        alert('error server');
         this.waitResp = false;
         this.messages.push({
           isJesica: 'true',
@@ -144,20 +173,6 @@ export default {
 
         console.error('Fetch error:', error);
       }
-
-      // jessica responese dummy
-      // setTimeout(()=>{
-      //     this.messages.push(
-      //         {
-      //             isJesica : "true",
-      //             msg : "halo ada yang bisa dibantu ?"
-      //         }
-      //     )
-      //      // Setelah pesan baru ditambahkan, scroll ke bawah
-      //     this.$nextTick(() => {
-      //         this.scrollToBottom();
-      //     });
-      // }, 2000)
     },
 
     scrollToBottom() {

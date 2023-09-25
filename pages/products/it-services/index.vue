@@ -1,15 +1,15 @@
 <template>
     <Head>
         <Title> JeSiCa </Title>
-      </Head>
+    </Head>
     <div class="w-screen mb-16" >  
-        <div class="banner-page-base banner-bg relative">
+        <div class="banner-page-base banner-bg overflow-hidden relative">
             <div class="absolute left-40 bottom-24 w-full" >
                 <div class="border-l-2 border-l-red-800 w-1/2 box-border px-6" >
-                    <div class=" box-border text-[#e72f29] font-bold text-3xl mb-5" >
+                    <div class=" box-border text-[#e72f29] text-base font-bold lg:text-3xl mb-5" >
                         Information
                     </div>
-                    <div class=" text-white font-semibold text-4xl" >
+                    <div class=" text-white text-base font-semibold lg:text-4xl" >
                         <p class="mb-3">
                             End-to-end IT Services Solution to Optimize Your Business
                         </p>
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <section class="w-3/4 mx-auto" v-if="load_data">
+    <section class="w-3/4 mx-auto" v-if="load_data == 'true'">
         <h2 class=" text-center font-bold text-2xl" >At this time, Telkomsigma IT Services capability are including</h2>
 
         <div
@@ -53,11 +53,11 @@
         </div>
     </section>
 
-    <section class="w-3/4 mx-auto" v-else >
-        
+    <section class="w-3/4 mx-auto" v-else-if="load_data == 'error'" >
+        <UtilsFailedLoad />
     </section>
 
-    <section class="bg-blur w-full py-16" v-if="load_data">
+    <section class="bg-blur w-full py-16" v-if="load_data == 'true'">
         <h2 class=" text-center font-bold text-2xl text-warning-25 mb-16" >
             Check Out Our Product Line-Up in IT Services Portfolio:
         </h2>
@@ -132,6 +132,8 @@
         </div>
     </section>
 
+    <ModalsPageLoading v-show="load_data == 'false'" />
+
 </template>
 
 <script setup>
@@ -139,12 +141,11 @@ import { useMenuStore } from '~/stores/menus';
 definePageMeta({
     layout : "navbar"
 })
-const expand = ref([false, false, false])
 const $menu = useMenuStore()
 
 const sub_category = ref([])
 
-const load_data = ref(false)
+const load_data = ref('false')
 
 const table = ref([])
 
@@ -161,12 +162,10 @@ const get_products = () => {
             })
 
             table.value = response.data.data.product
-            load_data.value = true
+            load_data.value = 'true'
         })
         .catch((err)=>{
-            console.log(err);
-            load_data.value = "error"
-            console.log(load_data.value);
+            load_data.value = 'error'
 
         })
 }

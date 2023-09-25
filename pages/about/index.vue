@@ -1,12 +1,12 @@
 <template>
     <div class="w-screen mb-16" >  
-        <div class="banner-page relative">
+        <div class="banner-page relative overflow-hidden">
             <div class="absolute left-40 bottom-24 w-full" >
                 <div class="border-l-2 border-l-red-800 w-1/3 box-border px-6" >
-                    <div class=" box-border text-[#e72f29] font-bold text-3xl mb-5" >
+                    <div class=" box-border text-[#e72f29] font-bold text-base lg:text-3xl mb-5" >
                         About Us
                     </div>
-                    <div class=" text-warning-25 font-semibold text-4xl" >
+                    <div class=" text-warning-25 font-semibold text-base lg:text-4xl" >
                         <p class="mb-3">Get to Know More About</p>
                         <p>JeSiCa</p>
                     </div>
@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <section class="w-3/4 mx-auto" v-if="load_data">
+    <section class="w-3/4 mx-auto" v-if="load_data == 'true'">
         <div class="image overflow-hidden w-full rounded-lg bg-dark-hover mb-10">
             <img class="w-full" src="@/img/main-img-content.jpg" alt="">
         </div>
@@ -56,9 +56,12 @@
 
     </section> 
 
-    <section v-else >
+    <section class="w-3/4 mx-auto" v-else-if="load_data == 'error'" >
+        <UtilsFailedLoad />
+    </section>  
 
-    </section>
+    <ModalsPageLoading v-show="load_data == 'false'" />
+
 
 </template>
 
@@ -71,7 +74,7 @@ import { useMenuStore } from '~/stores/menus';
 
 const $menu = useMenuStore()
 
-const load_data = ref(false)
+const load_data = ref('false')
 
 const content = ref(null)
 
@@ -80,7 +83,10 @@ const get_data = () => {
         .then((resp)=>{
             console.log(resp.data.data.about_us[0]);
             content.value = resp.data.data.about_us[0]
-            load_data.value = true
+            load_data.value = "true"
+        })
+        .catch((err)=>{
+            load_data.value = "error"
         })
 }
 

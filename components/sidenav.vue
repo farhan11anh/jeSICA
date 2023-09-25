@@ -263,7 +263,8 @@
                   </svg>
                 </div>
 
-                <span class="text-base font-semibold leading-normal">
+                <span class="text-base font-semibold leading-normal"
+                v-if="!isOpen">
                   Settings
                 </span>
               </NuxtLink>
