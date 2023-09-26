@@ -104,7 +104,7 @@
                         <NuxtLink
                           to="/products/it-services"
                           class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:md:hover:text-blue-900 md:p-0"
-                          >{{ $t('navbar__solution_services') }}</NuxtLink
+                          >IT Solution</NuxtLink
                         >
                     </li>
                   </ul>

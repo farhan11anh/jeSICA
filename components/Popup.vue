@@ -3,15 +3,15 @@
     <div @click="$emit('close-modal')" class="overlay z-30">
       <div
         @click.stop
-        class="modal h-[35rem]  section-jsc fixed bottom-5 right-5 shadow-lg shadow-gray-600 rounded-md"
-        :class="isMaximized ? ' w-10/12' : 'w-[24rem]'"
+        class="modal section-jsc fixed bottom-5 right-5 shadow-lg shadow-gray-600 rounded-md"
+        :class="isMaximized ? ' maximized' : 'minimized'"
       >
         <div class="top">
           <nav
           class="bg-gray-50 border section-jsc border-gray-300 dark:border-gray-900 rounded-t-md"
             >
             <div
-              class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+              class="w-full flex flex-wrap items-center justify-between mx-auto p-4"
             >
               <div class="flex gap-3 place-items-center">
                 <Avatar online="true" width="w-12 relative" />
@@ -21,24 +21,34 @@
                   JeSiCa
                 </div>
               </div>
-              <div @click="isMaximized = !isMaximized" >
-                <svg v-if="!isMaximized" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-maximize-2 cursor-pointer">
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <polyline points="9 21 3 21 3 15"></polyline>
-                  <line x1="21" y1="3" x2="14" y2="10"></line>
-                  <line x1="3" y1="21" x2="10" y2="14"></line>
-                </svg>
-                <svg v-else xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minimize-2 cursor-pointer">
-                  <polyline points="4 14 10 14 10 20"></polyline>
-                  <polyline points="20 10 14 10 14 4"></polyline>
-                  <line x1="14" y1="10" x2="21" y2="3"></line>
-                  <line x1="3" y1="21" x2="10" y2="14"></line>
-                </svg>
+              <div class="flex gap-5" >
+                <div @click="isMaximized = !isMaximized" >
+                  <svg v-if="!isMaximized" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-maximize-2 cursor-pointer">
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <polyline points="9 21 3 21 3 15"></polyline>
+                    <line x1="21" y1="3" x2="14" y2="10"></line>
+                    <line x1="3" y1="21" x2="10" y2="14"></line>
+                  </svg>
+                  <svg v-else xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minimize-2 cursor-pointer">
+                    <polyline points="4 14 10 14 10 20"></polyline>
+                    <polyline points="20 10 14 10 14 4"></polyline>
+                    <line x1="14" y1="10" x2="21" y2="3"></line>
+                    <line x1="3" y1="21" x2="10" y2="14"></line>
+                  </svg>
+                </div>
+                <div @click="$emit('close-modal')">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x cursor-pointer">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </div>
               </div>
 
             </div>
           </nav>
-          <div ref="chatContainer" class="overflow-auto h-[22rem] p-4">
+          <div ref="chatContainer" 
+              class="overflow-auto h-[22rem] p-4"
+              :class="isMaximized ? 'h-[28rem]' : 'h-[22rem]' ">
             <BubleChat
               v-for="i in messages"
               :jesica="i.isJesica"
@@ -203,5 +213,38 @@ export default {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+
+@keyframes max {
+  from {
+    width: 24rem;
+    height: 35rem ;
+  }
+  to {
+    width: 90%;
+    height: 90%;
+  }
+}
+@keyframes min {
+  from {
+    width: 90%;
+    height: 90%;
+  }
+  to {
+    width: 24rem;
+    height: 35rem;
+  }
+}
+.maximized {
+  width: 90%;
+  height: 90%;
+  animation-name: max;
+  animation-duration: 1s;
+}
+.minimized {
+  width: 24rem;
+  height: 35rem;
+  animation-name: min;
+  animation-duration: 1s;
 }
 </style>
