@@ -8,10 +8,10 @@
             </svg>
 
             <div class=" font-bold text-lg" >
-                Unable To load the data.
+                Error
             </div>
-            <div class="text-gray-500 text-sm">
-                This can happen if you are not connet to the internet or server can't access
+            <div class="text-gray-500 text-lg">
+                404
             </div>
         </div>
     </div>
