@@ -1,7 +1,7 @@
 <template>
-  <Head>
+  <!-- <Head>
     <Title> JeSICA </Title>
-  </Head>
+  </Head> -->
   <div class="overflow-hidden w-full h-screen fixed flex z-0">
     <div class=" sm:block">
       <Sidenav />

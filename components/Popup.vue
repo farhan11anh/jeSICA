@@ -62,8 +62,8 @@
               :class="isMaximized ? 'h-[28rem]' : 'h-[22rem]' ">
             <BubleChat
               v-for="i in messages"
-              :jesica="i.isJesica"
-              :msg="i.msg"
+              :jesica="i.role == 'assistant' ? 'true' : 'false'"
+              :msg="i.content"
             />
 
             <BubleChat v-if="waitResp" jesica="true" msg=".." wait-res="true" />
@@ -140,15 +140,19 @@ export default {
   },
   methods: {
     async sendMessage() {
+      console.log(this.messages);
       const text = {
         text: this.message,
         first: this.isFirstSendMessage,
       };  
       this.messages.push({
-        isJesica: 'false',
-        msg: this.message,
+        role: 'user',
+        content: this.message,
       });
-      // console.log(text);
+      // this.messages.push({
+      //   isJesica: 'false',
+      //   msg: this.message,
+      // });
       this.message = '';
       // grayout send
       this.waitResp = true;
@@ -165,7 +169,8 @@ export default {
           `${this.config.public.apiBase}/api/chat/exazure/v1`,
           {
             method: 'POST',
-            body: text,
+            // body: text 
+            body: {chats: this.messages},
           },
         );
 
@@ -175,8 +180,8 @@ export default {
           this.isFirstSendMessage = 'false';
           this.waitResp = false;
           this.messages.push({
-            isJesica: 'true',
-            msg: resp.data.text_response,
+            role: 'assistant',
+            content: resp.data.text_response,
           });
           // Setelah pesan baru ditambahkan, scroll ke bawah
           this.$nextTick(() => {
@@ -186,8 +191,8 @@ export default {
       } catch (error) {
         this.waitResp = false;
         this.messages.push({
-          isJesica: 'true',
-          msg: 'tidak ada response',
+          role: 'assistant',
+          content: 'tidak ada response',
         });
         // Setelah pesan baru ditambahkan, scroll ke bawah
         this.$nextTick(() => {

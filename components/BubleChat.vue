@@ -1,7 +1,7 @@
 <template>
   <div class="flex gap-3 mb-5" :class="position">
     <Avatar v-if="jesica === 'true'" online="false" width="w-10 relative" />
-    <div class="rounded-lg p-4 max-w-[75%] text-base" :class="color">
+    <div class="rounded-lg p-4 max-w-[75%] text-base wrap-overflow" :class="color">
       <div v-if="waitRes == 'true'">
         <div class="text-center">
           <div role="status">
@@ -43,3 +43,10 @@ export default {
   },
 };
 </script>
+
+<style>
+.wrap-overflow {
+  overflow-wrap: anywhere;
+ }
+
+</style>
