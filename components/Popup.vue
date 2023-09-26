@@ -22,7 +22,7 @@
                 </div>
               </div>
               <div class="flex gap-5" >
-                <div @click="isMaximized = !isMaximized" >
+                <div @click="isMaximized = !isMaximized" data-tooltip-target="mini_maxi" >
                   <svg v-if="!isMaximized" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-maximize-2 cursor-pointer">
                     <polyline points="15 3 21 3 21 9"></polyline>
                     <polyline points="9 21 3 21 3 15"></polyline>
@@ -36,12 +36,23 @@
                     <line x1="3" y1="21" x2="10" y2="14"></line>
                   </svg>
                 </div>
-                <div @click="$emit('close-modal')">
+                <!-- tooltips minimize and maximize -->
+                <div id="mini_maxi" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    {{ isMaximized ? 'Minimize' : 'Maximize' }}
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+
+                <div @click="$emit('close-modal')" data-tooltip-target="close">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x cursor-pointer">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                   </svg>
                 </div>
+              </div>
+              <!-- tooltips close -->
+              <div id="close" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                  Close
+                  <div class="tooltip-arrow" data-popper-arrow></div>
               </div>
 
             </div>
@@ -96,6 +107,7 @@
 </template>
 
 <script>
+import { initFlowbite } from 'flowbite';
 export default {
   data() {
     return {
@@ -112,6 +124,7 @@ export default {
     };
   },
   mounted() {
+    initFlowbite()
     this.$nextTick(() => {
       this.scrollToBottom();
     });
@@ -130,7 +143,7 @@ export default {
       const text = {
         text: this.message,
         first: this.isFirstSendMessage,
-      };
+      };  
       this.messages.push({
         isJesica: 'false',
         msg: this.message,
@@ -194,57 +207,56 @@ export default {
 </script>
 
 <style>
-.overlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  background-color: #00000091;
-}
-
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.6s ease-in-out;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
-
-@keyframes max {
-  from {
-    width: 24rem;
-    height: 35rem ;
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #00000091;
   }
-  to {
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 0.6s ease-in-out;
+  }
+
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
+  }
+
+  @keyframes max {
+    from {
+      width: 24rem;
+      height: 35rem ;
+    }
+    to {
+      width: 90%;
+      height: 90%;
+    }
+  }
+  @keyframes min {
+    from {
+      width: 90%;
+      height: 90%;
+    }
+    to {
+      width: 24rem;
+      height: 35rem;
+    }
+  }
+  .maximized {
     width: 90%;
     height: 90%;
+    animation-name: max;
+    animation-duration: 1s;
   }
-}
-@keyframes min {
-  from {
-    width: 90%;
-    height: 90%;
-  }
-  to {
+  .minimized {
     width: 24rem;
     height: 35rem;
+    animation-name: min;
+    animation-duration: 1s;
   }
-}
-.maximized {
-  width: 90%;
-  height: 90%;
-  animation-name: max;
-  animation-duration: 1s;
-}
-.minimized {
-  width: 24rem;
-  height: 35rem;
-  animation-name: min;
-  animation-duration: 1s;
-}
 </style>

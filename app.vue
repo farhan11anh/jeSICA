@@ -93,7 +93,7 @@
             class="absolute bottom-5 right-5 bg-[#ffffff93] rounded-full z-50 cursor-pointer"
           >
             <transition name="lang" mode="out-in">
-              <div v-if="isDark">
+              <div v-if="theme == 'dark'">
                 <img class="w-12" src="/icons/moon.svg" alt="" srcset="" />
               </div>
               <div v-else>
@@ -182,4 +182,5 @@ watch(locale, (val) => {
 .lang-enter-from {
   transform: translateY(-100%);
 }
+
 </style>

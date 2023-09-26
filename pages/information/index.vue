@@ -1,6 +1,6 @@
 <template>
     <Head>
-        <Title> JeSiCa </Title>
+        <Title> JeSiCa - Information </Title>
       </Head>
     <div class="w-screen mb-16" >  
         <div class="banner-page-base banner-bg overflow-hidden relative">

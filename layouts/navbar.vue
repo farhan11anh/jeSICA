@@ -183,7 +183,7 @@
     <Popup v-show="showModal" @close-modal="showModal = false" />
 
     <!-- footer -->
-    <footer class="w-full bg-[#000000] py-20 mt-16">
+    <footer class="w-full bg-[#000000] py-20 mt-16 -mb-10">
       <div class="w-3/4 mx-auto text-warning-25 flex flex-wrap">
           <div class="basis-1/2 md:basis-1/3 lg:basis-1/4">
               <div class="mb-5" >

@@ -265,7 +265,7 @@
 
                 <span class="text-base font-semibold leading-normal"
                   v-if="!isOpen">
-                  Settings
+                  {{ $t('chats_page__settings') }}
                 </span>
               </NuxtLink>
 
