@@ -1,10 +1,10 @@
 <template class="h-screen">
-  <div :class="theme == 'dark' ? 'dark' : ''" class="font-inter relative">
+  <div :class="theme == 'dark' ? 'dark' : ''" class="font-inter bg-[#F7F7F7] relative">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
 
-    <div
+    <!-- <div
       @click="hide_and_show"
       class="rounded-full bg-gray-400 hover:bg-gray-500 w-6 h-6 fixed bottom-3 left-20 z-50"
       
@@ -44,16 +44,16 @@
           <polyline points="7 6 12 11 17 6"></polyline>
         </svg>
       </span>
-    </div>
+    </div> -->
     <!-- tooltip settings -->
-    <div
+    <!-- <div
       id="tooltip-settings"
       role="tooltip"
       class="absolute z-40 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
     >
       {{ $t('app__setting') }}
       <div class="tooltip-arrow" data-popper-arrow></div>
-    </div>
+    </div> -->
 
     <transition name="fade" mode="out-in">
       <!-- <div class="fixed bottom-5 left-5 z-40 w-40 h-20"> -->
