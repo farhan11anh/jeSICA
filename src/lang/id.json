@@ -3,7 +3,7 @@
   "description": "Nuxt 3 + Tailwind + Eslint + i18n + Sentry Starter",
 
   "app__setting": "Pengaturan (bahasa dan darkmode)",
-  "popup__greeting": "Halo, saya JeSiCa, ada yang bisa saya bantu?",
+  "popup__greeting": "Halo, ada yang bisa saya bantu?",
 
   "navbar__home": "Beranda",
   "navbar__solution_services": "Solusi & Servis",

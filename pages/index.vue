@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title> JeSiCa - AI Assistant Companion </Title>
+    <Title> TELKOMSIGMA </Title>
   </Head>
 
   <div class="banner-cp h-[500px] w-full relative" >
